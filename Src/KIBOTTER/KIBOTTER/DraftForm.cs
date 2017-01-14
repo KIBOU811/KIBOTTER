@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace KIBOTTER
 {
-    public partial class MainForm : Form
+    public partial class DraftForm : Form
     {
-        public MainForm()
+        public DraftForm()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

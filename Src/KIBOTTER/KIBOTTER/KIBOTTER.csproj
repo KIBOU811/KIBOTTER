@@ -54,6 +54,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAcountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAcountForm.Designer.cs">
+      <DependentUpon>AddAcountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddDraftForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDraftForm.Designer.cs">
+      <DependentUpon>AddDraftForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvancedForm.Designer.cs">
+      <DependentUpon>AdvancedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DraftForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DraftForm.Designer.cs">
+      <DependentUpon>DraftForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +86,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddAcountForm.resx">
+      <DependentUpon>AddAcountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddDraftForm.resx">
+      <DependentUpon>AddDraftForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdvancedForm.resx">
+      <DependentUpon>AdvancedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DraftForm.resx">
+      <DependentUpon>DraftForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
