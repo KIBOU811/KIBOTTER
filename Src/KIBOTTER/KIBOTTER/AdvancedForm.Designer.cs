@@ -33,7 +33,7 @@
             this.CSTextBox = new System.Windows.Forms.TextBox();
             this.ViaChangeButton = new System.Windows.Forms.Button();
             this.ViaCheckBox = new System.Windows.Forms.CheckBox();
-            this.ViaNameTextBox1 = new System.Windows.Forms.TextBox();
+            this.ViaNameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BlackThemeCheckBox
@@ -46,6 +46,7 @@
             this.BlackThemeCheckBox.TabIndex = 1;
             this.BlackThemeCheckBox.Text = "ぶらっくてーま";
             this.BlackThemeCheckBox.UseVisualStyleBackColor = true;
+            this.BlackThemeCheckBox.CheckedChanged += new System.EventHandler(this.BlackThemeCheckBox_CheckedChanged);
             // 
             // CKTextBox
             // 
@@ -56,6 +57,8 @@
             this.CKTextBox.Size = new System.Drawing.Size(190, 25);
             this.CKTextBox.TabIndex = 3;
             this.CKTextBox.Text = "Consumer Key (API Key)";
+            this.CKTextBox.Click += new System.EventHandler(this.CKTextBox_Click);
+            this.CKTextBox.Enter += new System.EventHandler(this.CKTextBox_Enter);
             // 
             // CSTextBox
             // 
@@ -66,6 +69,8 @@
             this.CSTextBox.Size = new System.Drawing.Size(190, 25);
             this.CSTextBox.TabIndex = 4;
             this.CSTextBox.Text = "Consumer Secret (API Secret)";
+            this.CSTextBox.Click += new System.EventHandler(this.CSTextBox_Click);
+            this.CSTextBox.Enter += new System.EventHandler(this.CSTextBox_Enter);
             // 
             // ViaChangeButton
             // 
@@ -77,6 +82,7 @@
             this.ViaChangeButton.TabIndex = 5;
             this.ViaChangeButton.Text = "ついか";
             this.ViaChangeButton.UseVisualStyleBackColor = true;
+            this.ViaChangeButton.Click += new System.EventHandler(this.ViaChangeButton_Click);
             // 
             // ViaCheckBox
             // 
@@ -89,22 +95,24 @@
             this.ViaCheckBox.Text = "viaのかすたまいず";
             this.ViaCheckBox.UseVisualStyleBackColor = true;
             // 
-            // ViaNameTextBox1
+            // ViaNameTextBox
             // 
-            this.ViaNameTextBox1.Enabled = false;
-            this.ViaNameTextBox1.Font = new System.Drawing.Font("メイリオ", 9F);
-            this.ViaNameTextBox1.Location = new System.Drawing.Point(28, 40);
-            this.ViaNameTextBox1.Name = "ViaNameTextBox1";
-            this.ViaNameTextBox1.Size = new System.Drawing.Size(190, 25);
-            this.ViaNameTextBox1.TabIndex = 2;
-            this.ViaNameTextBox1.Text = "Via Name";
+            this.ViaNameTextBox.Enabled = false;
+            this.ViaNameTextBox.Font = new System.Drawing.Font("メイリオ", 9F);
+            this.ViaNameTextBox.Location = new System.Drawing.Point(28, 40);
+            this.ViaNameTextBox.Name = "ViaNameTextBox";
+            this.ViaNameTextBox.Size = new System.Drawing.Size(190, 25);
+            this.ViaNameTextBox.TabIndex = 2;
+            this.ViaNameTextBox.Text = "Via Name";
+            this.ViaNameTextBox.Click += new System.EventHandler(this.ViaNameTextBox_Click);
+            this.ViaNameTextBox.Enter += new System.EventHandler(this.ViaNameTextBox_Enter);
             // 
             // AdvancedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(230, 196);
-            this.Controls.Add(this.ViaNameTextBox1);
+            this.Controls.Add(this.ViaNameTextBox);
             this.Controls.Add(this.ViaCheckBox);
             this.Controls.Add(this.ViaChangeButton);
             this.Controls.Add(this.CSTextBox);
@@ -116,6 +124,8 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "しょうさいせってい";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedForm_FormClosing);
+            this.Load += new System.EventHandler(this.AdvancedForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,6 +138,6 @@
         private System.Windows.Forms.TextBox CSTextBox;
         private System.Windows.Forms.Button ViaChangeButton;
         private System.Windows.Forms.CheckBox ViaCheckBox;
-        private System.Windows.Forms.TextBox ViaNameTextBox1;
+        private System.Windows.Forms.TextBox ViaNameTextBox;
     }
 }

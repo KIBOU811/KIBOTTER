@@ -1,6 +1,6 @@
 ﻿namespace KIBOTTER
 {
-    partial class AddAcountForm
+    partial class AddAccountForm
     {
         /// <summary>
         /// Required designer variable.
@@ -53,6 +53,7 @@
             this.ViaButton.TabIndex = 2;
             this.ViaButton.Text = "これにする";
             this.ViaButton.UseVisualStyleBackColor = true;
+            this.ViaButton.Click += new System.EventHandler(this.ViaButton_Click);
             // 
             // PinTextBox
             // 
@@ -73,6 +74,7 @@
             this.AuthButton.Text = "にんしょー";
             this.AuthButton.UseVisualStyleBackColor = true;
             this.AuthButton.Visible = false;
+            this.AuthButton.Click += new System.EventHandler(this.AuthButton_Click);
             // 
             // ViaComboBox
             // 

@@ -42,6 +42,7 @@
             this.ContentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.ContentTextBox.Size = new System.Drawing.Size(260, 209);
             this.ContentTextBox.TabIndex = 0;
+            this.ContentTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ContentTextBox_KeyPress);
             // 
             // ResultLabel
             // 
@@ -62,6 +63,7 @@
             this.AddButton.TabIndex = 1;
             this.AddButton.Text = "ついか";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // AddDraftForm
             // 
@@ -75,6 +77,7 @@
             this.MinimizeBox = false;
             this.Name = "AddDraftForm";
             this.Text = "したがきついか";
+            this.Load += new System.EventHandler(this.AddDraftForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

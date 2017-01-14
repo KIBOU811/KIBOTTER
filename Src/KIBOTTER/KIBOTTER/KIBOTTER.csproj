@@ -54,11 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAcountForm.cs">
+    <Compile Include="AddAccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddAcountForm.Designer.cs">
-      <DependentUpon>AddAcountForm.cs</DependentUpon>
+    <Compile Include="AddAccountForm.Designer.cs">
+      <DependentUpon>AddAccountForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddDraftForm.cs">
       <SubType>Form</SubType>
@@ -84,10 +84,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MorseCode.cs" />
+    <Compile Include="Poker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddAcountForm.resx">
-      <DependentUpon>AddAcountForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddAccountForm.resx">
+      <DependentUpon>AddAccountForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddDraftForm.resx">
       <DependentUpon>AddDraftForm.cs</DependentUpon>
