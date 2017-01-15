@@ -248,13 +248,13 @@ namespace KIBOTTER
 
             if (FirstMediaPath != null)
             {
+                TweetTextBox.Clear();
                 TweetWithMedia(text);
                 return;
             }
 
             if (string.IsNullOrEmpty(text))
             {
-                TweetTextBox.Clear();
                 ToolStripStatusLabel.Text = @"しっぱいしました(X3)";
                 TweetTextBox.Focus();
                 return;
@@ -275,6 +275,7 @@ namespace KIBOTTER
                 text = mc.ConvertToMorse(text);
                 if (text == "error")
                 {
+                    TweetTextBox.Clear();
                     ToolStripStatusLabel.Text = @"もーるすしんごうにできませんでした(X3)";
                     return;
                 }
@@ -313,6 +314,7 @@ namespace KIBOTTER
             if (0 <= (startIndex = text.IndexOf("!now", StringComparison.Ordinal)))
                 text = text.Remove(startIndex, 4).Insert(startIndex, DateTime.Now.ToString(CultureInfo.CurrentCulture));
 
+            TweetTextBox.Clear();
             Tweet(text, 1);
         }
 
