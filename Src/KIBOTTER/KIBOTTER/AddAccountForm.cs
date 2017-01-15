@@ -46,8 +46,8 @@ namespace KIBOTTER
                 }
             }
 
-            int left = Screen.PrimaryScreen.WorkingArea.Width - Width;// - Form1Obj.Width;
-            int top = Screen.PrimaryScreen.WorkingArea.Height - Height;// - Form1Obj.Height;
+            int left = Screen.PrimaryScreen.WorkingArea.Width - Width - Form1Obj.Width;
+            int top = Screen.PrimaryScreen.WorkingArea.Height - Height - Form1Obj.Height;
             DesktopBounds = new Rectangle(left, top, Width, Height);
             MaximumSize = Size;
 

@@ -316,7 +316,7 @@ namespace KIBOTTER
             Tweet(text, 1);
         }
 
-        private void Tweet(string text, int count)
+        private async void Tweet(string text, int count)
         {
             const string completeText = "ついーとしました(:3)";
             const string failureText = "しっぱいしました(X3)";
@@ -336,7 +336,7 @@ namespace KIBOTTER
                     }
                 }
 
-                Tokens.Statuses.Update(status => textWithCount);
+                await Tokens.Statuses.UpdateAsync(status => textWithCount);
                 TweetTextBox.Clear();
                 var resultText = completeText;
 
@@ -353,7 +353,7 @@ namespace KIBOTTER
             }
         }
 
-        private void TweetWithMedia(string text)
+        private async void TweetWithMedia(string text)
         {
             try
             {
@@ -384,7 +384,7 @@ namespace KIBOTTER
                     FourthMediaPath = null;
                 }
 
-                Tokens.Statuses.Update(status:text, media_ids:mediaIds);
+                await Tokens.Statuses.UpdateAsync(status:text, media_ids:mediaIds);
                 ToolStripStatusLabel.Text = @"がぞうつきでとうこうしました(:3)";
             }
             catch
