@@ -250,6 +250,7 @@ namespace KIBOTTER
             {
                 TweetTextBox.Clear();
                 TweetWithMedia(text);
+                TweetTextBox.Focus();
                 return;
             }
 
@@ -315,6 +316,7 @@ namespace KIBOTTER
                 text = text.Remove(startIndex, 4).Insert(startIndex, DateTime.Now.ToString(CultureInfo.CurrentCulture));
 
             TweetTextBox.Clear();
+            TweetTextBox.Focus();
             Tweet(text, 1);
         }
 
@@ -333,7 +335,6 @@ namespace KIBOTTER
                     if (textWithCount.Length > 140)
                     {
                         ToolStripStatusLabel.Text = failureText;
-                        TweetTextBox.Focus();
                         return;
                     }
                 }
@@ -346,7 +347,6 @@ namespace KIBOTTER
                     resultText += $"({count}回目)";
 
                 ToolStripStatusLabel.Text = resultText;
-                TweetTextBox.Focus();
             }
             catch
             {
