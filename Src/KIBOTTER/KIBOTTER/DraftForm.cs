@@ -8,7 +8,7 @@ namespace KIBOTTER
     public partial class DraftForm : Form
     {
         private MainForm F1 { get; }
-        private AddDraftForm AddDraftDbj;
+        private AddDraftForm _addDraftDbj;
 
         private string FileName { get; set; } = string.Empty;
 
@@ -98,11 +98,11 @@ namespace KIBOTTER
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (AddDraftDbj != null && !AddDraftDbj.IsDisposed)
+            if (_addDraftDbj != null && !_addDraftDbj.IsDisposed)
                 return;
 
-            AddDraftDbj = new AddDraftForm(this) {ShowInTaskbar = false};
-            AddDraftDbj.ShowDialog();
+            _addDraftDbj = new AddDraftForm(this) {ShowInTaskbar = false};
+            _addDraftDbj.ShowDialog();
         }
 
         private void UseButton_Click(object sender, EventArgs e)

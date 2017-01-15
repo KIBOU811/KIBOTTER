@@ -7,7 +7,7 @@ namespace KIBOTTER
     public partial class AddDraftForm : Form
     {
         private DraftForm Df { get; }
-        private int Count;
+        private int _count;
 
         public AddDraftForm(DraftForm d)
         {
@@ -51,7 +51,7 @@ namespace KIBOTTER
         private void AddButton_Click(object sender, EventArgs e)
         {
             Df.DataGridView.Rows.Add(ContentTextBox.Text);
-            ResultLabel.Text = $@"ついかしました({++Count}こめ)";
+            ResultLabel.Text = $@"ついかしました({++_count}こめ)";
             ContentTextBox.Text = string.Empty;
         }
     }

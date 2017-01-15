@@ -384,7 +384,7 @@ namespace KIBOTTER
                     FourthMediaPath = null;
                 }
 
-                Tokens.Statuses.Update(status => text, media_ids => mediaIds);
+                Tokens.Statuses.Update(status:text, media_ids:mediaIds);
                 ToolStripStatusLabel.Text = @"がぞうつきでとうこうしました(:3)";
             }
             catch
