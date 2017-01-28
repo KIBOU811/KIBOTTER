@@ -5,7 +5,9 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
+using System.Timers;
 using CoreTweet;
+using System.Diagnostics;
 
 namespace KIBOTTER
 {
@@ -20,6 +22,10 @@ namespace KIBOTTER
         private string SecondMediaPath { get; set; }
         private string ThirdMediaPath { get; set; }
         private string FourthMediaPath { get; set; }
+
+        private System.Timers.Timer _tweetTimer;
+
+        public List<ScheduledTweetClass> ScheduledTweetList = new List<ScheduledTweetClass>();
 
         public MainForm()
         {
@@ -60,6 +66,9 @@ namespace KIBOTTER
             DesktopBounds = new Rectangle(left, top, Width, Height);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximumSize = Size;
+
+            NewTimer();
+            StartTimer();
 
             if (Properties.Settings.Default.IsBlackTheme)
                 ChangeThemeToBlack();
@@ -340,7 +349,6 @@ namespace KIBOTTER
                 }
 
                 await Tokens.Statuses.UpdateAsync(status => textWithCount);
-                TweetTextBox.Clear();
                 var resultText = completeText;
 
                 if (count != 1)
@@ -517,6 +525,16 @@ namespace KIBOTTER
             addAccountObj.ShowDialog();
         }
 
+        private void ScheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ScheduleForm scheduleFormObj = new ScheduleForm
+            {
+                ShowInTaskbar = false,
+                Form1Obj = this
+            };
+            scheduleFormObj.ShowDialog();
+        }
+
         private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
@@ -526,6 +544,7 @@ namespace KIBOTTER
         {
             AdvancedObj = new AdvancedForm(Height) {ShowInTaskbar = false};
             AdvancedObj.ShowDialog();
+
             if (Properties.Settings.Default.IsBlackTheme)
                 ChangeThemeToBlack();
             else
@@ -577,8 +596,94 @@ namespace KIBOTTER
             }
         }
 
+        private void NewTimer()
+        {
+            _tweetTimer = new System.Timers.Timer
+            {
+                AutoReset = true,
+                Interval = 30000
+            };
+
+            _tweetTimer.Elapsed += OnTimerEvent;
+        }
+
+        private void OnTimerEvent(object source, ElapsedEventArgs e)
+        {
+            List<ScheduledTweetClass> alternateList = new List<ScheduledTweetClass>(ScheduledTweetList);
+
+            foreach (var al in alternateList)
+            {
+                if (al.TweetDateTime.Date == DateTime.Now.Date
+                    && al.TweetDateTime.Hour == DateTime.Now.Hour
+                    && al.TweetDateTime.Minute == DateTime.Now.Minute)
+                {
+                    Tokens scheduleTokensTokens = new Tokens();
+                    Debug.WriteLine($"{al.TweetDateTime}");
+
+                    using (StreamReader sr = new StreamReader(FileName))
+                    {
+                        while (sr.Peek() >= 1)
+                        {
+                            var readLine = sr.ReadLine();
+                            if (readLine != null)
+                            {
+                                string[] token = readLine.Split('|');
+                                if ($@"{token[0]}({token[1]})" == al.ScreenAndViaName)
+                                {
+                                    if (token[2] == "KIBOTTER")
+                                    {
+                                        scheduleTokensTokens = Tokens.Create(
+                                            Properties.Settings.Default.ConsumerKey,
+                                            Properties.Settings.Default.ConsumerSecret,
+                                            token[4],
+                                            token[5]);
+                                    }
+                                    else
+                                    {
+                                        scheduleTokensTokens = Tokens.Create(
+                                            token[2],
+                                            token[3],
+                                            token[4],
+                                            token[5]);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (scheduleTokensTokens == null)
+                    {
+                        MessageBox.Show(
+                            @"予約投稿に失敗しました(X3)",
+                            @"えらー",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    Tweet(al.Content, 1);
+
+                    ScheduledTweetList.Remove(al);
+                    ToolStripStatusLabel.Text = @"よやくついーとしました(:3)";
+                }
+            }
+        }
+
+        private void StartTimer()
+        {
+            _tweetTimer.Start();
+        }
+
+        private void StopTimer()
+        {
+            _tweetTimer.Stop();
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            StopTimer();
+
             Properties.Settings.Default.IsRepliedPokerChecked = RepliedPokerToolStripMenuItem.Checked;
             Properties.Settings.Default.Save();
         }

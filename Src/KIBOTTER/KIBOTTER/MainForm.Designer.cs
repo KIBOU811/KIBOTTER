@@ -51,6 +51,7 @@
             this.TextLengthLabel = new System.Windows.Forms.Label();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +74,7 @@
             this.HelpToolStripMenuItem,
             this.toolStripMenuItem1,
             this.AddAccountToolStripMenuItem,
+            this.ScheduleToolStripMenuItem,
             this.toolStripMenuItem2,
             this.CloseToolStripMenuItem});
             this.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem";
@@ -216,7 +218,6 @@
             // 
             // TweetButton
             // 
-            this.TweetButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.TweetButton.Font = new System.Drawing.Font("メイリオ", 8F);
             this.TweetButton.Location = new System.Drawing.Point(167, 212);
             this.TweetButton.Name = "TweetButton";
@@ -271,6 +272,13 @@
             // 
             this.ToolStripStatusLabel.Name = "ToolStripStatusLabel";
             this.ToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // ScheduleToolStripMenuItem
+            // 
+            this.ScheduleToolStripMenuItem.Name = "ScheduleToolStripMenuItem";
+            this.ScheduleToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.ScheduleToolStripMenuItem.Text = "ついーとよやく...";
+            this.ScheduleToolStripMenuItem.Click += new System.EventHandler(this.ScheduleToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -329,6 +337,7 @@
         private System.Windows.Forms.StatusStrip StatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel;
         public System.Windows.Forms.TextBox TweetTextBox;
+        private System.Windows.Forms.ToolStripMenuItem ScheduleToolStripMenuItem;
     }
 }
 
