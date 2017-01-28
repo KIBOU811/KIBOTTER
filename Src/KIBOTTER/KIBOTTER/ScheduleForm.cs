@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace KIBOTTER
@@ -50,6 +51,55 @@ namespace KIBOTTER
                 TweetAccountComboBox.Items.Add(Form1Obj.AccountComboBox.Items[i]);
             }
             TweetAccountComboBox.SelectedIndex = 0;
+
+            if (Properties.Settings.Default.IsBlackTheme)
+                ChangeThemeToBlack();
+        }
+
+        private void ChangeThemeToBlack()
+        {
+            BackColor = Color.FromArgb(45, 45, 45);
+            DataGridView.EnableHeadersVisualStyles = false;
+            DataGridView.BackgroundColor = Color.FromArgb(45, 45, 45);
+            DataGridView.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 45);
+            DataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 45, 45);
+            DataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            DataGridView.BorderStyle = BorderStyle.None;
+            DateColumn.DefaultCellStyle.BackColor = Color.FromArgb(62, 62, 62);
+            DateColumn.DefaultCellStyle.ForeColor = Color.White;
+            AccountColumn.DefaultCellStyle.BackColor = Color.FromArgb(62, 62, 62);
+            AccountColumn.DefaultCellStyle.ForeColor = Color.White;
+            ContentColumn.DefaultCellStyle.BackColor = Color.FromArgb(62, 62, 62);
+            ContentColumn.DefaultCellStyle.ForeColor = Color.White;
+            GroupBox.BackColor = Color.FromArgb(45, 45, 45);
+            GroupBox.ForeColor = Color.White;
+            GroupBox.FlatStyle = FlatStyle.Flat;
+            DateTimePicker.BackColor = Color.FromArgb(45, 45, 45);
+            DateTimePicker.ForeColor = Color.White;
+            DateTimePicker.CalendarForeColor = Color.White;
+            DateTimePicker.CalendarMonthBackground = Color.FromArgb(45, 45, 45);
+            DateTimePicker.CalendarTitleBackColor = Color.FromArgb(45, 45, 45);
+            DateTimePicker.CalendarTitleForeColor = Color.White;
+            DateTimePicker.CalendarTrailingForeColor = Color.FromArgb(100, 100, 100);
+            HourUpDown.BackColor = Color.FromArgb(45, 45, 45);
+            HourUpDown.ForeColor = Color.White;
+            MinuteUpDown.BackColor = Color.FromArgb(45, 45, 45);
+            MinuteUpDown.ForeColor = Color.White;
+            TweetAccountComboBox.DropDownStyle = ComboBoxStyle.DropDown;
+            TweetAccountComboBox.BackColor = Color.FromArgb(45, 45, 45);
+            TweetAccountComboBox.ForeColor = Color.White;
+            TweetAccountComboBox.FlatStyle = FlatStyle.Flat;
+            TweetAccountComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ContentTextBox.BackColor = Color.FromArgb(62, 62, 62);
+            ContentTextBox.ForeColor = Color.White;
+            ScheduleButton.BackColor = Color.FromArgb(45, 45, 45);
+            ScheduleButton.ForeColor = Color.White;
+            ScheduleButton.FlatStyle = FlatStyle.Flat;
+        }
+
+        private void ChangeThemeToDefault()
+        {
+
         }
 
         private void ScheduleButton_Click(object sender, EventArgs e)
