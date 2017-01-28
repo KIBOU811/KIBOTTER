@@ -41,8 +41,7 @@ namespace KIBOTTER
                 DataGridView.Rows[idx].Cells[1].Value = st.ScreenAndViaName;
                 DataGridView.Rows[idx].Cells[2].Value = st.Content;
             }
-
-            DateTimePicker.Value = DateTime.Today;
+            
             HourUpDown.Value = DateTime.Now.Hour;
             MinuteUpDown.Value = DateTime.Now.Minute;
 
@@ -74,13 +73,6 @@ namespace KIBOTTER
             GroupBox.BackColor = Color.FromArgb(45, 45, 45);
             GroupBox.ForeColor = Color.White;
             GroupBox.FlatStyle = FlatStyle.Flat;
-            DateTimePicker.BackColor = Color.FromArgb(45, 45, 45);
-            DateTimePicker.ForeColor = Color.White;
-            DateTimePicker.CalendarForeColor = Color.White;
-            DateTimePicker.CalendarMonthBackground = Color.FromArgb(45, 45, 45);
-            DateTimePicker.CalendarTitleBackColor = Color.FromArgb(45, 45, 45);
-            DateTimePicker.CalendarTitleForeColor = Color.White;
-            DateTimePicker.CalendarTrailingForeColor = Color.FromArgb(100, 100, 100);
             HourUpDown.BackColor = Color.FromArgb(45, 45, 45);
             HourUpDown.ForeColor = Color.White;
             MinuteUpDown.BackColor = Color.FromArgb(45, 45, 45);
