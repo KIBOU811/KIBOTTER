@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DataGridView = new System.Windows.Forms.DataGridView();
             this.DateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AccountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,35 +42,44 @@
             this.HourLabel = new System.Windows.Forms.Label();
             this.HourUpDown = new System.Windows.Forms.NumericUpDown();
             this.ContentTextBox = new System.Windows.Forms.TextBox();
+            this.YearUpDown = new System.Windows.Forms.NumericUpDown();
+            this.YearLabel = new System.Windows.Forms.Label();
+            this.MonthUpDown = new System.Windows.Forms.NumericUpDown();
+            this.MonthLabel = new System.Windows.Forms.Label();
+            this.DayUpDown = new System.Windows.Forms.NumericUpDown();
+            this.DayLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.GroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MinuteUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HourUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MonthUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DayUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // DataGridView
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("メイリオ", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DateColumn,
             this.AccountColumn,
             this.ContentColumn});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("メイリオ", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridView.Location = new System.Drawing.Point(12, 12);
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.RowTemplate.Height = 21;
@@ -95,6 +104,12 @@
             // 
             // GroupBox
             // 
+            this.GroupBox.Controls.Add(this.DayLabel);
+            this.GroupBox.Controls.Add(this.DayUpDown);
+            this.GroupBox.Controls.Add(this.MonthLabel);
+            this.GroupBox.Controls.Add(this.MonthUpDown);
+            this.GroupBox.Controls.Add(this.YearLabel);
+            this.GroupBox.Controls.Add(this.YearUpDown);
             this.GroupBox.Controls.Add(this.TweetAccountComboBox);
             this.GroupBox.Controls.Add(this.ScheduleButton);
             this.GroupBox.Controls.Add(this.MinuteLabel);
@@ -105,7 +120,7 @@
             this.GroupBox.Font = new System.Drawing.Font("メイリオ", 9F);
             this.GroupBox.Location = new System.Drawing.Point(12, 190);
             this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Size = new System.Drawing.Size(560, 207);
+            this.GroupBox.Size = new System.Drawing.Size(560, 224);
             this.GroupBox.TabIndex = 2;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "よやくするついーと";
@@ -115,15 +130,15 @@
             this.TweetAccountComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TweetAccountComboBox.Font = new System.Drawing.Font("メイリオ", 8F);
             this.TweetAccountComboBox.FormattingEnabled = true;
-            this.TweetAccountComboBox.Location = new System.Drawing.Point(273, 23);
+            this.TweetAccountComboBox.Location = new System.Drawing.Point(353, 23);
             this.TweetAccountComboBox.Name = "TweetAccountComboBox";
-            this.TweetAccountComboBox.Size = new System.Drawing.Size(230, 25);
+            this.TweetAccountComboBox.Size = new System.Drawing.Size(201, 25);
             this.TweetAccountComboBox.TabIndex = 8;
             // 
             // ScheduleButton
             // 
             this.ScheduleButton.Font = new System.Drawing.Font("メイリオ", 8F);
-            this.ScheduleButton.Location = new System.Drawing.Point(479, 178);
+            this.ScheduleButton.Location = new System.Drawing.Point(479, 195);
             this.ScheduleButton.Name = "ScheduleButton";
             this.ScheduleButton.Size = new System.Drawing.Size(75, 23);
             this.ScheduleButton.TabIndex = 7;
@@ -135,7 +150,7 @@
             // 
             this.MinuteLabel.AutoSize = true;
             this.MinuteLabel.Font = new System.Drawing.Font("メイリオ", 9F);
-            this.MinuteLabel.Location = new System.Drawing.Point(247, 28);
+            this.MinuteLabel.Location = new System.Drawing.Point(327, 27);
             this.MinuteLabel.Name = "MinuteLabel";
             this.MinuteLabel.Size = new System.Drawing.Size(20, 18);
             this.MinuteLabel.TabIndex = 6;
@@ -144,7 +159,7 @@
             // MinuteUpDown
             // 
             this.MinuteUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
-            this.MinuteUpDown.Location = new System.Drawing.Point(206, 24);
+            this.MinuteUpDown.Location = new System.Drawing.Point(286, 24);
             this.MinuteUpDown.Maximum = new decimal(new int[] {
             59,
             0,
@@ -158,7 +173,7 @@
             // 
             this.HourLabel.AutoSize = true;
             this.HourLabel.Font = new System.Drawing.Font("メイリオ", 9F);
-            this.HourLabel.Location = new System.Drawing.Point(180, 28);
+            this.HourLabel.Location = new System.Drawing.Point(260, 27);
             this.HourLabel.Name = "HourLabel";
             this.HourLabel.Size = new System.Drawing.Size(20, 18);
             this.HourLabel.TabIndex = 4;
@@ -167,7 +182,7 @@
             // HourUpDown
             // 
             this.HourUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
-            this.HourUpDown.Location = new System.Drawing.Point(139, 24);
+            this.HourUpDown.Location = new System.Drawing.Point(219, 24);
             this.HourUpDown.Maximum = new decimal(new int[] {
             23,
             0,
@@ -179,18 +194,94 @@
             // 
             // ContentTextBox
             // 
-            this.ContentTextBox.Location = new System.Drawing.Point(6, 53);
+            this.ContentTextBox.Location = new System.Drawing.Point(6, 54);
             this.ContentTextBox.Multiline = true;
             this.ContentTextBox.Name = "ContentTextBox";
             this.ContentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ContentTextBox.Size = new System.Drawing.Size(548, 119);
+            this.ContentTextBox.Size = new System.Drawing.Size(548, 135);
             this.ContentTextBox.TabIndex = 2;
+            // 
+            // YearUpDown
+            // 
+            this.YearUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
+            this.YearUpDown.Location = new System.Drawing.Point(6, 24);
+            this.YearUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.YearUpDown.Name = "YearUpDown";
+            this.YearUpDown.Size = new System.Drawing.Size(48, 23);
+            this.YearUpDown.TabIndex = 9;
+            // 
+            // YearLabel
+            // 
+            this.YearLabel.AutoSize = true;
+            this.YearLabel.Location = new System.Drawing.Point(60, 27);
+            this.YearLabel.Name = "YearLabel";
+            this.YearLabel.Size = new System.Drawing.Size(20, 18);
+            this.YearLabel.TabIndex = 10;
+            this.YearLabel.Text = "年";
+            // 
+            // MonthUpDown
+            // 
+            this.MonthUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
+            this.MonthUpDown.Location = new System.Drawing.Point(85, 24);
+            this.MonthUpDown.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.MonthUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.MonthUpDown.Name = "MonthUpDown";
+            this.MonthUpDown.Size = new System.Drawing.Size(35, 23);
+            this.MonthUpDown.TabIndex = 11;
+            this.MonthUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // MonthLabel
+            // 
+            this.MonthLabel.AutoSize = true;
+            this.MonthLabel.Location = new System.Drawing.Point(126, 27);
+            this.MonthLabel.Name = "MonthLabel";
+            this.MonthLabel.Size = new System.Drawing.Size(20, 18);
+            this.MonthLabel.TabIndex = 12;
+            this.MonthLabel.Text = "月";
+            // 
+            // DayUpDown
+            // 
+            this.DayUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
+            this.DayUpDown.Location = new System.Drawing.Point(152, 24);
+            this.DayUpDown.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.DayUpDown.Name = "DayUpDown";
+            this.DayUpDown.Size = new System.Drawing.Size(35, 23);
+            this.DayUpDown.TabIndex = 13;
+            // 
+            // DayLabel
+            // 
+            this.DayLabel.AutoSize = true;
+            this.DayLabel.Location = new System.Drawing.Point(193, 27);
+            this.DayLabel.Name = "DayLabel";
+            this.DayLabel.Size = new System.Drawing.Size(20, 18);
+            this.DayLabel.TabIndex = 14;
+            this.DayLabel.Text = "日";
             // 
             // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 462);
+            this.ClientSize = new System.Drawing.Size(584, 426);
             this.Controls.Add(this.GroupBox);
             this.Controls.Add(this.DataGridView);
             this.Name = "ScheduleForm";
@@ -202,6 +293,9 @@
             this.GroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MinuteUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HourUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MonthUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DayUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -220,5 +314,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DateColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AccountColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ContentColumn;
+        private System.Windows.Forms.Label DayLabel;
+        private System.Windows.Forms.NumericUpDown DayUpDown;
+        private System.Windows.Forms.Label MonthLabel;
+        private System.Windows.Forms.NumericUpDown MonthUpDown;
+        private System.Windows.Forms.Label YearLabel;
+        private System.Windows.Forms.NumericUpDown YearUpDown;
     }
 }

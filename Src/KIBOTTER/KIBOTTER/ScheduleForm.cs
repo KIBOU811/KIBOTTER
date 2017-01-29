@@ -41,7 +41,10 @@ namespace KIBOTTER
                 DataGridView.Rows[idx].Cells[1].Value = st.ScreenAndViaName;
                 DataGridView.Rows[idx].Cells[2].Value = st.Content;
             }
-            
+
+            YearUpDown.Value = DateTime.Now.Year;
+            MonthUpDown.Value = DateTime.Now.Month;
+            DayUpDown.Value = DateTime.Now.Day;
             HourUpDown.Value = DateTime.Now.Hour;
             MinuteUpDown.Value = DateTime.Now.Minute;
 
@@ -53,6 +56,7 @@ namespace KIBOTTER
 
             if (Properties.Settings.Default.IsBlackTheme)
                 ChangeThemeToBlack();
+            
         }
 
         private void ChangeThemeToBlack()
@@ -73,6 +77,12 @@ namespace KIBOTTER
             GroupBox.BackColor = Color.FromArgb(45, 45, 45);
             GroupBox.ForeColor = Color.White;
             GroupBox.FlatStyle = FlatStyle.Flat;
+            YearUpDown.BackColor = Color.FromArgb(45, 45, 45);
+            YearUpDown.ForeColor = Color.White;
+            MonthUpDown.BackColor = Color.FromArgb(45, 45, 45);
+            MonthUpDown.ForeColor = Color.White;
+            DayUpDown.BackColor = Color.FromArgb(45, 45, 45);
+            DayUpDown.ForeColor = Color.White;
             HourUpDown.BackColor = Color.FromArgb(45, 45, 45);
             HourUpDown.ForeColor = Color.White;
             MinuteUpDown.BackColor = Color.FromArgb(45, 45, 45);
@@ -89,14 +99,9 @@ namespace KIBOTTER
             ScheduleButton.FlatStyle = FlatStyle.Flat;
         }
 
-        private void ChangeThemeToDefault()
-        {
-
-        }
-
         private void ScheduleButton_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > DateTime.Parse($"{DateTimePicker.Text} {HourUpDown.Text}:{MinuteUpDown.Text}:00"))
+            if (DateTime.Now > DateTime.Parse($"{YearUpDown.Text}/{MonthUpDown.Text}/{DayUpDown.Text} {HourUpDown.Text}:{MinuteUpDown.Text}:00"))
             {
                 MessageBox.Show(
                     @"予約日時が過去のものです",
@@ -108,7 +113,7 @@ namespace KIBOTTER
 
             ScheduledTweetClass stc = new ScheduledTweetClass
             {
-                TweetDateTime = DateTime.Parse($"{DateTimePicker.Text} {HourUpDown.Text}:{MinuteUpDown.Text}:00"),
+                TweetDateTime = DateTime.Parse($"{YearUpDown.Text}/{MonthUpDown.Text}/{DayUpDown.Text} {HourUpDown.Text}:{MinuteUpDown.Text}:00"),
                 ScreenAndViaName = TweetAccountComboBox.Text,
                 Content = ContentTextBox.Text
             };
