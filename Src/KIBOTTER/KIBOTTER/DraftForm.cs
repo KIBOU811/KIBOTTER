@@ -103,6 +103,7 @@ namespace KIBOTTER
 
             _addDraftDbj = new AddDraftForm(this) {ShowInTaskbar = false};
             _addDraftDbj.ShowDialog();
+            _addDraftDbj.Dispose();
         }
 
         private void UseButton_Click(object sender, EventArgs e)
