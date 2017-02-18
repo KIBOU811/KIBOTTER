@@ -7,6 +7,7 @@ namespace KIBOTTER
     public partial class ScheduleForm : Form
     {
         public MainForm Form1Obj;
+        private static bool IsOnce { get; set; } = true;
 
         public ScheduleForm()
         {
@@ -36,11 +37,14 @@ namespace KIBOTTER
 
             foreach (var st in Form1Obj.ScheduledTweetList)
             {
-                int idx = DataGridView.RowCount - 1;
+                int idx = DataGridView.RowCount;
+                if (IsOnce) idx--;
+                DataGridView.Rows.Add();
                 DataGridView.Rows[idx].Cells[0].Value = st.TweetDateTime;
                 DataGridView.Rows[idx].Cells[1].Value = st.ScreenAndViaName;
                 DataGridView.Rows[idx].Cells[2].Value = st.Content;
             }
+            if (IsOnce) IsOnce = false;
 
             YearUpDown.Value = DateTime.Now.Year;
             MonthUpDown.Value = DateTime.Now.Month;
@@ -56,7 +60,7 @@ namespace KIBOTTER
 
             if (Properties.Settings.Default.IsBlackTheme)
                 ChangeThemeToBlack();
-            
+
         }
 
         private void ChangeThemeToBlack()
