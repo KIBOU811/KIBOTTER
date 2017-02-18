@@ -111,6 +111,7 @@ namespace KIBOTTER
             AboutToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             HelpToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             AddAccountToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
+            ScheduleToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             CloseToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             MorseToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             SushiModeToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
@@ -121,6 +122,7 @@ namespace KIBOTTER
             AboutToolStripMenuItem.ForeColor = Color.White;
             HelpToolStripMenuItem.ForeColor = Color.White;
             AddAccountToolStripMenuItem.ForeColor = Color.White;
+            ScheduleToolStripMenuItem.ForeColor = Color.White;
             CloseToolStripMenuItem.ForeColor = Color.White;
             MorseToolStripMenuItem.ForeColor = Color.White;
             SushiModeToolStripMenuItem.ForeColor = Color.White;
@@ -158,6 +160,7 @@ namespace KIBOTTER
             AboutToolStripMenuItem.BackColor = SystemColors.Control;
             HelpToolStripMenuItem.BackColor = SystemColors.Control;
             AddAccountToolStripMenuItem.BackColor = SystemColors.Control;
+            ScheduleToolStripMenuItem.BackColor = SystemColors.Control;
             CloseToolStripMenuItem.BackColor = SystemColors.Control;
             MorseToolStripMenuItem.BackColor = SystemColors.Control;
             SushiModeToolStripMenuItem.BackColor = SystemColors.Control;
@@ -168,6 +171,7 @@ namespace KIBOTTER
             AboutToolStripMenuItem.ForeColor = SystemColors.ControlText;
             HelpToolStripMenuItem.ForeColor = SystemColors.ControlText;
             AddAccountToolStripMenuItem.ForeColor = SystemColors.ControlText;
+            ScheduleToolStripMenuItem.ForeColor = SystemColors.ControlText;
             CloseToolStripMenuItem.ForeColor = SystemColors.ControlText;
             MorseToolStripMenuItem.ForeColor = SystemColors.ControlText;
             SushiModeToolStripMenuItem.ForeColor = SystemColors.ControlText;
