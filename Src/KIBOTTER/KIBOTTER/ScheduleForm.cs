@@ -134,6 +134,11 @@ namespace KIBOTTER
             DataGridView.Rows[idx].Cells[1].Value = stc.ScreenAndViaName;
             DataGridView.Rows[idx].Cells[2].Value = stc.Content;
 
+            YearUpDown.Value = DateTime.Now.Year;
+            MonthUpDown.Value = DateTime.Now.Month;
+            DayUpDown.Value = DateTime.Now.Day;
+            HourUpDown.Value = DateTime.Now.Hour;
+            MinuteUpDown.Value = DateTime.Now.Minute;
             ContentTextBox.Text = string.Empty;
         }
     }
