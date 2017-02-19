@@ -37,7 +37,7 @@ namespace KIBOTTER.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("XZC9cF9DGOciS7CCD6AV8Gjb0")]
         public string ConsumerKey {
             get {
                 return ((string)(this["ConsumerKey"]));
@@ -49,7 +49,7 @@ namespace KIBOTTER.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("citwgHybwWT21mqag8NvdUgRvZ122Xiz2O4zdahKGxsKuYfNtI")]
         public string ConsumerSecret {
             get {
                 return ((string)(this["ConsumerSecret"]));

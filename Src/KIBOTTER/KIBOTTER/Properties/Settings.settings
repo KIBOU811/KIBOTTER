@@ -6,10 +6,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ConsumerKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">XZC9cF9DGOciS7CCD6AV8Gjb0</Value>
     </Setting>
     <Setting Name="ConsumerSecret" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">citwgHybwWT21mqag8NvdUgRvZ122Xiz2O4zdahKGxsKuYfNtI</Value>
     </Setting>
     <Setting Name="IsBlackTheme" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
