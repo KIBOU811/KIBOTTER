@@ -147,6 +147,9 @@ namespace KIBOTTER
                     }
                 }
 
+                if (Form1Obj.AccountComboBox.Items.Contains("あかうんとせんたく"))
+                    Form1Obj.AccountComboBox.Items.Remove("あかうんとせんたく");
+
                 Form1Obj.AccountComboBox.Items.Add($"{tokens.ScreenName}({ViaComboBox.Text})");
             }
             catch
