@@ -34,6 +34,7 @@
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.AddAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,6 @@
             this.TextLengthLabel = new System.Windows.Forms.Label();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +116,15 @@
             this.AddAccountToolStripMenuItem.Click += new System.EventHandler(this.AddAccountToolStripMenuItem_Click);
             this.AddAccountToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
             this.AddAccountToolStripMenuItem.MouseLeave += new System.EventHandler(this.MenuItemMouseLeave);
+            // 
+            // ScheduleToolStripMenuItem
+            // 
+            this.ScheduleToolStripMenuItem.Name = "ScheduleToolStripMenuItem";
+            this.ScheduleToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.ScheduleToolStripMenuItem.Text = "ついーとよやく...";
+            this.ScheduleToolStripMenuItem.Click += new System.EventHandler(this.ScheduleToolStripMenuItem_Click);
+            this.ScheduleToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
+            this.ScheduleToolStripMenuItem.MouseLeave += new System.EventHandler(this.MenuItemMouseLeave);
             // 
             // toolStripMenuItem2
             // 
@@ -272,13 +281,6 @@
             // 
             this.ToolStripStatusLabel.Name = "ToolStripStatusLabel";
             this.ToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-            // 
-            // ScheduleToolStripMenuItem
-            // 
-            this.ScheduleToolStripMenuItem.Name = "ScheduleToolStripMenuItem";
-            this.ScheduleToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.ScheduleToolStripMenuItem.Text = "ついーとよやく...";
-            this.ScheduleToolStripMenuItem.Click += new System.EventHandler(this.ScheduleToolStripMenuItem_Click);
             // 
             // MainForm
             // 
