@@ -29,6 +29,14 @@ namespace KIBOTTER
             Directory.CreateDirectory(folder);
             FileName = folder + "\\Via" + ".cfg";
             FileName = Path.GetFullPath(FileName);
+            
+            int left = Screen.PrimaryScreen.WorkingArea.Width - Width - Form1Obj.Width;
+            int top = Screen.PrimaryScreen.WorkingArea.Height - Height - Form1Obj.Height;
+            DesktopBounds = new Rectangle(left, top, Width, Height);
+            MaximumSize = Size;
+
+            if (Settings.Default.IsBlackTheme)
+                ChangeThemeToBlack();
 
             if (!File.Exists(FileName))
                 return;
@@ -45,14 +53,6 @@ namespace KIBOTTER
                     }
                 }
             }
-
-            int left = Screen.PrimaryScreen.WorkingArea.Width - Width - Form1Obj.Width;
-            int top = Screen.PrimaryScreen.WorkingArea.Height - Height - Form1Obj.Height;
-            DesktopBounds = new Rectangle(left, top, Width, Height);
-            MaximumSize = Size;
-
-            if (Settings.Default.IsBlackTheme)
-                ChangeThemeToBlack();
         }
 
         private void ChangeThemeToBlack()
@@ -151,7 +151,6 @@ namespace KIBOTTER
             }
             catch
             {
-                Debug.WriteLine(6);
                 MessageBox.Show(
                     @"にんしょーしっぱい(X3)",
                     @"えらー",

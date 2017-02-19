@@ -87,7 +87,7 @@
             this.ViaComboBox.Size = new System.Drawing.Size(131, 25);
             this.ViaComboBox.TabIndex = 1;
             // 
-            // AddAcountForm
+            // AddAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,7 +99,7 @@
             this.Controls.Add(this.Label);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddAcountForm";
+            this.Name = "AddAccountForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ついか";
