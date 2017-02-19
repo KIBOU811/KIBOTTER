@@ -243,8 +243,10 @@ namespace KIBOTTER
             if (length < 0)
                 TextLengthLabel.ForeColor = Color.Red;
             else
-                TextLengthLabel.ForeColor = Color.White;
-            // TextLengthLabel.ForeColor = Color.Black;
+            {
+                TextLengthLabel.ForeColor = Color.Black;
+                if (Properties.Settings.Default.IsBlackTheme) TextLengthLabel.ForeColor = Color.White;
+            }
 
             TextLengthLabel.Text = length.ToString();
         }
