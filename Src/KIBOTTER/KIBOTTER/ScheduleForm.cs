@@ -39,9 +39,8 @@ namespace KIBOTTER
             foreach (var st in Form1Obj.ScheduledTweetList)
             {
                 int idx = DataGridView.RowCount;
-                if (IsOnce) idx--;
                 DataGridView.Rows.Add();
-                DataGridView.Rows[idx].Cells[0].Value = st.TweetDateTime;
+                DataGridView.Rows[idx].Cells[0].Value = DateTime.FromBinary(st.TweetDateTime);
                 DataGridView.Rows[idx].Cells[1].Value = st.ScreenAndViaName;
                 DataGridView.Rows[idx].Cells[2].Value = st.Content;
             }
@@ -118,7 +117,7 @@ namespace KIBOTTER
 
             ScheduledTweetClass stc = new ScheduledTweetClass
             {
-                TweetDateTime = DateTime.Parse($"{YearUpDown.Text}/{MonthUpDown.Text}/{DayUpDown.Text} {HourUpDown.Text}:{MinuteUpDown.Text}:00"),
+                TweetDateTime = DateTime.Parse($"{YearUpDown.Text}/{MonthUpDown.Text}/{DayUpDown.Text} {HourUpDown.Text}:{MinuteUpDown.Text}:00").ToBinary(),
                 ScreenAndViaName = TweetAccountComboBox.Text,
                 Content = ContentTextBox.Text
             };

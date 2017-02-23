@@ -635,9 +635,10 @@ namespace KIBOTTER
 
             foreach (var al in alternateList)
             {
-                if (al.TweetDateTime.Date == DateTime.Now.Date
-                    && al.TweetDateTime.Hour == DateTime.Now.Hour
-                    && al.TweetDateTime.Minute == DateTime.Now.Minute)
+                DateTime tweetTime = DateTime.FromBinary(al.TweetDateTime);
+                if (tweetTime.Date == DateTime.Now.Date
+                    && tweetTime.Hour == DateTime.Now.Hour
+                    && tweetTime.Minute == DateTime.Now.Minute)
                 {
                     Tokens scheduleTokensTokens = new Tokens();
                     Debug.WriteLine($"{al.TweetDateTime}");
