@@ -35,6 +35,12 @@
             this.AccountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.DayLabel = new System.Windows.Forms.Label();
+            this.DayUpDown = new System.Windows.Forms.NumericUpDown();
+            this.MonthLabel = new System.Windows.Forms.Label();
+            this.MonthUpDown = new System.Windows.Forms.NumericUpDown();
+            this.YearLabel = new System.Windows.Forms.Label();
+            this.YearUpDown = new System.Windows.Forms.NumericUpDown();
             this.TweetAccountComboBox = new System.Windows.Forms.ComboBox();
             this.ScheduleButton = new System.Windows.Forms.Button();
             this.MinuteLabel = new System.Windows.Forms.Label();
@@ -42,19 +48,13 @@
             this.HourLabel = new System.Windows.Forms.Label();
             this.HourUpDown = new System.Windows.Forms.NumericUpDown();
             this.ContentTextBox = new System.Windows.Forms.TextBox();
-            this.YearUpDown = new System.Windows.Forms.NumericUpDown();
-            this.YearLabel = new System.Windows.Forms.Label();
-            this.MonthUpDown = new System.Windows.Forms.NumericUpDown();
-            this.MonthLabel = new System.Windows.Forms.Label();
-            this.DayUpDown = new System.Windows.Forms.NumericUpDown();
-            this.DayLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DayUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MonthUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinuteUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HourUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.YearUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MonthUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DayUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // DataGridView
@@ -124,6 +124,82 @@
             this.GroupBox.TabIndex = 2;
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "よやくするついーと";
+            // 
+            // DayLabel
+            // 
+            this.DayLabel.AutoSize = true;
+            this.DayLabel.Location = new System.Drawing.Point(193, 27);
+            this.DayLabel.Name = "DayLabel";
+            this.DayLabel.Size = new System.Drawing.Size(20, 18);
+            this.DayLabel.TabIndex = 14;
+            this.DayLabel.Text = "日";
+            // 
+            // DayUpDown
+            // 
+            this.DayUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
+            this.DayUpDown.Location = new System.Drawing.Point(152, 24);
+            this.DayUpDown.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.DayUpDown.Name = "DayUpDown";
+            this.DayUpDown.Size = new System.Drawing.Size(35, 23);
+            this.DayUpDown.TabIndex = 13;
+            // 
+            // MonthLabel
+            // 
+            this.MonthLabel.AutoSize = true;
+            this.MonthLabel.Location = new System.Drawing.Point(126, 27);
+            this.MonthLabel.Name = "MonthLabel";
+            this.MonthLabel.Size = new System.Drawing.Size(20, 18);
+            this.MonthLabel.TabIndex = 12;
+            this.MonthLabel.Text = "月";
+            // 
+            // MonthUpDown
+            // 
+            this.MonthUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
+            this.MonthUpDown.Location = new System.Drawing.Point(85, 24);
+            this.MonthUpDown.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.MonthUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.MonthUpDown.Name = "MonthUpDown";
+            this.MonthUpDown.Size = new System.Drawing.Size(35, 23);
+            this.MonthUpDown.TabIndex = 11;
+            this.MonthUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // YearLabel
+            // 
+            this.YearLabel.AutoSize = true;
+            this.YearLabel.Location = new System.Drawing.Point(60, 27);
+            this.YearLabel.Name = "YearLabel";
+            this.YearLabel.Size = new System.Drawing.Size(20, 18);
+            this.YearLabel.TabIndex = 10;
+            this.YearLabel.Text = "年";
+            // 
+            // YearUpDown
+            // 
+            this.YearUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
+            this.YearUpDown.Location = new System.Drawing.Point(6, 24);
+            this.YearUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.YearUpDown.Name = "YearUpDown";
+            this.YearUpDown.Size = new System.Drawing.Size(48, 23);
+            this.YearUpDown.TabIndex = 9;
             // 
             // TweetAccountComboBox
             // 
@@ -201,82 +277,6 @@
             this.ContentTextBox.Size = new System.Drawing.Size(548, 135);
             this.ContentTextBox.TabIndex = 2;
             // 
-            // YearUpDown
-            // 
-            this.YearUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
-            this.YearUpDown.Location = new System.Drawing.Point(6, 24);
-            this.YearUpDown.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.YearUpDown.Name = "YearUpDown";
-            this.YearUpDown.Size = new System.Drawing.Size(48, 23);
-            this.YearUpDown.TabIndex = 9;
-            // 
-            // YearLabel
-            // 
-            this.YearLabel.AutoSize = true;
-            this.YearLabel.Location = new System.Drawing.Point(60, 27);
-            this.YearLabel.Name = "YearLabel";
-            this.YearLabel.Size = new System.Drawing.Size(20, 18);
-            this.YearLabel.TabIndex = 10;
-            this.YearLabel.Text = "年";
-            // 
-            // MonthUpDown
-            // 
-            this.MonthUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
-            this.MonthUpDown.Location = new System.Drawing.Point(85, 24);
-            this.MonthUpDown.Maximum = new decimal(new int[] {
-            12,
-            0,
-            0,
-            0});
-            this.MonthUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.MonthUpDown.Name = "MonthUpDown";
-            this.MonthUpDown.Size = new System.Drawing.Size(35, 23);
-            this.MonthUpDown.TabIndex = 11;
-            this.MonthUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // MonthLabel
-            // 
-            this.MonthLabel.AutoSize = true;
-            this.MonthLabel.Location = new System.Drawing.Point(126, 27);
-            this.MonthLabel.Name = "MonthLabel";
-            this.MonthLabel.Size = new System.Drawing.Size(20, 18);
-            this.MonthLabel.TabIndex = 12;
-            this.MonthLabel.Text = "月";
-            // 
-            // DayUpDown
-            // 
-            this.DayUpDown.Font = new System.Drawing.Font("メイリオ", 8F);
-            this.DayUpDown.Location = new System.Drawing.Point(152, 24);
-            this.DayUpDown.Maximum = new decimal(new int[] {
-            31,
-            0,
-            0,
-            0});
-            this.DayUpDown.Name = "DayUpDown";
-            this.DayUpDown.Size = new System.Drawing.Size(35, 23);
-            this.DayUpDown.TabIndex = 13;
-            // 
-            // DayLabel
-            // 
-            this.DayLabel.AutoSize = true;
-            this.DayLabel.Location = new System.Drawing.Point(193, 27);
-            this.DayLabel.Name = "DayLabel";
-            this.DayLabel.Size = new System.Drawing.Size(20, 18);
-            this.DayLabel.TabIndex = 14;
-            this.DayLabel.Text = "日";
-            // 
             // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -286,16 +286,16 @@
             this.Controls.Add(this.DataGridView);
             this.Name = "ScheduleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ScheduleForm";
+            this.Text = "ついーとをよやく";
             this.Load += new System.EventHandler(this.ScheduleForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.GroupBox.ResumeLayout(false);
             this.GroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DayUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MonthUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinuteUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HourUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.YearUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MonthUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DayUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
