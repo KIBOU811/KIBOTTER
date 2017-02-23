@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -38,6 +37,9 @@ namespace KIBOTTER
 
             foreach (var st in Form1Obj.ScheduledTweetList)
             {
+                if (DateTime.FromBinary(st.TweetDateTime) <= DateTime.Now)
+                    continue;
+
                 int idx = DataGridView.RowCount;
                 DataGridView.Rows.Add();
                 DataGridView.Rows[idx].Cells[0].Value = DateTime.FromBinary(st.TweetDateTime);
