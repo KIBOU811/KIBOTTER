@@ -130,7 +130,7 @@ namespace KIBOTTER
             
             int idx = DataGridView.RowCount - 1;
             
-            DataGridView.Rows[idx].Cells[0].Value = stc.TweetDateTime;
+            DataGridView.Rows[idx].Cells[0].Value = DateTime.FromBinary(stc.TweetDateTime);
             DataGridView.Rows[idx].Cells[1].Value = stc.ScreenAndViaName;
             DataGridView.Rows[idx].Cells[2].Value = stc.Content;
 
