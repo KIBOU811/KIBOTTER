@@ -7,7 +7,9 @@ using System.Net;
 using System.IO;
 using System.Timers;
 using CoreTweet;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Text;
 
 namespace KIBOTTER
 {
@@ -60,6 +62,20 @@ namespace KIBOTTER
                 AccountComboBox.Items.Add("あかうんとせんたく");
             }
             AccountComboBox.SelectedIndex = 0;
+
+            FileName = $"{folder}\\ScheduledTweets.json";
+            if (File.Exists(FileName))
+            {
+                using (StreamReader sr = new StreamReader(FileName, Encoding.UTF8))
+                {
+                    string text = sr.ReadToEnd();
+                    ScheduledTweetList = JsonConvert.DeserializeObject<List<ScheduledTweetClass>>(text);
+                }
+                using (StreamWriter sw = new StreamWriter(FileName, false, Encoding.UTF8))
+                {
+                    sw.Write("");
+                }
+            }
 
             int left = Screen.PrimaryScreen.WorkingArea.Width - Width;
             int top = Screen.PrimaryScreen.WorkingArea.Height - Height;
@@ -689,6 +705,24 @@ namespace KIBOTTER
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             StopTimer();
+
+            if (ScheduledTweetList.Count != 0)
+            {
+                string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
+                FileName = $"{folder}\\ScheduledTweets.json";
+                if (!File.Exists(FileName))
+                {
+                    using (FileStream fs = File.Create(FileName))
+                    {
+                        fs.Close();
+                    }
+                }
+                using (StreamWriter sw = new StreamWriter(FileName, true, Encoding.UTF8))
+                {
+                    string json = JsonConvert.SerializeObject(ScheduledTweetList, Formatting.Indented);
+                    sw.Write(json);
+                }
+            }
 
             Properties.Settings.Default.IsRepliedPokerChecked = RepliedPokerToolStripMenuItem.Checked;
             Properties.Settings.Default.Save();
