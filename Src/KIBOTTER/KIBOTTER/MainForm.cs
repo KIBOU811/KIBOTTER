@@ -207,6 +207,8 @@ namespace KIBOTTER
 
         private void Auth()
         {
+            string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
+            FileName = $"{folder}\\Account.cfg";
             using (StreamReader sr = new StreamReader(FileName))
             {
                 while (sr.Peek() >= 1)
