@@ -10,6 +10,7 @@ using CoreTweet;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace KIBOTTER
 {
@@ -269,7 +270,7 @@ namespace KIBOTTER
             TextLengthLabel.Text = length.ToString();
         }
 
-        private void TweetButton_Click(object sender, EventArgs e)
+        private async void TweetButton_Click(object sender, EventArgs e)
         {
             if (Tokens == null)
             {
@@ -282,7 +283,9 @@ namespace KIBOTTER
             if (FirstMediaPath != null)
             {
                 TweetTextBox.Clear();
-                TweetWithMedia(text);
+                Console.WriteLine(1);
+                await TweetWithMedia(text);
+                Console.WriteLine(2);
                 TweetTextBox.Focus();
                 return;
             }
@@ -350,10 +353,10 @@ namespace KIBOTTER
 
             TweetTextBox.Clear();
             TweetTextBox.Focus();
-            Tweet(text, 1);
+            await Tweet(text, 1);
         }
 
-        private async void Tweet(string text, int count)
+        private async Task Tweet(string text, int count)
         {
             const string completeText = "ついーとしました(:3)";
             const string failureText = "しっぱいしました(X3)";
@@ -383,11 +386,11 @@ namespace KIBOTTER
             catch
             {
                 count++;
-                Tweet(text, count);
+                await Tweet(text, count);
             }
         }
 
-        private async void TweetWithMedia(string text)
+        private async Task TweetWithMedia(string text)
         {
             try
             {
@@ -395,27 +398,31 @@ namespace KIBOTTER
 
                 if (FirstMediaPath != null)
                 {
-                    var first = Tokens.Media.Upload(media => new FileInfo(FirstMediaPath));
-                    mediaIds.Add(first.MediaId);
+                    string f = FirstMediaPath;
                     FirstMediaPath = null;
+                    var first = await Tokens.Media.UploadAsync(media => new FileInfo(f));
+                    mediaIds.Add(first.MediaId);
                 }
                 if (SecondMediaPath != null)
                 {
-                    var second = Tokens.Media.Upload(media => new FileInfo(SecondMediaPath));
-                    mediaIds.Add(second.MediaId);
+                    string s = SecondMediaPath;
                     SecondMediaPath = null;
+                    var second = await Tokens.Media.UploadAsync(media => new FileInfo(s));
+                    mediaIds.Add(second.MediaId);
                 }
                 if (ThirdMediaPath != null)
                 {
-                    var third = Tokens.Media.Upload(media => new FileInfo(ThirdMediaPath));
-                    mediaIds.Add(third.MediaId);
+                    string t = ThirdMediaPath;
                     ThirdMediaPath = null;
+                    var third = await Tokens.Media.UploadAsync(media => new FileInfo(t));
+                    mediaIds.Add(third.MediaId);
                 }
                 if (FourthMediaPath != null)
                 {
-                    var fourth = Tokens.Media.Upload(media => new FileInfo(FourthMediaPath));
-                    mediaIds.Add(fourth.MediaId);
+                    string f = FourthMediaPath;
                     FourthMediaPath = null;
+                    var fourth = await Tokens.Media.UploadAsync(media => new FileInfo(f));
+                    mediaIds.Add(fourth.MediaId);
                 }
 
                 await Tokens.Statuses.UpdateAsync(status:text, media_ids:mediaIds);
@@ -631,7 +638,7 @@ namespace KIBOTTER
             _tweetTimer.Elapsed += OnTimerEvent;
         }
 
-        private void OnTimerEvent(object source, ElapsedEventArgs e)
+        private async void OnTimerEvent(object source, ElapsedEventArgs e)
         {
             List<ScheduledTweetClass> alternateList = new List<ScheduledTweetClass>(ScheduledTweetList);
 
@@ -687,7 +694,7 @@ namespace KIBOTTER
                         return;
                     }
 
-                    Tweet(al.Content, 1);
+                    await Tweet(al.Content, 1);
 
                     ScheduledTweetList.Remove(al);
                     ToolStripStatusLabel.Text = @"よやくついーとしました(:3)";
