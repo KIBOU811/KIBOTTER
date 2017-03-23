@@ -36,7 +36,7 @@ namespace KIBOTTER
 
             for (int i = 0; i < original.Length; i++)
             {
-                resultText += JudgeMorse(arrayOriginal[i], mode) + " ";
+                resultText += JudgeMorse(arrayOriginal[i], mode) + "　";
             }
 
             return resultText;
