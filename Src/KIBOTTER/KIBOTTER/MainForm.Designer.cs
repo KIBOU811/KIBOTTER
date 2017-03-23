@@ -52,6 +52,7 @@
             this.TextLengthLabel = new System.Windows.Forms.Label();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MorseConToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +76,7 @@
             this.toolStripMenuItem1,
             this.AddAccountToolStripMenuItem,
             this.ScheduleToolStripMenuItem,
+            this.MorseConToolStripMenuItem,
             this.toolStripMenuItem2,
             this.CloseToolStripMenuItem});
             this.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem";
@@ -282,6 +284,13 @@
             this.ToolStripStatusLabel.Name = "ToolStripStatusLabel";
             this.ToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // MorseConToolStripMenuItem
+            // 
+            this.MorseConToolStripMenuItem.Name = "MorseConToolStripMenuItem";
+            this.MorseConToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.MorseConToolStripMenuItem.Text = "もーるすしんごう...";
+            this.MorseConToolStripMenuItem.Click += new System.EventHandler(this.MorseConToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -340,6 +349,7 @@
         private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel;
         public System.Windows.Forms.TextBox TweetTextBox;
         private System.Windows.Forms.ToolStripMenuItem ScheduleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MorseConToolStripMenuItem;
     }
 }
 

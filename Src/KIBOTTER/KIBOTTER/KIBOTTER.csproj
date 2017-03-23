@@ -85,6 +85,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MorseCode.cs" />
+    <Compile Include="MorseCodeConversionTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MorseCodeConversionTool.Designer.cs">
+      <DependentUpon>MorseCodeConversionTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Poker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MorseCodeConversionTool.resx">
+      <DependentUpon>MorseCodeConversionTool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

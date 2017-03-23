@@ -19,7 +19,8 @@ namespace KIBOTTER
         private Tokens Tokens { get; set; }
         private DraftForm DraftObj { get; set; }
         private AdvancedForm AdvancedObj { get; set; }
-
+        private MorseCodeConversionTool McctObj { get; set; }
+                
         private string FileName { get; set; } = string.Empty;
         private string FirstMediaPath { get; set; }
         private string SecondMediaPath { get; set; }
@@ -129,6 +130,7 @@ namespace KIBOTTER
             HelpToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             AddAccountToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             ScheduleToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
+            MorseConToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             CloseToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             MorseToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
             SushiModeToolStripMenuItem.BackColor = Color.FromArgb(45, 45, 45);
@@ -140,6 +142,7 @@ namespace KIBOTTER
             HelpToolStripMenuItem.ForeColor = Color.White;
             AddAccountToolStripMenuItem.ForeColor = Color.White;
             ScheduleToolStripMenuItem.ForeColor = Color.White;
+            MorseConToolStripMenuItem.ForeColor = Color.White;
             CloseToolStripMenuItem.ForeColor = Color.White;
             MorseToolStripMenuItem.ForeColor = Color.White;
             SushiModeToolStripMenuItem.ForeColor = Color.White;
@@ -178,6 +181,7 @@ namespace KIBOTTER
             HelpToolStripMenuItem.BackColor = SystemColors.Control;
             AddAccountToolStripMenuItem.BackColor = SystemColors.Control;
             ScheduleToolStripMenuItem.BackColor = SystemColors.Control;
+            MorseConToolStripMenuItem.BackColor = SystemColors.Control;
             CloseToolStripMenuItem.BackColor = SystemColors.Control;
             MorseToolStripMenuItem.BackColor = SystemColors.Control;
             SushiModeToolStripMenuItem.BackColor = SystemColors.Control;
@@ -189,6 +193,7 @@ namespace KIBOTTER
             HelpToolStripMenuItem.ForeColor = SystemColors.ControlText;
             AddAccountToolStripMenuItem.ForeColor = SystemColors.ControlText;
             ScheduleToolStripMenuItem.ForeColor = SystemColors.ControlText;
+            MorseConToolStripMenuItem.ForeColor = SystemColors.ControlText;
             CloseToolStripMenuItem.ForeColor = SystemColors.ControlText;
             MorseToolStripMenuItem.ForeColor = SystemColors.ControlText;
             SushiModeToolStripMenuItem.ForeColor = SystemColors.ControlText;
@@ -283,9 +288,7 @@ namespace KIBOTTER
             if (FirstMediaPath != null)
             {
                 TweetTextBox.Clear();
-                Console.WriteLine(1);
                 await TweetWithMedia(text);
-                Console.WriteLine(2);
                 TweetTextBox.Focus();
                 return;
             }
@@ -564,6 +567,15 @@ namespace KIBOTTER
                 Form1Obj = this
             };
             scheduleFormObj.ShowDialog();
+        }
+
+        private void MorseConToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (McctObj == null || McctObj.IsDisposed)
+            {
+                McctObj = new MorseCodeConversionTool();
+                McctObj.Show();
+            }
         }
 
         private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
