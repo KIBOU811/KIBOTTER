@@ -37,8 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.EnRadioButton = new System.Windows.Forms.RadioButton();
-            this.JaRadioButton = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // OriginalTextBox
@@ -127,39 +126,22 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "もじれつかもーるすしんごうをいれてください↓";
             // 
-            // EnRadioButton
+            // label5
             // 
-            this.EnRadioButton.AutoSize = true;
-            this.EnRadioButton.Font = new System.Drawing.Font("メイリオ", 9F);
-            this.EnRadioButton.Location = new System.Drawing.Point(92, 145);
-            this.EnRadioButton.Name = "EnRadioButton";
-            this.EnRadioButton.Size = new System.Drawing.Size(62, 22);
-            this.EnRadioButton.TabIndex = 9;
-            this.EnRadioButton.TabStop = true;
-            this.EnRadioButton.Text = "えーご";
-            this.EnRadioButton.UseVisualStyleBackColor = true;
-            this.EnRadioButton.CheckedChanged += new System.EventHandler(this.EnRadioButton_CheckedChanged);
-            // 
-            // JaRadioButton
-            // 
-            this.JaRadioButton.AutoSize = true;
-            this.JaRadioButton.Font = new System.Drawing.Font("メイリオ", 9F);
-            this.JaRadioButton.Location = new System.Drawing.Point(12, 145);
-            this.JaRadioButton.Name = "JaRadioButton";
-            this.JaRadioButton.Size = new System.Drawing.Size(74, 22);
-            this.JaRadioButton.TabIndex = 10;
-            this.JaRadioButton.TabStop = true;
-            this.JaRadioButton.Text = "にほんご";
-            this.JaRadioButton.UseVisualStyleBackColor = true;
-            this.JaRadioButton.CheckedChanged += new System.EventHandler(this.JaRadioButton_CheckedChanged);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("メイリオ", 9F);
+            this.label5.Location = new System.Drawing.Point(186, 146);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 18);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "↓　　↓　　↓";
             // 
             // MorseCodeConversionTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 262);
-            this.Controls.Add(this.JaRadioButton);
-            this.Controls.Add(this.EnRadioButton);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -189,7 +171,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton EnRadioButton;
-        private System.Windows.Forms.RadioButton JaRadioButton;
+        private System.Windows.Forms.Label label5;
     }
 }

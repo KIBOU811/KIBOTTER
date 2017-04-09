@@ -4,7 +4,7 @@ namespace KIBOTTER
 {
     class MorseCode
     {
-        public string ConvertToMorse(string original)
+        public string ConvertToMorse(string original) // もーるすもーど用
         {
             if (original.Length > 20)
             {
@@ -12,25 +12,10 @@ namespace KIBOTTER
             }
 
             char[] arrayOriginal = original.ToCharArray();
+            int mode = JudgeMode(arrayOriginal);
 
-            // mode = 0 で英語, 1 で日本語ひらがな, 2 で日本語カタカナ
-            int mode = 0;
-
-            foreach (char oneArrayOriginal in arrayOriginal)
-            {
-                string oneChar = oneArrayOriginal.ToString();
-                if (Regex.IsMatch(oneChar, @"^\p{IsHiragana}+$"))
-                {
-                    mode = 1;
-                    break;
-                }
-
-                if (Regex.IsMatch(oneChar, @"^[\p{IsKatakana}\u31F0-\u31FF\uFF66-\uFF9F]+$"))
-                {
-                    mode = 2;
-                    break;
-                }
-            }
+            if (mode == -1)
+                return "error";
             
             string resultText = string.Empty;
 
@@ -42,181 +27,251 @@ namespace KIBOTTER
             return resultText;
         }
 
-        private string JudgeMorse(char character, int mode)
+        public string Convert(string orig, string dot, string dash, string space) // へんかんつーる用
+        {
+            if (orig == string.Empty)
+                return "ここにへんかんけっかがでます(:3)";
+
+            char[] arrayOrig = orig.ToCharArray();
+
+            int mode = JudgeMode(arrayOrig);
+
+            if (mode != -1)
+            {
+                string resultText = string.Empty;
+
+                for (int i = 0; i < orig.Length; i++)
+                {
+                    resultText += JudgeMorse(arrayOrig[i], mode) + "　";
+                }
+
+                return resultText;
+            }
+
+            foreach (char oneArrayOrig in arrayOrig)
+            {
+                string oneChar = oneArrayOrig.ToString();
+
+                if (oneChar != dot && oneChar != dash && oneChar != space)
+                    return "error";
+            }
+
+            string[] morseArray = orig.Split(space.ToCharArray()[0]);
+
+            string resultEnText = string.Empty;
+            string resultJaText = string.Empty;
+
+            foreach (string s in morseArray)
+            {
+                resultEnText += MorseToEn(s, dot, dash);
+                resultJaText += MorseToJa(s, dot, dash);
+            }
+
+            return $"{resultEnText}(えーご)\r\n{resultJaText}(にほんご)";
+        }
+
+        private int JudgeMode(char[] arrayOrig)
+        {
+            // mode = 0 で英語, 1 で日本語ひらがな, 2 で日本語カタカナ
+
+            foreach (char oneArrayOrig in arrayOrig)
+            {
+                string oneChar = oneArrayOrig.ToString();
+
+                if (Regex.IsMatch(oneChar, @"^[a-zA-Z]+$"))
+                {
+                    return 0;
+                }
+
+                if (Regex.IsMatch(oneChar, @"^\p{IsHiragana}+$"))
+                {
+                    return 1;
+                }
+
+                if (Regex.IsMatch(oneChar, @"^[\u30A0-\u30FA\u31F0-\u31FF\uFF66-\uFF9F]+$"))
+                {
+                    return 2;
+                }
+            }
+
+            return -1;
+        }
+
+        private string JudgeMorse(char c, int mode)
         {
             if (mode == 0)
             {
-                return EnToMorse(character);
+                return EnToMorse(c);
             }
             if (mode == 1)
             {
-                return JaHiraToMorse(character);
+                return JaHiraToMorse(c);
             }
             if (mode == 2)
             {
-                return JaKataToMorse(character);
+                return JaKataToMorse(c);
             }
 
             return "error";
         }
 
-        private string EnToMorse(char character)
+        private string EnToMorse(char c)
         {
-            if (character == 'a' || character == 'A')
+            if (c == 'a' || c == 'A')
             {
                 return "・－";
             }
-            if (character == 'b' || character == 'B')
+            if (c == 'b' || c == 'B')
             {
                 return "－・・・";
             }
-            if (character == 'c' || character == 'C')
+            if (c == 'c' || c == 'C')
             {
                 return "－・－・";
             }
-            if (character == 'd' || character == 'D')
+            if (c == 'd' || c == 'D')
             {
                 return "－・・";
             }
-            if (character == 'e' || character == 'E')
+            if (c == 'e' || c == 'E')
             {
                 return "・";
             }
-            if (character == 'f' || character == 'F')
+            if (c == 'f' || c == 'F')
             {
                 return "・・－・";
             }
-            if (character == 'g' || character == 'G')
+            if (c == 'g' || c == 'G')
             {
                 return "－－・";
             }
-            if (character == 'h' || character == 'H')
+            if (c == 'h' || c == 'H')
             {
                 return "・・・・";
             }
-            if (character == 'i' || character == 'I')
+            if (c == 'i' || c == 'I')
             {
                 return "・・";
             }
-            if (character == 'j' || character == 'J')
+            if (c == 'j' || c == 'J')
             {
                 return "・－－－";
             }
-            if (character == 'k' || character == 'K')
+            if (c == 'k' || c == 'K')
             {
                 return "－・－";
             }
-            if (character == 'l' || character == 'L')
+            if (c == 'l' || c == 'L')
             {
                 return "・－・・";
             }
-            if (character == 'm' || character == 'M')
+            if (c == 'm' || c == 'M')
             {
                 return "－－";
             }
-            if (character == 'n' || character == 'N')
+            if (c == 'n' || c == 'N')
             {
                 return "－・";
             }
-            if (character == 'o' || character == 'O')
+            if (c == 'o' || c == 'O')
             {
                 return "－－－";
             }
-            if (character == 'p' || character == 'P')
+            if (c == 'p' || c == 'P')
             {
                 return "・－－・";
             }
-            if (character == 'q' || character == 'Q')
+            if (c == 'q' || c == 'Q')
             {
                 return "－－・－";
             }
-            if (character == 'r' || character == 'R')
+            if (c == 'r' || c == 'R')
             {
                 return "・－・";
             }
-            if (character == 's' || character == 'S')
+            if (c == 's' || c == 'S')
             {
                 return "・・・";
             }
-            if (character == 't' || character == 'T')
+            if (c == 't' || c == 'T')
             {
                 return "－";
             }
-            if (character == 'u' || character == 'U')
+            if (c == 'u' || c == 'U')
             {
                 return "・・－";
             }
-            if (character == 'v' || character == 'V')
+            if (c == 'v' || c == 'V')
             {
                 return "・・・－";
             }
-            if (character == 'w' || character == 'W')
+            if (c == 'w' || c == 'W')
             {
                 return "・－－";
             }
-            if (character == 'x' || character == 'X')
+            if (c == 'x' || c == 'X')
             {
                 return "－・・－";
             }
-            if (character == 'y' || character == 'Y')
+            if (c == 'y' || c == 'Y')
             {
                 return "－・－－";
             }
-            if (character == 'z' || character == 'Z')
+            if (c == 'z' || c == 'Z')
             {
                 return "－－・・";
             }
             // 数字
-            if (character == '1')
+            if (c == '1')
             {
                 return "・－－－－";
             }
-            if (character == '2')
+            if (c == '2')
             {
                 return "・・－－－";
             }
-            if (character == '3')
+            if (c == '3')
             {
                 return "・・・－－";
             }
-            if (character == '4')
+            if (c == '4')
             {
                 return "・・・・－";
             }
-            if (character == '5')
+            if (c == '5')
             {
                 return "・・・・・";
             }
-            if (character == '6')
+            if (c == '6')
             {
                 return "－・・・・";
             }
-            if (character == '7')
+            if (c == '7')
             {
                 return "－－・・・";
             }
-            if (character == '8')
+            if (c == '8')
             {
                 return "－－－・・";
             }
-            if (character == '9')
+            if (c == '9')
             {
                 return "－－－－・";
             }
-            if (character == '0')
+            if (c == '0')
             {
                 return "－－－－－";
             }
             // 欧文記号
-            if (character == ',')
+            if (c == ',')
             {
                 return "－－・・－－";
             }
-            if (character == '.')
+            if (c == '.')
             {
                 return "・－・－・－";
             }
-            if (character == '?')
+            if (c == '?')
             {
                 return "・・－－・・";
             }
@@ -224,355 +279,355 @@ namespace KIBOTTER
             return " ";
         }
 
-        private string JaHiraToMorse(char character)
+        private string JaHiraToMorse(char c)
         {
-            if (character == 'あ' || character == 'ぁ')
+            if (c == 'あ' || c == 'ぁ')
             {
                 return "－－・－－";
             }
-            if (character == 'い' || character == 'ぃ')
+            if (c == 'い' || c == 'ぃ')
             {
                 return "・－";
             }
-            if (character == 'う' || character == 'ぅ')
+            if (c == 'う' || c == 'ぅ')
             {
                 return "・・－";
             }
-            if (character == 'え' || character == 'ぇ')
+            if (c == 'え' || c == 'ぇ')
             {
                 return "－・－－－";
             }
-            if (character == 'お' || character == 'ぉ')
+            if (c == 'お' || c == 'ぉ')
             {
                 return "・－・・・";
             }
-            if (character == 'か' || character == 'が')
+            if (c == 'か' || c == 'が')
             {
-                if (character == 'が')
+                if (c == 'が')
                 {
                     return "・－・・ ・・";
                 }
                 return "・－・・";
             }
-            if (character == 'き' || character == 'ぎ')
+            if (c == 'き' || c == 'ぎ')
             {
-                if (character == 'ぎ')
+                if (c == 'ぎ')
                 {
                     return "－・－・・ ・・";
                 }
                 return "－・－・・";
             }
-            if (character == 'く' || character == 'ぐ')
+            if (c == 'く' || c == 'ぐ')
             {
-                if (character == 'ぐ')
+                if (c == 'ぐ')
                 {
                     return "・・・－ ・・";
                 }
                 return "・・・－";
             }
-            if (character == 'け' || character == 'げ')
+            if (c == 'け' || c == 'げ')
             {
-                if (character == 'げ')
+                if (c == 'げ')
                 {
                     return "－・－－ ・・";
                 }
                 return "－・－－";
             }
-            if (character == 'こ' || character == 'ご')
+            if (c == 'こ' || c == 'ご')
             {
-                if (character == 'ご')
+                if (c == 'ご')
                 {
                     return "－－－－ ・・";
                 }
                 return "－－－－";
             }
-            if (character == 'さ' || character == 'ざ')
+            if (c == 'さ' || c == 'ざ')
             {
-                if (character == 'ざ')
+                if (c == 'ざ')
                 {
                     return "－・－・－ ・・";
                 }
                 return "－・－・－";
             }
-            if (character == 'し' || character == 'じ')
+            if (c == 'し' || c == 'じ')
             {
-                if (character == 'じ')
+                if (c == 'じ')
                 {
                     return "－－・－・ ・・";
                 }
                 return "－－・－・";
             }
-            if (character == 'す' || character == 'ず')
+            if (c == 'す' || c == 'ず')
             {
-                if (character == 'ず')
+                if (c == 'ず')
                 {
                     return "－－－・－ ・・";
                 }
                 return "－－－・－";
             }
-            if (character == 'せ' || character == 'ぜ')
+            if (c == 'せ' || c == 'ぜ')
             {
-                if (character == 'ぜ')
+                if (c == 'ぜ')
                 {
                     return "・－－－・ ・・";
                 }
                 return "・－－－・";
             }
-            if (character == 'そ' || character == 'ぞ')
+            if (c == 'そ' || c == 'ぞ')
             {
-                if (character == 'ぞ')
+                if (c == 'ぞ')
                 {
                     return "－－－・ ・・";
                 }
                 return "－－－・";
             }
-            if (character == 'た' || character == 'だ')
+            if (c == 'た' || c == 'だ')
             {
-                if (character == 'だ')
+                if (c == 'だ')
                 {
                     return "－・ ・・";
                 }
                 return "－・";
             }
-            if (character == 'ち' || character == 'ぢ')
+            if (c == 'ち' || c == 'ぢ')
             {
-                if (character == 'ぢ')
+                if (c == 'ぢ')
                 {
                     return "・・－・ ・・";
                 }
                 return "・・－・";
             }
-            if (character == 'つ' || character == 'づ' || character == 'っ')
+            if (c == 'つ' || c == 'づ' || c == 'っ')
             {
-                if (character == 'づ')
+                if (c == 'づ')
                 {
                     return "・－－・ ・・";
                 }
                 return "・－－・";
             }
-            if (character == 'て' || character == 'で')
+            if (c == 'て' || c == 'で')
             {
-                if (character == 'で')
+                if (c == 'で')
                 {
                     return "・－・－－ ・・";
                 }
                 return "・－・－－";
             }
-            if (character == 'と' || character == 'ど')
+            if (c == 'と' || c == 'ど')
             {
-                if (character == 'ど')
+                if (c == 'ど')
                 {
                     return "・・－・・ ・・";
                 }
                 return "・・－・・";
             }
-            if (character == 'な')
+            if (c == 'な')
             {
                 return "・－・";
             }
-            if (character == 'に')
+            if (c == 'に')
             {
                 return "－・－・";
             }
-            if (character == 'ぬ')
+            if (c == 'ぬ')
             {
                 return "・・・・";
             }
-            if (character == 'ね')
+            if (c == 'ね')
             {
                 return "－－・－";
             }
-            if (character == 'の')
+            if (c == 'の')
             {
                 return "・・－－";
             }
-            if (character == 'は' || character == 'ば' || character == 'ぱ')
+            if (c == 'は' || c == 'ば' || c == 'ぱ')
             {
-                if (character == 'ば')
+                if (c == 'ば')
                 {
                     return "－・・・ ・・";
                 }
-                if (character == 'ぱ')
+                if (c == 'ぱ')
                 {
                     return "－・・・ ・・－－・";
                 }
                 return "－・・・";
             }
-            if (character == 'ひ' || character == 'び' || character == 'ぴ')
+            if (c == 'ひ' || c == 'び' || c == 'ぴ')
             {
-                if (character == 'び')
+                if (c == 'び')
                 {
                     return "－－・・－ ・・";
                 }
-                if (character == 'ぴ')
+                if (c == 'ぴ')
                 {
                     return "－－・・－ ・・－－・";
                 }
                 return "－－・・－";
             }
-            if (character == 'ふ' || character == 'ぶ' || character == 'ぷ')
+            if (c == 'ふ' || c == 'ぶ' || c == 'ぷ')
             {
-                if (character == 'ぶ')
+                if (c == 'ぶ')
                 {
                     return "－－・・ ・・";
                 }
-                if (character == 'ぷ')
+                if (c == 'ぷ')
                 {
                     return "－－・・ ・・－－・";
                 }
                 return "－－・・";
             }
-            if (character == 'へ' || character == 'べ' || character == 'ぺ')
+            if (c == 'へ' || c == 'べ' || c == 'ぺ')
             {
-                if (character == 'べ')
+                if (c == 'べ')
                 {
                     return "・ ・・";
                 }
-                if (character == 'ぺ')
+                if (c == 'ぺ')
                 {
                     return "・ ・・－－・";
                 }
                 return "・";
             }
-            if (character == 'ほ' || character == 'ぼ' || character == 'ぽ')
+            if (c == 'ほ' || c == 'ぼ' || c == 'ぽ')
             {
-                if (character == 'ぼ')
+                if (c == 'ぼ')
                 {
                     return "－・・ ・・";
                 }
-                if (character == 'ぽ')
+                if (c == 'ぽ')
                 {
                     return "－・・ ・・－－・";
                 }
                 return "－・・";
             }
-            if (character == 'ま')
+            if (c == 'ま')
             {
                 return "－・・－";
             }
-            if (character == 'み')
+            if (c == 'み')
             {
                 return "・・－・－";
             }
-            if (character == 'む')
+            if (c == 'む')
             {
                 return "－";
             }
-            if (character == 'め')
+            if (c == 'め')
             {
                 return "－・・・－";
             }
-            if (character == 'も')
+            if (c == 'も')
             {
                 return "－・・－・";
             }
-            if (character == 'や' || character == 'ゃ')
+            if (c == 'や' || c == 'ゃ')
             {
                 return "・－－";
             }
-            if (character == 'ゆ' || character == 'ゅ')
+            if (c == 'ゆ' || c == 'ゅ')
             {
                 return "－・・－－";
             }
-            if (character == 'よ' || character == 'ょ')
+            if (c == 'よ' || c == 'ょ')
             {
                 return "－－";
             }
-            if (character == 'ら')
+            if (c == 'ら')
             {
                 return "・・・";
             }
-            if (character == 'り')
+            if (c == 'り')
             {
                 return "－－・";
             }
-            if (character == 'る')
+            if (c == 'る')
             {
                 return "－・－－・";
             }
-            if (character == 'れ')
+            if (c == 'れ')
             {
                 return "－－－";
             }
-            if (character == 'ろ')
+            if (c == 'ろ')
             {
                 return "・－・－";
             }
-            if (character == 'わ' || character == 'ゎ')
+            if (c == 'わ' || c == 'ゎ')
             {
                 return "－・－";
             }
-            if (character == 'ゐ')
+            if (c == 'ゐ')
             {
                 return "・－・・－";
             }
-            if (character == 'ゑ')
+            if (c == 'ゑ')
             {
                 return "・－－・・";
             }
-            if (character == 'を')
+            if (c == 'を')
             {
                 return "・－－－";
             }
-            if (character == 'ん')
+            if (c == 'ん')
             {
                 return "・－・－・";
             }
             // 数字
-            if (character == '１' || character == '1')
+            if (c == '１' || c == '1')
             {
                 return "・－－－－";
             }
-            if (character == '２' || character == '2')
+            if (c == '２' || c == '2')
             {
                 return "・・－－－";
             }
-            if (character == '３' || character == '3')
+            if (c == '３' || c == '3')
             {
                 return "・・・－－";
             }
-            if (character == '４' || character == '4')
+            if (c == '４' || c == '4')
             {
                 return "・・・・－";
             }
-            if (character == '５' || character == '5')
+            if (c == '５' || c == '5')
             {
                 return "・・・・・";
             }
-            if (character == '６' || character == '6')
+            if (c == '６' || c == '6')
             {
                 return "－・・・・";
             }
-            if (character == '７' || character == '7')
+            if (c == '７' || c == '7')
             {
                 return "－－・・・";
             }
-            if (character == '８' || character == '8')
+            if (c == '８' || c == '8')
             {
                 return "－－－・・";
             }
-            if (character == '９' || character == '9')
+            if (c == '９' || c == '9')
             {
                 return "－－－－・";
             }
-            if (character == '０' || character == '0')
+            if (c == '０' || c == '0')
             {
                 return "－－－－－";
             }
             // 記号
-            if (character == 'ー')
+            if (c == 'ー')
             {
                 return "・－－・－";
             }
-            if (character == '、')
+            if (c == '、')
             {
                 return "・－・－・－";
             }
-            if (character == '゛')
+            if (c == '゛')
             {
                 return "・・";
             }
-            if (character == '゜')
+            if (c == '゜')
             {
                 return "・・－－・";
             }
@@ -580,371 +635,791 @@ namespace KIBOTTER
             return " ";
         }
 
-        private string JaKataToMorse(char character)
+        private string JaKataToMorse(char c)
         {
-            if (character == 'ア' || character == 'ァ'
-                 || character == 'ｱ' || character == 'ｧ')
+            if (c == 'ア' || c == 'ァ'
+                 || c == 'ｱ' || c == 'ｧ')
             {
                 return "－－・－－";
             }
-            if (character == 'イ' || character == 'ィ'
-                 || character == 'ｲ' || character == 'ｨ')
+            if (c == 'イ' || c == 'ィ'
+                 || c == 'ｲ' || c == 'ｨ')
             {
                 return "・－";
             }
-            if (character == 'ウ' || character == 'ゥ'
-                 || character == 'ｳ' || character == 'ｩ')
+            if (c == 'ウ' || c == 'ゥ'
+                 || c == 'ｳ' || c == 'ｩ')
             {
                 return "・・－";
             }
-            if (character == 'エ' || character == 'ェ'
-                 || character == 'ｴ' || character == 'ｪ')
+            if (c == 'エ' || c == 'ェ'
+                 || c == 'ｴ' || c == 'ｪ')
             {
                 return "－・－－－";
             }
-            if (character == 'オ' || character == 'ォ'
-                 || character == 'ｵ' || character == 'ｫ')
+            if (c == 'オ' || c == 'ォ'
+                 || c == 'ｵ' || c == 'ｫ')
             {
                 return "・－・・・";
             }
-            if (character == 'カ' || character == 'ガ' || character == 'ｶ')
+            if (c == 'カ' || c == 'ガ' || c == 'ｶ')
             {
-                if (character == 'ガ')
+                if (c == 'ガ')
                 {
                     return "・－・・ ・・";
                 }
                 return "・－・・";
             }
-            if (character == 'キ' || character == 'ギ' || character == 'ｷ')
+            if (c == 'キ' || c == 'ギ' || c == 'ｷ')
             {
-                if (character == 'ギ')
+                if (c == 'ギ')
                 {
                     return "－・－・・ ・・";
                 }
                 return "－・－・・";
             }
-            if (character == 'ク' || character == 'グ' || character == 'ｸ')
+            if (c == 'ク' || c == 'グ' || c == 'ｸ')
             {
-                if (character == 'グ')
+                if (c == 'グ')
                 {
                     return "・・・－ ・・";
                 }
                 return "・・・－";
             }
-            if (character == 'ケ' || character == 'ゲ' || character == 'ｹ')
+            if (c == 'ケ' || c == 'ゲ' || c == 'ｹ')
             {
-                if (character == 'ゲ')
+                if (c == 'ゲ')
                 {
                     return "－・－－ ・・";
                 }
                 return "－・－－";
             }
-            if (character == 'コ' || character == 'ゴ' || character == 'ｺ')
+            if (c == 'コ' || c == 'ゴ' || c == 'ｺ')
             {
-                if (character == 'ゴ')
+                if (c == 'ゴ')
                 {
                     return "－－－－ ・・";
                 }
                 return "－－－－";
             }
-            if (character == 'サ' || character == 'ザ' || character == 'ｻ')
+            if (c == 'サ' || c == 'ザ' || c == 'ｻ')
             {
-                if (character == 'ザ')
+                if (c == 'ザ')
                 {
                     return "－・－・－ ・・";
                 }
                 return "－・－・－";
             }
-            if (character == 'シ' || character == 'ジ' || character == 'ｼ')
+            if (c == 'シ' || c == 'ジ' || c == 'ｼ')
             {
-                if (character == 'ジ')
+                if (c == 'ジ')
                 {
                     return "－－・－・ ・・";
                 }
                 return "－－・－・";
             }
-            if (character == 'ス' || character == 'ズ' || character == 'ｽ')
+            if (c == 'ス' || c == 'ズ' || c == 'ｽ')
             {
-                if (character == 'ズ')
+                if (c == 'ズ')
                 {
                     return "－－－・－ ・・";
                 }
                 return "－－－・－";
             }
-            if (character == 'セ' || character == 'ゼ' || character == 'ｾ')
+            if (c == 'セ' || c == 'ゼ' || c == 'ｾ')
             {
-                if (character == 'ゼ')
+                if (c == 'ゼ')
                 {
                     return "・－－－・ ・・";
                 }
                 return "・－－－・";
             }
-            if (character == 'ソ' || character == 'ゾ' || character == 'ｿ')
+            if (c == 'ソ' || c == 'ゾ' || c == 'ｿ')
             {
-                if (character == 'ゾ')
+                if (c == 'ゾ')
                 {
                     return "－－－・ ・・";
                 }
                 return "－－－・";
             }
-            if (character == 'タ' || character == 'ダ' || character == 'ﾀ')
+            if (c == 'タ' || c == 'ダ' || c == 'ﾀ')
             {
-                if (character == 'ダ')
+                if (c == 'ダ')
                 {
                     return "－・ ・・";
                 }
                 return "－・";
             }
-            if (character == 'チ' || character == 'ヂ' || character == 'ﾁ')
+            if (c == 'チ' || c == 'ヂ' || c == 'ﾁ')
             {
-                if (character == 'ヂ')
+                if (c == 'ヂ')
                 {
                     return "・・－・ ・・";
                 }
                 return "・・－・";
             }
-            if (character == 'ツ' || character == 'ヅ' || character == 'ッ'
-                 || character == 'ﾂ' || character == 'ｯ')
+            if (c == 'ツ' || c == 'ヅ' || c == 'ッ'
+                 || c == 'ﾂ' || c == 'ｯ')
             {
-                if (character == 'ヅ')
+                if (c == 'ヅ')
                 {
                     return "・－－・ ・・";
                 }
                 return "・－－・";
             }
-            if (character == 'テ' || character == 'デ' || character == 'ﾃ')
+            if (c == 'テ' || c == 'デ' || c == 'ﾃ')
             {
-                if (character == 'デ')
+                if (c == 'デ')
                 {
                     return "・－・－－ ・・";
                 }
                 return "・－・－－";
             }
-            if (character == 'ト' || character == 'ド' || character == 'ﾄ')
+            if (c == 'ト' || c == 'ド' || c == 'ﾄ')
             {
-                if (character == 'ド')
+                if (c == 'ド')
                 {
                     return "・・－・・ ・・";
                 }
                 return "・・－・・";
             }
-            if (character == 'ナ' || character == 'ﾅ')
+            if (c == 'ナ' || c == 'ﾅ')
             {
                 return "・－・";
             }
-            if (character == 'ニ' || character == 'ﾆ')
+            if (c == 'ニ' || c == 'ﾆ')
             {
                 return "－・－・";
             }
-            if (character == 'ヌ' || character == 'ﾇ')
+            if (c == 'ヌ' || c == 'ﾇ')
             {
                 return "・・・・";
             }
-            if (character == 'ネ' || character == 'ﾈ')
+            if (c == 'ネ' || c == 'ﾈ')
             {
                 return "－－・－";
             }
-            if (character == 'ノ' || character == 'ﾉ')
+            if (c == 'ノ' || c == 'ﾉ')
             {
                 return "・・－－";
             }
-            if (character == 'ハ' || character == 'バ' || character == 'パ'
-                 || character == 'ﾊ')
+            if (c == 'ハ' || c == 'バ' || c == 'パ'
+                 || c == 'ﾊ')
             {
-                if (character == 'バ')
+                if (c == 'バ')
                 {
                     return "－・・・ ・・";
                 }
-                if (character == 'パ')
+                if (c == 'パ')
                 {
                     return "－・・・ ・・－－・";
                 }
                 return "－・・・";
             }
-            if (character == 'ヒ' || character == 'ビ' || character == 'ピ'
-                 || character == 'ﾋ')
+            if (c == 'ヒ' || c == 'ビ' || c == 'ピ'
+                 || c == 'ﾋ')
             {
-                if (character == 'ビ')
+                if (c == 'ビ')
                 {
                     return "－－・・－ ・・";
                 }
-                if (character == 'ピ')
+                if (c == 'ピ')
                 {
                     return "－－・・－ ・・－－・";
                 }
                 return "－－・・－";
             }
-            if (character == 'フ' || character == 'ブ' || character == 'プ'
-                 || character == 'ﾌ')
+            if (c == 'フ' || c == 'ブ' || c == 'プ'
+                 || c == 'ﾌ')
             {
-                if (character == 'ブ')
+                if (c == 'ブ')
                 {
                     return "－－・・ ・・";
                 }
-                if (character == 'プ')
+                if (c == 'プ')
                 {
                     return "－－・・ ・・－－・";
                 }
                 return "－－・・";
             }
-            if (character == 'ヘ' || character == 'ベ' || character == 'ペ'
-                 || character == 'ﾍ')
+            if (c == 'ヘ' || c == 'ベ' || c == 'ペ'
+                 || c == 'ﾍ')
             {
-                if (character == 'ベ')
+                if (c == 'ベ')
                 {
                     return "・ ・・";
                 }
-                if (character == 'ペ')
+                if (c == 'ペ')
                 {
                     return "・ ・・－－・";
                 }
                 return "・";
             }
-            if (character == 'ホ' || character == 'ボ' || character == 'ポ'
-                 || character == 'ﾎ')
+            if (c == 'ホ' || c == 'ボ' || c == 'ポ'
+                 || c == 'ﾎ')
             {
-                if (character == 'ボ')
+                if (c == 'ボ')
                 {
                     return "－・・ ・・";
                 }
-                if (character == 'ポ')
+                if (c == 'ポ')
                 {
                     return "－・・ ・・－－・";
                 }
                 return "－・・";
             }
-            if (character == 'マ' || character == 'ﾏ')
+            if (c == 'マ' || c == 'ﾏ')
             {
                 return "－・・－";
             }
-            if (character == 'ミ' || character == 'ﾐ')
+            if (c == 'ミ' || c == 'ﾐ')
             {
                 return "・・－・－";
             }
-            if (character == 'ム' || character == 'ﾑ')
+            if (c == 'ム' || c == 'ﾑ')
             {
                 return "－";
             }
-            if (character == 'メ' || character == 'ﾒ')
+            if (c == 'メ' || c == 'ﾒ')
             {
                 return "－・・・－";
             }
-            if (character == 'モ' || character == 'ﾓ')
+            if (c == 'モ' || c == 'ﾓ')
             {
                 return "－・・－・";
             }
-            if (character == 'ヤ' || character == 'ャ'
-                 || character == 'ﾔ' || character == 'ｬ')
+            if (c == 'ヤ' || c == 'ャ'
+                 || c == 'ﾔ' || c == 'ｬ')
             {
                 return "・－－";
             }
-            if (character == 'ユ' || character == 'ュ'
-                 || character == 'ﾕ' || character == 'ｭ')
+            if (c == 'ユ' || c == 'ュ'
+                 || c == 'ﾕ' || c == 'ｭ')
             {
                 return "－・・－－";
             }
-            if (character == 'ヨ' || character == 'ョ'
-                 || character == 'ﾖ' || character == 'ｮ')
+            if (c == 'ヨ' || c == 'ョ'
+                 || c == 'ﾖ' || c == 'ｮ')
             {
                 return "－－";
             }
-            if (character == 'ラ' || character == 'ﾗ')
+            if (c == 'ラ' || c == 'ﾗ')
             {
                 return "・・・";
             }
-            if (character == 'リ' || character == 'ﾘ')
+            if (c == 'リ' || c == 'ﾘ')
             {
                 return "－－・";
             }
-            if (character == 'ル' || character == 'ﾙ')
+            if (c == 'ル' || c == 'ﾙ')
             {
                 return "－・－－・";
             }
-            if (character == 'レ' || character == 'ﾚ')
+            if (c == 'レ' || c == 'ﾚ')
             {
                 return "－－－";
             }
-            if (character == 'ロ' || character == 'ﾛ')
+            if (c == 'ロ' || c == 'ﾛ')
             {
                 return "・－・－";
             }
-            if (character == 'ワ' || character == 'ヮ' || character == 'ﾜ')
+            if (c == 'ワ' || c == 'ヮ' || c == 'ﾜ')
             {
                 return "－・－";
             }
-            if (character == 'ヰ')
+            if (c == 'ヰ')
             {
                 return "・－・・－";
             }
-            if (character == 'ヱ')
+            if (c == 'ヱ')
             {
                 return "・－－・・";
             }
-            if (character == 'ヲ' || character == 'ｦ')
+            if (c == 'ヲ' || c == 'ｦ')
             {
                 return "・－－－";
             }
-            if (character == 'ン' || character == 'ﾝ')
+            if (c == 'ン' || c == 'ﾝ')
             {
                 return "・－・－・";
             }
             // 数字
-            if (character == '１' || character == '1')
+            if (c == '１' || c == '1')
             {
                 return "・－－－－";
             }
-            if (character == '２' || character == '2')
+            if (c == '２' || c == '2')
             {
                 return "・・－－－";
             }
-            if (character == '３' || character == '3')
+            if (c == '３' || c == '3')
             {
                 return "・・・－－";
             }
-            if (character == '４' || character == '4')
+            if (c == '４' || c == '4')
             {
                 return "・・・・－";
             }
-            if (character == '５' || character == '5')
+            if (c == '５' || c == '5')
             {
                 return "・・・・・";
             }
-            if (character == '６' || character == '6')
+            if (c == '６' || c == '6')
             {
                 return "－・・・・";
             }
-            if (character == '７' || character == '7')
+            if (c == '７' || c == '7')
             {
                 return "－－・・・";
             }
-            if (character == '８' || character == '8')
+            if (c == '８' || c == '8')
             {
                 return "－－－・・";
             }
-            if (character == '９' || character == '9')
+            if (c == '９' || c == '9')
             {
                 return "－－－－・";
             }
-            if (character == '０' || character == '0')
+            if (c == '０' || c == '0')
             {
                 return "－－－－－";
             }
             // 記号
-            if (character == 'ー')
+            if (c == 'ー')
             {
                 return "・－－・－";
             }
-            if (character == '、')
+            if (c == '、')
             {
                 return "・－・－・－";
             }
-            if (character == 'ﾞ' || character == '゛')
+            if (c == 'ﾞ' || c == '゛')
             {
                 return "・・";
             }
-            if (character == 'ﾟ' || character == '゜')
+            if (c == 'ﾟ' || c == '゜')
             {
                 return "・・－－・";
+            }
+
+            return " ";
+        }
+
+        private string MorseToEn(string s, string dot, string dash)
+        {
+            if (s == $"{dot}{dash}")
+            {
+                return "a";
+            }
+            if (s == $"{dash}{dot}{dot}{dot}")
+            {
+                return "b";
+            }
+            if (s == $"{dash}{dot}{dash}{dot}")
+            {
+                return "c";
+            }
+            if (s == $"{dash}{dot}{dot}")
+            {
+                return "d";
+            }
+            if (s == $"{dot}")
+            {
+                return "e";
+            }
+            if (s == $"{dot}{dot}{dash}{dot}")
+            {
+                return "f";
+            }
+            if (s == $"{dash}{dash}{dot}")
+            {
+                return "g";
+            }
+            if (s == $"{dot}{dot}{dot}{dot}")
+            {
+                return "h";
+            }
+            if (s == $"{dot}{dot}")
+            {
+                return "i";
+            }
+            if (s == $"{dot}{dash}{dash}{dash}")
+            {
+                return "j";
+            }
+            if (s == $"{dash}{dot}{dash}")
+            {
+                return "k";
+            }
+            if (s == $"{dot}{dash}{dot}{dot}")
+            {
+                return "l";
+            }
+            if (s == $"{dash}{dash}")
+            {
+                return "m";
+            }
+            if (s == $"{dash}{dot}")
+            {
+                return "n";
+            }
+            if (s == $"{dash}{dash}{dash}")
+            {
+                return "o";
+            }
+            if (s == $"{dot}{dash}{dash}{dot}")
+            {
+                return "p";
+            }
+            if (s == $"{dash}{dash}{dot}{dash}")
+            {
+                return "q";
+            }
+            if (s == $"{dot}{dash}{dot}")
+            {
+                return "r";
+            }
+            if (s == $"{dot}{dot}{dot}")
+            {
+                return "s";
+            }
+            if (s == $"{dash}")
+            {
+                return "t";
+            }
+            if (s == $"{dot}{dot}{dash}")
+            {
+                return "u";
+            }
+            if (s == $"{dot}{dot}{dot}{dash}")
+            {
+                return "v";
+            }
+            if (s == $"{dot}{dash}{dash}")
+            {
+                return "w";
+            }
+            if (s == $"{dash}{dot}{dot}{dash}")
+            {
+                return "x";
+            }
+            if (s == $"{dash}{dot}{dash}{dash}")
+            {
+                return "y";
+            }
+            if (s == $"{dash}{dash}{dot}{dot}")
+            {
+                return "";
+            }
+            // 数字
+            if (s == $"{dot}{dash}{dash}{dash}{dash}")
+            {
+                return "1";
+            }
+            if (s == $"{dot}{dot}{dash}{dash}{dash}")
+            {
+                return "2";
+            }
+            if (s == $"{dot}{dot}{dot}{dash}{dash}")
+            {
+                return "3";
+            }
+            if (s == $"{dot}{dot}{dot}{dot}{dash}")
+            {
+                return "4";
+            }
+            if (s == $"{dot}{dot}{dot}{dot}{dot}")
+            {
+                return "5";
+            }
+            if (s == $"{dash}{dot}{dot}{dot}{dot}")
+            {
+                return "6";
+            }
+            if (s == $"{dash}{dash}{dot}{dot}{dot}")
+            {
+                return "7";
+            }
+            if (s == $"{dash}{dash}{dash}{dot}{dot}")
+            {
+                return "8";
+            }
+            if (s == $"{dash}{dash}{dash}{dash}{dot}")
+            {
+                return "9";
+            }
+            if (s == $"{dash}{dash}{dash}{dash}{dash}")
+            {
+                return "0";
+            }
+            // 欧文記号
+            if (s == $"{dash}{dash}{dot}{dot}{dash}{dash}")
+            {
+                return ",";
+            }
+            if (s == $"{dot}{dash}{dot}{dash}{dot}{dash}")
+            {
+                return ".";
+            }
+            if (s == $"{dot}{dot}{dash}{dash}{dot}{dot}")
+            {
+                return "?";
+            }
+
+            return " ";
+        }
+
+        private string MorseToJa(string s, string dot, string dash)
+        {
+            if (s == $"{dash}{dash}{dot}{dash}{dash}")
+            {
+                return "あ";
+            }
+            if (s == $"{dot}{dash}")
+            {
+                return "い";
+            }
+            if (s == $"{dot}{dot}{dash}")
+            {
+                return "う";
+            }
+            if (s == $"{dash}{dot}{dash}{dash}{dash}")
+            {
+                return "え";
+            }
+            if (s == $"{dot}{dash}{dot}{dot}{dot}")
+            {
+                return "お";
+            }
+            if (s == $"{dot}{dash}{dot}{dot}")
+            {
+                return "か";
+            }
+            if (s == $"{dash}{dot}{dash}{dot}{dot}")
+            {
+                return "き";
+            }
+            if (s == $"{dot}{dot}{dot}{dash}")
+            {
+                return "く";
+            }
+            if (s == $"{dash}{dot}{dash}{dash}")
+            {
+                return "け";
+            }
+            if (s == $"{dash}{dash}{dash}{dash}")
+            {
+                return "こ";
+            }
+            if (s == $"{dash}{dot}{dash}{dot}{dash}")
+            {
+                return "さ";
+            }
+            if (s == $"{dash}{dash}{dot}{dash}{dot}")
+            {
+                return "し";
+            }
+            if (s == $"{dash}{dash}{dash}{dot}{dash}")
+            {
+                return "す";
+            }
+            if (s == $"{dot}{dash}{dash}{dash}{dot}")
+            {
+                return "せ";
+            }
+            if (s == $"{dash}{dash}{dash}{dot}")
+            {
+                return "そ";
+            }
+            if (s == $"{dash}{dot}")
+            {
+                return "た";
+            }
+            if (s == $"{dot}{dot}{dash}{dot}")
+            {
+                return "ち";
+            }
+            if (s == $"{dot}{dash}{dash}{dot}")
+            {
+                return "つ";
+            }
+            if (s == $"{dot}{dash}{dot}{dash}{dash}")
+            {
+                return "て";
+            }
+            if (s == $"{dot}{dot}{dash}{dot}{dot}")
+            {
+                return "と";
+            }
+            if (s == $"{dot}{dash}{dot}")
+            {
+                return "な";
+            }
+            if (s == $"{dash}{dot}{dash}{dot}")
+            {
+                return "に";
+            }
+            if (s == $"{dot}{dot}{dot}{dot}")
+            {
+                return "ぬ";
+            }
+            if (s == $"{dash}{dash}{dot}{dash}")
+            {
+                return "ね";
+            }
+            if (s == $"{dot}{dot}{dash}{dash}")
+            {
+                return "の";
+            }
+            if (s == $"{dash}{dot}{dot}{dot}")
+            {
+                return "は";
+            }
+            if (s == $"{dash}{dash}{dot}{dot}{dash}")
+            {
+                return "ひ";
+            }
+            if (s == $"{dash}{dash}{dot}{dot}")
+            {
+                return "ふ";
+            }
+            if (s == $"{dot}")
+            {
+                return "へ";
+            }
+            if (s == $"{dash}{dot}{dot}")
+            {
+                return "ほ";
+            }
+            if (s == $"{dash}{dot}{dot}{dash}")
+            {
+                return "ま";
+            }
+            if (s == $"{dot}{dot}{dash}{dot}{dash}")
+            {
+                return "み";
+            }
+            if (s == $"{dash}")
+            {
+                return "む";
+            }
+            if (s == $"{dash}{dot}{dot}{dot}{dash}")
+            {
+                return "め";
+            }
+            if (s == $"{dash}{dot}{dot}{dash}{dot}")
+            {
+                return "も";
+            }
+            if (s == $"{dot}{dash}{dash}")
+            {
+                return "や";
+            }
+            if (s == $"{dash}{dot}{dot}{dash}{dash}")
+            {
+                return "ゆ";
+            }
+            if (s == $"{dash}{dash}")
+            {
+                return "よ";
+            }
+            if (s == $"{dot}{dot}{dot}")
+            {
+                return "ら";
+            }
+            if (s == $"{dash}{dash}{dot}")
+            {
+                return "り";
+            }
+            if (s == $"{dash}{dot}{dash}{dash}{dot}")
+            {
+                return "る";
+            }
+            if (s == $"{dash}{dash}{dash}")
+            {
+                return "れ";
+            }
+            if (s == $"{dot}{dash}{dot}{dash}")
+            {
+                return "ろ";
+            }
+            if (s == $"{dash}{dot}{dash}")
+            {
+                return "わ";
+            }
+            if (s == $"{dot}{dash}{dot}{dot}{dash}")
+            {
+                return "ゐ";
+            }
+            if (s == $"{dot}{dash}{dash}{dot}{dot}")
+            {
+                return "ゑ";
+            }
+            if (s == $"{dot}{dash}{dash}{dash}")
+            {
+                return "を";
+            }
+            if (s == $"{dot}{dash}{dot}{dash}{dot}")
+            {
+                return "ん";
+            }
+            // 数字
+            if (s == $"{dot}{dash}{dash}{dash}{dash}")
+            {
+                return "1";
+            }
+            if (s == $"{dot}{dot}{dash}{dash}{dash}")
+            {
+                return "2";
+            }
+            if (s == $"{dot}{dot}{dot}{dash}{dash}")
+            {
+                return "3";
+            }
+            if (s == $"{dot}{dot}{dot}{dot}{dash}")
+            {
+                return "4";
+            }
+            if (s == $"{dot}{dot}{dot}{dot}{dot}")
+            {
+                return "5";
+            }
+            if (s == $"{dash}{dot}{dot}{dot}{dot}")
+            {
+                return "6";
+            }
+            if (s == $"{dash}{dash}{dot}{dot}{dot}")
+            {
+                return "7";
+            }
+            if (s == $"{dash}{dash}{dash}{dot}{dot}")
+            {
+                return "8";
+            }
+            if (s == $"{dash}{dash}{dash}{dash}{dot}")
+            {
+                return "9";
+            }
+            if (s == $"{dash}{dash}{dash}{dash}{dash}")
+            {
+                return "0";
+            }
+            // 記号
+            if (s == $"{dot}{dash}{dash}{dot}{dash}")
+            {
+                return "ー";
+            }
+            if (s == $"{dot}{dash}{dot}{dash}{dot}{dash}")
+            {
+                return "、";
+            }
+            if (s == $"{dot}{dot}")
+            {
+                return "゛";
+            }
+            if (s == $"{dot}{dot}{dash}{dash}{dot}")
+            {
+                return "゜";
             }
 
             return " ";

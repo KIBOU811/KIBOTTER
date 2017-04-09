@@ -35,6 +35,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.AddAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MorseConToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +53,6 @@
             this.TextLengthLabel = new System.Windows.Forms.Label();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MorseConToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +127,15 @@
             this.ScheduleToolStripMenuItem.Click += new System.EventHandler(this.ScheduleToolStripMenuItem_Click);
             this.ScheduleToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
             this.ScheduleToolStripMenuItem.MouseLeave += new System.EventHandler(this.MenuItemMouseLeave);
+            // 
+            // MorseConToolStripMenuItem
+            // 
+            this.MorseConToolStripMenuItem.Name = "MorseConToolStripMenuItem";
+            this.MorseConToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.MorseConToolStripMenuItem.Text = "もーるすしんごう...";
+            this.MorseConToolStripMenuItem.Click += new System.EventHandler(this.MorseConToolStripMenuItem_Click);
+            this.MorseConToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
+            this.MorseConToolStripMenuItem.MouseLeave += new System.EventHandler(this.MenuItemMouseLeave);
             // 
             // toolStripMenuItem2
             // 
@@ -283,13 +292,6 @@
             // 
             this.ToolStripStatusLabel.Name = "ToolStripStatusLabel";
             this.ToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-            // 
-            // MorseConToolStripMenuItem
-            // 
-            this.MorseConToolStripMenuItem.Name = "MorseConToolStripMenuItem";
-            this.MorseConToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.MorseConToolStripMenuItem.Text = "もーるすしんごう...";
-            this.MorseConToolStripMenuItem.Click += new System.EventHandler(this.MorseConToolStripMenuItem_Click);
             // 
             // MainForm
             // 

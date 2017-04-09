@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KIBOTTER
@@ -19,8 +13,9 @@ namespace KIBOTTER
 
         private void MorseCodeConversionTool_Load(object sender, EventArgs e)
         {
-            JaRadioButton.Checked = true;
+            StartPosition = FormStartPosition.CenterScreen;
             ConvertedTextBox.ReadOnly = true;
+            ConvertedTextBox.Text = @"ここにへんかんけっかがでます(:3)";
         }
 
         private void ChangeThemeToBlack()
@@ -34,6 +29,8 @@ namespace KIBOTTER
             label3.ForeColor = Color.White;
             label4.BackColor = Color.FromArgb(45, 45, 45);
             label4.ForeColor = Color.White;
+            label5.BackColor = Color.FromArgb(45, 45, 45);
+            label5.ForeColor = Color.White;
             DotTextBox.BackColor = Color.FromArgb(62, 62, 62);
             DotTextBox.ForeColor = Color.White;
             DashTextBox.BackColor = Color.FromArgb(62, 62, 62);
@@ -44,12 +41,6 @@ namespace KIBOTTER
             OriginalTextBox.ForeColor = Color.White;
             ConvertedTextBox.BackColor = Color.FromArgb(62, 62, 62);
             ConvertedTextBox.ForeColor = Color.White;
-            JaRadioButton.BackColor = Color.FromArgb(45, 45, 45);
-            JaRadioButton.ForeColor = Color.White;
-            JaRadioButton.FlatStyle = FlatStyle.Flat;
-            EnRadioButton.BackColor = Color.FromArgb(45, 45, 45);
-            EnRadioButton.ForeColor = Color.White;
-            EnRadioButton.FlatStyle = FlatStyle.Flat;
         }
 
         private void ChangeThemeToDefault()
@@ -63,6 +54,8 @@ namespace KIBOTTER
             label3.ForeColor = SystemColors.ControlText;
             label4.BackColor = SystemColors.Control;
             label4.ForeColor = SystemColors.ControlText;
+            label5.BackColor = SystemColors.Control;
+            label5.ForeColor = SystemColors.ControlText;
             DotTextBox.BackColor = SystemColors.Window;
             DotTextBox.ForeColor = SystemColors.WindowText;
             DashTextBox.BackColor = SystemColors.Window;
@@ -73,30 +66,12 @@ namespace KIBOTTER
             OriginalTextBox.ForeColor = SystemColors.WindowText;
             ConvertedTextBox.BackColor = SystemColors.Window;
             ConvertedTextBox.ForeColor = SystemColors.WindowText;
-            JaRadioButton.BackColor = SystemColors.Control;
-            JaRadioButton.ForeColor = SystemColors.ControlText;
-            JaRadioButton.FlatStyle = FlatStyle.System;
-            EnRadioButton.BackColor = SystemColors.Control;
-            EnRadioButton.ForeColor = SystemColors.ControlText;
-            EnRadioButton.FlatStyle = FlatStyle.System;
         }
 
         private void OriginalTextBox_TextChanged(object sender, EventArgs e)
         {
             MorseCode mc = new MorseCode();
-            ConvertedTextBox.Text = mc.ConvertToMorse(OriginalTextBox.Text);
-        }
-
-        private void JaRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (EnRadioButton.Checked && JaRadioButton.Checked)
-                EnRadioButton.Checked = false;
-        }
-
-        private void EnRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (JaRadioButton.Checked && EnRadioButton.Checked)
-                JaRadioButton.Checked = false;
+            ConvertedTextBox.Text = mc.Convert(OriginalTextBox.Text, DotTextBox.Text, DashTextBox.Text, SpaceTextBox.Text);
         }
 
         private void MorseCodeConversionTool_Activated(object sender, EventArgs e)
