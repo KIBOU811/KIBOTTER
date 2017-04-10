@@ -1,6 +1,6 @@
 ﻿namespace KIBOTTER
 {
-    public class SettingsClass
+    public class KIBOTTERSettingClass
     {
         public bool IsBlackTheme { get; set; }
     }

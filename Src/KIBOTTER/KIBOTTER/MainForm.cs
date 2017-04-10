@@ -31,7 +31,7 @@ namespace KIBOTTER
 
         public List<ScheduledTweetClass> ScheduledTweetList = new List<ScheduledTweetClass>();
 
-        private SettingsClass _settingsClass = new SettingsClass();
+        private KIBOTTERSettingClass _kibotterSetting = new KIBOTTERSettingClass();
 
         public MainForm()
         {
@@ -87,10 +87,10 @@ namespace KIBOTTER
                 using (StreamReader sr = new StreamReader(FileName, Encoding.UTF8))
                 {
                     string text = sr.ReadToEnd();
-                    _settingsClass = JsonConvert.DeserializeObject<SettingsClass>(text);
+                    _kibotterSetting = JsonConvert.DeserializeObject<KIBOTTERSettingClass>(text);
                 }
-                Properties.Settings.Default.IsBlackTheme = _settingsClass.IsBlackTheme;
-                if (_settingsClass.IsBlackTheme)
+                Properties.Settings.Default.IsBlackTheme = _kibotterSetting.IsBlackTheme;
+                if (_kibotterSetting.IsBlackTheme)
                     ChangeThemeToBlack();
             }
 
@@ -756,7 +756,7 @@ namespace KIBOTTER
                     sw.Write(json);
                 }
             }
-            _settingsClass.IsBlackTheme = Properties.Settings.Default.IsBlackTheme;
+            _kibotterSetting.IsBlackTheme = Properties.Settings.Default.IsBlackTheme;
 
             FileName = $"{AppDomain.CurrentDomain.BaseDirectory}Setting\\Settings.json";
             if (!File.Exists(FileName))
@@ -768,7 +768,7 @@ namespace KIBOTTER
             }
             using (StreamWriter sw = new StreamWriter(FileName, false, Encoding.UTF8))
             {
-                string json = JsonConvert.SerializeObject(_settingsClass, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(_kibotterSetting, Formatting.Indented);
                 sw.Write(json);
             }
 
