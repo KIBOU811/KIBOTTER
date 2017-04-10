@@ -31,6 +31,8 @@ namespace KIBOTTER
 
         public List<ScheduledTweetClass> ScheduledTweetList = new List<ScheduledTweetClass>();
 
+        private SettingsClass _settingsClass = new SettingsClass();
+
         public MainForm()
         {
             InitializeComponent();
@@ -79,6 +81,19 @@ namespace KIBOTTER
                 }
             }
 
+            FileName = $"{folder}\\Settings.json";
+            if (File.Exists(FileName))
+            {
+                using (StreamReader sr = new StreamReader(FileName, Encoding.UTF8))
+                {
+                    string text = sr.ReadToEnd();
+                    _settingsClass = JsonConvert.DeserializeObject<SettingsClass>(text);
+                }
+                Properties.Settings.Default.IsBlackTheme = _settingsClass.IsBlackTheme;
+                if (_settingsClass.IsBlackTheme)
+                    ChangeThemeToBlack();
+            }
+
             int left = Screen.PrimaryScreen.WorkingArea.Width - Width;
             int top = Screen.PrimaryScreen.WorkingArea.Height - Height;
             DesktopBounds = new Rectangle(left, top, Width, Height);
@@ -87,9 +102,6 @@ namespace KIBOTTER
 
             NewTimer();
             StartTimer();
-
-            if (Properties.Settings.Default.IsBlackTheme)
-                ChangeThemeToBlack();
 
             TweetTextBox.Focus();
         }
@@ -727,8 +739,7 @@ namespace KIBOTTER
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             StopTimer();
-
-            if (ScheduledTweetList.Count != 0)
+            if (ScheduledTweetList != null && ScheduledTweetList.Count != 0)
             {
                 string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
                 FileName = $"{folder}\\ScheduledTweets.json";
@@ -744,6 +755,21 @@ namespace KIBOTTER
                     string json = JsonConvert.SerializeObject(ScheduledTweetList, Formatting.Indented);
                     sw.Write(json);
                 }
+            }
+            _settingsClass.IsBlackTheme = Properties.Settings.Default.IsBlackTheme;
+
+            FileName = $"{AppDomain.CurrentDomain.BaseDirectory}Setting\\Settings.json";
+            if (!File.Exists(FileName))
+            {
+                using (FileStream fs = File.Create(FileName))
+                {
+                    fs.Close();
+                }
+            }
+            using (StreamWriter sw = new StreamWriter(FileName, false, Encoding.UTF8))
+            {
+                string json = JsonConvert.SerializeObject(_settingsClass, Formatting.Indented);
+                sw.Write(json);
             }
 
             Properties.Settings.Default.IsRepliedPokerChecked = RepliedPokerToolStripMenuItem.Checked;

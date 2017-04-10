@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KIBOTTER
+﻿namespace KIBOTTER
 {
-    class SettingsClass
+    public class SettingsClass
     {
+        public bool IsBlackTheme { get; set; }
     }
 }
