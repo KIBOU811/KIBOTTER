@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="IsRepliedPokerChecked" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ConsumerKey" Type="System.String" Scope="User">
       <Value Profile="(Default)">XZC9cF9DGOciS7CCD6AV8Gjb0</Value>

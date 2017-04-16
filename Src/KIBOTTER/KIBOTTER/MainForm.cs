@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Net;
 using System.IO;
-using System.Timers;
-using CoreTweet;
-using Newtonsoft.Json;
-using System.Diagnostics;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Forms;
+using CoreTweet;
+using Newtonsoft.Json;
 
 namespace KIBOTTER
 {
@@ -674,7 +673,6 @@ namespace KIBOTTER
                     && tweetTime.Minute == DateTime.Now.Minute)
                 {
                     Tokens scheduleTokensTokens = new Tokens();
-                    Debug.WriteLine($"{al.TweetDateTime}");
 
                     using (StreamReader sr = new StreamReader(FileName))
                     {
