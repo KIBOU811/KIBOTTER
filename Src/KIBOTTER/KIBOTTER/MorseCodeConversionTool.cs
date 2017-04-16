@@ -13,7 +13,6 @@ namespace KIBOTTER
 
         private void MorseCodeConversionTool_Load(object sender, EventArgs e)
         {
-            StartPosition = FormStartPosition.CenterScreen;
             ConvertedTextBox.ReadOnly = true;
             ConvertedTextBox.Text = @"ここにへんかんけっかがでます(:3)";
         }

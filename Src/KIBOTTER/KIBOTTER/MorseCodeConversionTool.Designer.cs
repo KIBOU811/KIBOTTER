@@ -152,6 +152,7 @@
             this.Controls.Add(this.ConvertedTextBox);
             this.Controls.Add(this.OriginalTextBox);
             this.Name = "MorseCodeConversionTool";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "もーるすしんごうへんかんつーる";
             this.Activated += new System.EventHandler(this.MorseCodeConversionTool_Activated);
             this.Load += new System.EventHandler(this.MorseCodeConversionTool_Load);
