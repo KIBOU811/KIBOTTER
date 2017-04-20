@@ -28,6 +28,8 @@ namespace KIBOTTER
 
         private System.Timers.Timer _tweetTimer;
 
+        private bool _isClosing;
+
         public List<ScheduledTweetClass> ScheduledTweetList = new List<ScheduledTweetClass>();
 
         private KIBOTTERSettingClass _kibotterSetting = new KIBOTTERSettingClass();
@@ -629,6 +631,9 @@ namespace KIBOTTER
 
         private void MainForm_Deactivate(object sender, EventArgs e)
         {
+            if(_isClosing)
+                return;
+            
             Opacity = 0.7;
         }
 
@@ -737,6 +742,7 @@ namespace KIBOTTER
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             StopTimer();
+            _isClosing = true;
             if (ScheduledTweetList != null && ScheduledTweetList.Count != 0)
             {
                 string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
