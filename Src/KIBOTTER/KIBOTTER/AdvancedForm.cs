@@ -71,12 +71,14 @@ namespace KIBOTTER
                 ViaNameTextBox.Enabled = true;
                 CKTextBox.Enabled = true;
                 CSTextBox.Enabled = true;
+                ViaChangeButton.Enabled = true;
             }
             else
             {
                 ViaNameTextBox.Enabled = false;
                 CKTextBox.Enabled = false;
                 CSTextBox.Enabled = false;
+                ViaChangeButton.Enabled = false;
             }
         }
 
