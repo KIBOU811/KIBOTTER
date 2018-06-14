@@ -19,8 +19,7 @@ namespace KIBOTTER
         private DraftForm DraftObj { get; set; }
         private AdvancedForm AdvancedObj { get; set; }
         private MorseCodeConversionTool McctObj { get; set; }
-                
-        private string FileName { get; set; } = string.Empty;
+        
         private string FirstMediaPath { get; set; }
         private string SecondMediaPath { get; set; }
         private string ThirdMediaPath { get; set; }
@@ -44,12 +43,11 @@ namespace KIBOTTER
             RepliedPokerToolStripMenuItem.Checked = Properties.Settings.Default.IsRepliedPokerChecked;
             string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
             Directory.CreateDirectory(folder);
-            FileName = folder + "\\Account" + ".cfg";
-            FileName = Path.GetFullPath(FileName);
+            string filePath = Path.GetFullPath($@"{folder}\Account.cfg");
 
-            if (File.Exists(FileName))
+            if (File.Exists(filePath))
             {
-                using (StreamReader sr = new StreamReader(FileName))
+                using (StreamReader sr = new StreamReader(filePath))
                 {
                     while (sr.Peek() >= 1)
                     {
@@ -68,24 +66,24 @@ namespace KIBOTTER
             }
             AccountComboBox.SelectedIndex = 0;
 
-            FileName = $"{folder}\\ScheduledTweets.json";
-            if (File.Exists(FileName))
+            filePath = $"{folder}\\ScheduledTweets.json";
+            if (File.Exists(filePath))
             {
-                using (StreamReader sr = new StreamReader(FileName, Encoding.UTF8))
+                using (StreamReader sr = new StreamReader(filePath, Encoding.UTF8))
                 {
                     string text = sr.ReadToEnd();
                     ScheduledTweetList = JsonConvert.DeserializeObject<List<ScheduledTweetClass>>(text);
                 }
-                using (StreamWriter sw = new StreamWriter(FileName, false, Encoding.UTF8))
+                using (StreamWriter sw = new StreamWriter(filePath, false, Encoding.UTF8))
                 {
                     sw.Write("");
                 }
             }
 
-            FileName = $"{folder}\\Settings.json";
-            if (File.Exists(FileName))
+            filePath = $"{folder}\\Settings.json";
+            if (File.Exists(filePath))
             {
-                using (StreamReader sr = new StreamReader(FileName, Encoding.UTF8))
+                using (StreamReader sr = new StreamReader(filePath, Encoding.UTF8))
                 {
                     string text = sr.ReadToEnd();
                     _kibotterSetting = JsonConvert.DeserializeObject<KIBOTTERSettingClass>(text);
@@ -227,8 +225,8 @@ namespace KIBOTTER
         private void Auth()
         {
             string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
-            FileName = $"{folder}\\Account.cfg";
-            using (StreamReader sr = new StreamReader(FileName))
+            string filePath = $"{folder}\\Account.cfg";
+            using (StreamReader sr = new StreamReader(filePath))
             {
                 while (sr.Peek() >= 1)
                 {
@@ -679,7 +677,10 @@ namespace KIBOTTER
                 {
                     Tokens scheduleTokensTokens = new Tokens();
 
-                    using (StreamReader sr = new StreamReader(FileName))
+                    string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
+                    string filePath = $"{folder}\\ScheduledTweets.json";
+
+                    using (StreamReader sr = new StreamReader(filePath))
                     {
                         while (sr.Peek() >= 1)
                         {
@@ -743,18 +744,19 @@ namespace KIBOTTER
         {
             StopTimer();
             _isClosing = true;
+            string filePath;
             if (ScheduledTweetList != null && ScheduledTweetList.Count != 0)
             {
                 string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
-                FileName = $"{folder}\\ScheduledTweets.json";
-                if (!File.Exists(FileName))
+                filePath = $"{folder}\\ScheduledTweets.json";
+                if (!File.Exists(filePath))
                 {
-                    using (FileStream fs = File.Create(FileName))
+                    using (FileStream fs = File.Create(filePath))
                     {
                         fs.Close();
                     }
                 }
-                using (StreamWriter sw = new StreamWriter(FileName, true, Encoding.UTF8))
+                using (StreamWriter sw = new StreamWriter(filePath, true, Encoding.UTF8))
                 {
                     string json = JsonConvert.SerializeObject(ScheduledTweetList, Formatting.Indented);
                     sw.Write(json);
@@ -762,15 +764,15 @@ namespace KIBOTTER
             }
             _kibotterSetting.IsBlackTheme = Properties.Settings.Default.IsBlackTheme;
 
-            FileName = $"{AppDomain.CurrentDomain.BaseDirectory}Setting\\Settings.json";
-            if (!File.Exists(FileName))
+            filePath = $"{AppDomain.CurrentDomain.BaseDirectory}Setting\\Settings.json";
+            if (!File.Exists(filePath))
             {
-                using (FileStream fs = File.Create(FileName))
+                using (FileStream fs = File.Create(filePath))
                 {
                     fs.Close();
                 }
             }
-            using (StreamWriter sw = new StreamWriter(FileName, false, Encoding.UTF8))
+            using (StreamWriter sw = new StreamWriter(filePath, false, Encoding.UTF8))
             {
                 string json = JsonConvert.SerializeObject(_kibotterSetting, Formatting.Indented);
                 sw.Write(json);
