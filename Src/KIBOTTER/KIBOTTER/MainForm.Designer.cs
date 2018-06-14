@@ -88,8 +88,7 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.AboutToolStripMenuItem.Text = "あばうと";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             this.AboutToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
@@ -99,7 +98,7 @@
             // 
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
             this.HelpToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.HelpToolStripMenuItem.Text = "へるぷ";
             this.HelpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             this.HelpToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
@@ -108,12 +107,12 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(192, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(191, 6);
             // 
             // AddAccountToolStripMenuItem
             // 
             this.AddAccountToolStripMenuItem.Name = "AddAccountToolStripMenuItem";
-            this.AddAccountToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.AddAccountToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.AddAccountToolStripMenuItem.Text = "あかうんとついか...";
             this.AddAccountToolStripMenuItem.Click += new System.EventHandler(this.AddAccountToolStripMenuItem_Click);
             this.AddAccountToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
@@ -122,7 +121,7 @@
             // ScheduleToolStripMenuItem
             // 
             this.ScheduleToolStripMenuItem.Name = "ScheduleToolStripMenuItem";
-            this.ScheduleToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.ScheduleToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.ScheduleToolStripMenuItem.Text = "ついーとよやく...";
             this.ScheduleToolStripMenuItem.Click += new System.EventHandler(this.ScheduleToolStripMenuItem_Click);
             this.ScheduleToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
@@ -131,7 +130,7 @@
             // MorseConToolStripMenuItem
             // 
             this.MorseConToolStripMenuItem.Name = "MorseConToolStripMenuItem";
-            this.MorseConToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.MorseConToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.MorseConToolStripMenuItem.Text = "もーるすしんごう...";
             this.MorseConToolStripMenuItem.Click += new System.EventHandler(this.MorseConToolStripMenuItem_Click);
             this.MorseConToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
@@ -140,13 +139,13 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(192, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(191, 6);
             // 
             // CloseToolStripMenuItem
             // 
             this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
-            this.CloseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.CloseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.CloseToolStripMenuItem.Text = "しゅーりょー";
             this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
             this.CloseToolStripMenuItem.MouseEnter += new System.EventHandler(this.MenuItemMouseEnter);
