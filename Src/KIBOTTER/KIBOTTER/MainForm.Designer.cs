@@ -234,7 +234,6 @@
             this.TweetTextBox.TabIndex = 1;
             this.TweetTextBox.TextChanged += new System.EventHandler(this.TweetTextBox_TextChanged);
             this.TweetTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TweetTextBox_KeyPress);
-            this.TweetTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TweetTextBox_KeyUp);
             // 
             // TweetButton
             // 

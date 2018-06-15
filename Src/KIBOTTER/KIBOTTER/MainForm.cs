@@ -628,18 +628,6 @@ namespace KIBOTTER
                 TweetButton.PerformClick();
                 e.Handled = true;
             }
-            /*else if (e.KeyChar == 'v' && ModifierKeys == Keys.Control)
-            {
-                TweetTextBox.Text = TweetTextBox.Text.Replace("\n", "\r\n").Replace("\r\r", "\r");
-            }*/
-        }
-
-        private void TweetTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == (Keys.Control | Keys.V))
-            {
-                TweetTextBox.Text = TweetTextBox.Text.Replace("\n", "\r\n").Replace("\r\r", "\r").Replace("\r\n", Environment.NewLine);
-            }
         }
 
         private void MainForm_Activated(object sender, EventArgs e)
