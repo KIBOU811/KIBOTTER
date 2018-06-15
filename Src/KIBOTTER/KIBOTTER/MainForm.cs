@@ -299,22 +299,22 @@ namespace KIBOTTER
                 return;
             }
 
-            var text = TweetTextBox.Text.TrimEnd('\r', '\n');
+            string text = TweetTextBox.Text;
+            TweetTextBox.Clear();
+            TweetTextBox.Focus();
+
+            await ApplyCommandAndTweet(text);
+        }
+
+        private async Task ApplyCommandAndTweet(string text)
+        {
+            text = text.TrimEnd('\r', '\n');
 
             if (FirstMediaPath != null)
-            {
-                TweetTextBox.Clear();
                 await TweetWithMedia(text);
-                TweetTextBox.Focus();
-                return;
-            }
 
             if (string.IsNullOrEmpty(text))
-            {
                 ToolStripStatusLabel.Text = @"しっぱいしました(X3)";
-                TweetTextBox.Focus();
-                return;
-            }
 
             if (SushiModeToolStripMenuItem.Checked)
             {
@@ -331,12 +331,11 @@ namespace KIBOTTER
                 text = mc.ConvertToMorse(text);
                 if (text == "error")
                 {
-                    TweetTextBox.Clear();
                     ToolStripStatusLabel.Text = @"もーるすしんごうにできませんでした(X3)";
                     return;
                 }
             }
-            
+
             if (text == "!poker")
             {
                 text = string.Empty;
@@ -370,9 +369,37 @@ namespace KIBOTTER
             if (0 <= (startIndex = text.IndexOf("!now", StringComparison.Ordinal)))
                 text = text.Remove(startIndex, 4).Insert(startIndex, DateTime.Now.ToString(CultureInfo.CurrentCulture));
 
-            TweetTextBox.Clear();
-            TweetTextBox.Focus();
             await Tweet(text, 1);
+        }
+
+        private string CommandPoker()
+        {
+            Poker poker = new Poker();
+            string[] text = new string[10];
+            int[] cards = poker.HandOutCards();
+            string result = poker.Judge(cards);
+            string tweetContent = "Enjoy Poker!!\r\n";
+
+            for (int i = 0; i < 5; i++)
+            {
+                text[2 * i] = Convert.ToString(cards[i] % 4);
+
+                if (text[2 * i] == "0") text[2 * i] = "♠";
+                else if (text[2 * i] == "1") text[2 * i] = "♥";
+                else if (text[2 * i] == "2") text[2 * i] = "♦";
+                else if (text[2 * i] == "3") text[2 * i] = "♣";
+
+                text[2 * i + 1] = Convert.ToString((cards[i] - cards[i] % 4) / 4 + 1);
+
+                if (text[2 * i + 1] == "1") text[2 * i + 1] = "A";
+                else if (text[2 * i + 1] == "11") text[2 * i + 1] = "J";
+                else if (text[2 * i + 1] == "12") text[2 * i + 1] = "Q";
+                else if (text[2 * i + 1] == "13") text[2 * i + 1] = "K";
+
+                tweetContent += text[2 * i] + text[2 * i + 1];
+            }
+
+            return tweetContent + $"\r\n{result}";
         }
 
         private async Task Tweet(string text, int count)
@@ -455,36 +482,6 @@ namespace KIBOTTER
                 FourthMediaPath = null;
                 ToolStripStatusLabel.Text = @"がぞうのあっぷろーどにしっぱい(X3)";
             }
-        }
-
-        private string CommandPoker()
-        {
-            Poker poker = new Poker();
-            string[] text = new string[10];
-            int[] cards = poker.HandOutCards();
-            string result = poker.Judge(cards);
-            string tweetContent = "Enjoy Poker!!\r\n";
-
-            for (int i = 0; i < 5; i++)
-            {
-                text[2 * i] = Convert.ToString(cards[i] % 4);
-
-                if (text[2 * i] == "0") text[2 * i] = "♠";
-                else if (text[2 * i] == "1") text[2 * i] = "♥";
-                else if (text[2 * i] == "2") text[2 * i] = "♦";
-                else if (text[2 * i] == "3") text[2 * i] = "♣";
-
-                text[2 * i + 1] = Convert.ToString((cards[i] - cards[i] % 4) / 4 + 1);
-
-                if (text[2 * i + 1] == "1") text[2 * i + 1] = "A";
-                else if (text[2 * i + 1] == "11") text[2 * i + 1] = "J";
-                else if (text[2 * i + 1] == "12") text[2 * i + 1] = "Q";
-                else if (text[2 * i + 1] == "13") text[2 * i + 1] = "K";
-
-                tweetContent += text[2 * i] + text[2 * i + 1];
-            }
-
-            return tweetContent + $"\r\n{result}";
         }
 
         private void MediaButton_Click(object sender, EventArgs e)
