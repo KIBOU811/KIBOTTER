@@ -383,7 +383,7 @@ namespace KIBOTTER
                 else if (text[2 * i + 1] == "12") text[2 * i + 1] = "Q";
                 else if (text[2 * i + 1] == "13") text[2 * i + 1] = "K";
 
-                tweetContent += text[2 * i] + text[2 * i + 1];
+                tweetContent += text[2 * i] + text[2 * i + 1] + " ";
             }
 
             return tweetContent + $"\r\n{result}";
