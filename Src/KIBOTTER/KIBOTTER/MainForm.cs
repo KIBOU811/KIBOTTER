@@ -317,7 +317,7 @@ namespace KIBOTTER
                 var sushiText = string.Empty;
 
                 int linage = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length;
-                int length = text.Length - linage - 1;
+                int length = text.Length - linage + 1;
 
                 for (int i = 0; i < length; i++)
                     sushiText += "🍣";
