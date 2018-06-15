@@ -432,6 +432,7 @@ namespace KIBOTTER
                 {
                     count++;
                     await Tweet(text, count);
+                    return;
                 }
                 ToolStripStatusLabel.Text = @"なぜか" + failureText;
             }
