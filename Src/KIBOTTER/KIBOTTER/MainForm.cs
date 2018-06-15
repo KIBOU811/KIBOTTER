@@ -277,6 +277,8 @@ namespace KIBOTTER
         private void TweetTextBox_TextChanged(object sender, EventArgs e)
         {
             int length = 140 - TweetTextBox.TextLength;
+            int linage = TweetTextBox.Text.Split(new [] { Environment.NewLine }, StringSplitOptions.None).Length;
+            length += linage - 1;
 
             if (length < 0)
                 TextLengthLabel.ForeColor = Color.Red;
