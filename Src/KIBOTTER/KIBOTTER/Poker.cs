@@ -64,7 +64,7 @@ namespace KIBOTTER
 
         static bool IsFullHouse(int[] cards)
         {
-            return Is3Cards(cards) && Is2Pair(cards);
+            return Is3Cards(cards) && Is1Pair(cards);
         }
 
         static bool IsFlush(int[] cards)
@@ -94,7 +94,7 @@ namespace KIBOTTER
             cards = ChangeToNumber(cards);
             cards = SortCards(cards);
 
-            if (cards[4] - cards[0] == 5)
+            if (cards[4] - cards[0] == 4)
                 return true;
 
             return false;
