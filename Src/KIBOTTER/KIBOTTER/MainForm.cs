@@ -411,15 +411,7 @@ namespace KIBOTTER
             try
             {
                 if (count != 1)
-                {
                     textWithCount += $"({count}回目)";
-
-                    if (textWithCount.Length > 140)
-                    {
-                        ToolStripStatusLabel.Text = failureText;
-                        return;
-                    }
-                }
 
                 await Tokens.Statuses.UpdateAsync(status => textWithCount);
                 var resultText = completeText;
@@ -429,10 +421,33 @@ namespace KIBOTTER
 
                 ToolStripStatusLabel.Text = resultText;
             }
+            catch (TwitterException te)
+            {
+                List<int> errorCodeList = new List<int>();
+                foreach (var e in te.Errors)
+                {
+                    errorCodeList.Add(e.Code);
+                }
+                if (errorCodeList.Contains(185))
+                {
+                    ToolStripStatusLabel.Text = @"きせいされています(X3)";
+                    return;
+                }
+                if (errorCodeList.Contains(186))
+                {
+                    ToolStripStatusLabel.Text = @"ながすぎです(X3)";
+                    return;
+                }
+                if (errorCodeList.Contains(187))
+                {
+                    count++;
+                    await Tweet(text, count);
+                }
+                ToolStripStatusLabel.Text = @"なぜか" + failureText;
+            }
             catch
             {
-                count++;
-                await Tweet(text, count);
+                ToolStripStatusLabel.Text = @"なぜか" + failureText;
             }
         }
 
