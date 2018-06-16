@@ -64,10 +64,12 @@ namespace KIBOTTER
         {
             List<int> primeList = new List<int>();
 
-            if (n < 1)
+            if (n < 2)
                 return primeList;
 
-            for (int i = 1; i <= n; i += 2)
+            primeList.Add(2);
+
+            for (int i = 3; i <= n; i += 2)
             {
                 if (IsPrime(i))
                     primeList.Add(i);
@@ -85,10 +87,12 @@ namespace KIBOTTER
         {
             List<long> primeList = new List<long>();
 
-            if (n < 1)
+            if (n < 2)
                 return primeList;
 
-            for (long i = 1; i <= n; i += 2)
+            primeList.Add(2);
+
+            for (long i = 3; i <= n; i += 2)
             {
                 if (IsPrime(i))
                     primeList.Add(i);
