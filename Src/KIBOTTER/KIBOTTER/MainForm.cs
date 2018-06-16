@@ -349,7 +349,20 @@ namespace KIBOTTER
                 Random rnd = new Random(int.Parse(DateTime.Now.ToString("yyyyMMdd")));
                 int bill = rnd.Next();
                 text = $"本日のTwitter利用料 {bill:#,0}円";
-
+            }
+            else if (text == "!level")
+            {
+                Prime p = new Prime();
+                if (_kibotterSetting.ExperiencePoint < int.MaxValue - 3)
+                {
+                    int level = p.GetPrimeList((int)_kibotterSetting.ExperiencePoint).Count;
+                    text = $"レベル {level} なう (:3)";
+                }
+                else
+                {
+                    long level = p.GetPrimeList(_kibotterSetting.ExperiencePoint).Count;
+                    text = $"レベル {level} なう (:3)";
+                }
             }
 
             int startIndex;
