@@ -34,6 +34,7 @@
             this.ViaChangeButton = new System.Windows.Forms.Button();
             this.ViaCheckBox = new System.Windows.Forms.CheckBox();
             this.ViaNameTextBox = new System.Windows.Forms.TextBox();
+            this.TopMostCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // BlackThemeCheckBox
@@ -108,11 +109,23 @@
             this.ViaNameTextBox.Click += new System.EventHandler(this.ViaNameTextBox_Click);
             this.ViaNameTextBox.Enter += new System.EventHandler(this.ViaNameTextBox_Enter);
             // 
+            // TopMostCheckBox
+            // 
+            this.TopMostCheckBox.AutoSize = true;
+            this.TopMostCheckBox.Font = new System.Drawing.Font("メイリオ", 9F);
+            this.TopMostCheckBox.Location = new System.Drawing.Point(12, 191);
+            this.TopMostCheckBox.Name = "TopMostCheckBox";
+            this.TopMostCheckBox.Size = new System.Drawing.Size(99, 22);
+            this.TopMostCheckBox.TabIndex = 6;
+            this.TopMostCheckBox.Text = "さいぜんめん";
+            this.TopMostCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AdvancedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(230, 196);
+            this.ClientSize = new System.Drawing.Size(230, 225);
+            this.Controls.Add(this.TopMostCheckBox);
             this.Controls.Add(this.ViaNameTextBox);
             this.Controls.Add(this.ViaCheckBox);
             this.Controls.Add(this.ViaChangeButton);
@@ -140,5 +153,6 @@
         private System.Windows.Forms.Button ViaChangeButton;
         private System.Windows.Forms.CheckBox ViaCheckBox;
         private System.Windows.Forms.TextBox ViaNameTextBox;
+        private System.Windows.Forms.CheckBox TopMostCheckBox;
     }
 }
