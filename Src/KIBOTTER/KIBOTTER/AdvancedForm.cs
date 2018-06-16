@@ -19,6 +19,7 @@ namespace KIBOTTER
             BlackThemeCheckBox.Checked = Properties.Settings.Default.IsBlackTheme;
             TopMostCheckBox.Checked = Form1Obj.KibotterSetting.IsTopMost;
             NotNthTimeNoticeCheckBox.Checked = Form1Obj.KibotterSetting.IsNotNthNotice;
+            StopDementiaCheckBox.Checked = Form1Obj.KibotterSetting.IsAlertNth;
 
             int left = Screen.PrimaryScreen.WorkingArea.Width - Width;
             int top = Screen.PrimaryScreen.WorkingArea.Height - Height - Form1Obj.Height;
@@ -49,6 +50,8 @@ namespace KIBOTTER
             TopMostCheckBox.FlatStyle = FlatStyle.Flat;
             NotNthTimeNoticeCheckBox.ForeColor = Color.White;
             NotNthTimeNoticeCheckBox.FlatStyle = FlatStyle.Flat;
+            StopDementiaCheckBox.ForeColor = Color.White;
+            StopDementiaCheckBox.FlatStyle = FlatStyle.Flat;
         }
 
         private void ChangeThemeToDefault()
@@ -71,6 +74,8 @@ namespace KIBOTTER
             TopMostCheckBox.FlatStyle = FlatStyle.System;
             NotNthTimeNoticeCheckBox.ForeColor = SystemColors.ControlText;
             NotNthTimeNoticeCheckBox.FlatStyle = FlatStyle.System;
+            StopDementiaCheckBox.ForeColor = SystemColors.ControlText;
+            StopDementiaCheckBox.FlatStyle = FlatStyle.System;
         }
 
         private void ViaCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -176,7 +181,7 @@ namespace KIBOTTER
             Properties.Settings.Default.IsBlackTheme = BlackThemeCheckBox.Checked;
             Form1Obj.KibotterSetting.IsTopMost = TopMostCheckBox.Checked;
             Form1Obj.KibotterSetting.IsNotNthNotice = NotNthTimeNoticeCheckBox.Checked;
-            
+            Form1Obj.KibotterSetting.IsAlertNth = StopDementiaCheckBox.Checked;
         }
     }
 }

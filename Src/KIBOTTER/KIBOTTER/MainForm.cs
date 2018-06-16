@@ -30,7 +30,7 @@ namespace KIBOTTER
 
         public List<ScheduledTweetClass> ScheduledTweetList;
 
-        public KIBOTTERSettingClass KibotterSetting { get; set; }
+        public KIBOTTERSettingClass KibotterSetting { get; private set; }
 
         public MainForm()
         {
@@ -466,11 +466,13 @@ namespace KIBOTTER
 
                 }
 
-                await Tokens.Statuses.UpdateAsync(status => textWithCount);
+                var res = await Tokens.Statuses.UpdateAsync(status => textWithCount);
+
                 var resultText = completeText;
 
                 if (count != 1)
                 {
+                    await Tokens.Statuses.UpdateAsync(status: $"@{AccountComboBox.Text.Split('(')[0]}おい痴呆", in_reply_to_status_id: res.Id);
                     resultText += $"({count}回目)";
                     KibotterSetting.ExperiencePoint -= count;
                 }

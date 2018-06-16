@@ -36,6 +36,7 @@
             this.ViaNameTextBox = new System.Windows.Forms.TextBox();
             this.TopMostCheckBox = new System.Windows.Forms.CheckBox();
             this.NotNthTimeNoticeCheckBox = new System.Windows.Forms.CheckBox();
+            this.StopDementiaCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // BlackThemeCheckBox
@@ -132,11 +133,23 @@
             this.NotNthTimeNoticeCheckBox.Text = "nかいめおしらせをしない";
             this.NotNthTimeNoticeCheckBox.UseVisualStyleBackColor = true;
             // 
+            // StopDementiaCheckBox
+            // 
+            this.StopDementiaCheckBox.AutoSize = true;
+            this.StopDementiaCheckBox.Font = new System.Drawing.Font("メイリオ", 9F);
+            this.StopDementiaCheckBox.Location = new System.Drawing.Point(12, 247);
+            this.StopDementiaCheckBox.Name = "StopDementiaCheckBox";
+            this.StopDementiaCheckBox.Size = new System.Drawing.Size(147, 22);
+            this.StopDementiaCheckBox.TabIndex = 8;
+            this.StopDementiaCheckBox.Text = "ちほうしんこうぼうし";
+            this.StopDementiaCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AdvancedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(230, 253);
+            this.ClientSize = new System.Drawing.Size(230, 281);
+            this.Controls.Add(this.StopDementiaCheckBox);
             this.Controls.Add(this.NotNthTimeNoticeCheckBox);
             this.Controls.Add(this.TopMostCheckBox);
             this.Controls.Add(this.ViaNameTextBox);
@@ -168,5 +181,6 @@
         private System.Windows.Forms.TextBox ViaNameTextBox;
         private System.Windows.Forms.CheckBox TopMostCheckBox;
         private System.Windows.Forms.CheckBox NotNthTimeNoticeCheckBox;
+        private System.Windows.Forms.CheckBox StopDementiaCheckBox;
     }
 }
