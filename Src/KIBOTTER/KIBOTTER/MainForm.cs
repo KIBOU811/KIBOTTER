@@ -30,7 +30,7 @@ namespace KIBOTTER
 
         public List<ScheduledTweetClass> ScheduledTweetList;
 
-        private KIBOTTERSettingClass _kibotterSetting = new KIBOTTERSettingClass();
+        public KIBOTTERSettingClass KibotterSetting { get; private set; }
 
         public MainForm()
         {
@@ -88,10 +88,10 @@ namespace KIBOTTER
                 using (StreamReader sr = new StreamReader(filePath, Encoding.UTF8))
                 {
                     string text = sr.ReadToEnd();
-                    _kibotterSetting = JsonConvert.DeserializeObject<KIBOTTERSettingClass>(text);
+                    KibotterSetting = JsonConvert.DeserializeObject<KIBOTTERSettingClass>(text);
                 }
-                Properties.Settings.Default.IsBlackTheme = _kibotterSetting.IsBlackTheme;
-                if (_kibotterSetting.IsBlackTheme)
+                Properties.Settings.Default.IsBlackTheme = KibotterSetting.IsBlackTheme;
+                if (KibotterSetting.IsBlackTheme)
                     ChangeThemeToBlack();
             }
 
@@ -109,7 +109,8 @@ namespace KIBOTTER
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            TopMost = true;
+            if (KibotterSetting.IsTopMost)
+                TopMost = true;
         }
 
         private void ChangeThemeToBlack()
@@ -271,7 +272,6 @@ namespace KIBOTTER
             }
 
             ToolStripStatusLabel.Text = @"ろぐいんしました(:3)";
-            _kibotterSetting.ExperiencePoint++;
         }
 
         private void TweetTextBox_TextChanged(object sender, EventArgs e)
@@ -313,7 +313,7 @@ namespace KIBOTTER
             if (string.IsNullOrEmpty(text))
             {
                 ToolStripStatusLabel.Text = @"しっぱいしました(X3)";
-                _kibotterSetting.ExperiencePoint--;
+                KibotterSetting.ExperiencePoint--;
             }
 
             if (SushiModeToolStripMenuItem.Checked)
@@ -327,7 +327,7 @@ namespace KIBOTTER
                     sushiText += "🍣";
 
                 text = sushiText;
-                _kibotterSetting.ExperiencePoint += 2;
+                KibotterSetting.ExperiencePoint += 2;
             }
             else if (MorseToolStripMenuItem.Checked)
             {
@@ -338,7 +338,7 @@ namespace KIBOTTER
                     ToolStripStatusLabel.Text = @"もーるすしんごうにできませんでした(X3)";
                     return;
                 }
-                _kibotterSetting.ExperiencePoint += 2;
+                KibotterSetting.ExperiencePoint += 2;
             }
 
             if (text == "!poker")
@@ -349,60 +349,60 @@ namespace KIBOTTER
                     text = "@KIBOUDIED \r\n";
 
                 text += CommandPoker();
-                _kibotterSetting.ExperiencePoint -= 2;
+                KibotterSetting.ExperiencePoint -= 2;
 
                 if (text.Contains("Straight Flush"))
-                    _kibotterSetting.ExperiencePoint += 66667;
+                    KibotterSetting.ExperiencePoint += 66667;
 
                 else if (text.Contains("Four Cards"))
-                    _kibotterSetting.ExperiencePoint += 41667;
+                    KibotterSetting.ExperiencePoint += 41667;
 
                 else if (text.Contains("Full House"))
-                    _kibotterSetting.ExperiencePoint += 714;
+                    KibotterSetting.ExperiencePoint += 714;
 
                 else if (text.Contains("Flush"))
-                    _kibotterSetting.ExperiencePoint += 500;
+                    KibotterSetting.ExperiencePoint += 500;
 
                 else if (text.Contains("Straight"))
-                    _kibotterSetting.ExperiencePoint += 256;
+                    KibotterSetting.ExperiencePoint += 256;
 
                 else if (text.Contains("Three Cards"))
-                    _kibotterSetting.ExperiencePoint += 48;
+                    KibotterSetting.ExperiencePoint += 48;
 
                 else if (text.Contains("Two Pair"))
-                    _kibotterSetting.ExperiencePoint += 21;
+                    KibotterSetting.ExperiencePoint += 21;
 
                 else if (text.Contains("One Pair"))
-                    _kibotterSetting.ExperiencePoint += 2;
+                    KibotterSetting.ExperiencePoint += 2;
             }
             else if (text == "!bill")
             {
                 Random rnd = new Random(int.Parse(DateTime.Now.ToString("yyyyMMdd")));
                 int bill = rnd.Next();
                 text = $"本日のTwitter利用料 {bill:#,0}円";
-                _kibotterSetting.ExperiencePoint++;
+                KibotterSetting.ExperiencePoint++;
             }
             else if (text == "!level")
             {
                 Prime p = new Prime();
-                if (_kibotterSetting.ExperiencePoint < int.MaxValue - 3)
+                if (KibotterSetting.ExperiencePoint < int.MaxValue - 3)
                 {
-                    int level = p.GetPrimeList((int)_kibotterSetting.ExperiencePoint).Count;
-                    text = $"レベル {level} (EXP: {_kibotterSetting.ExperiencePoint} ) なう (:3)";
+                    int level = p.GetPrimeList((int)KibotterSetting.ExperiencePoint).Count;
+                    text = $"レベル {level} (EXP: {KibotterSetting.ExperiencePoint} ) なう (:3)";
                 }
                 else
                 {
-                    long level = p.GetPrimeList(_kibotterSetting.ExperiencePoint).Count;
-                    text = $"レベル {level} (EXP: {_kibotterSetting.ExperiencePoint} ) なう (:3)";
+                    long level = p.GetPrimeList(KibotterSetting.ExperiencePoint).Count;
+                    text = $"レベル {level} (EXP: {KibotterSetting.ExperiencePoint} ) なう (:3)";
                 }
-                _kibotterSetting.ExperiencePoint++;
+                KibotterSetting.ExperiencePoint++;
             }
 
             int startIndex;
             if (0 <= (startIndex = text.IndexOf("!now", StringComparison.Ordinal)))
             {
                 text = text.Remove(startIndex, 4).Insert(startIndex, DateTime.Now.ToString(CultureInfo.CurrentCulture));
-                _kibotterSetting.ExperiencePoint++;
+                KibotterSetting.ExperiencePoint++;
             }
 
             if (FirstMediaPath != null)
@@ -461,11 +461,11 @@ namespace KIBOTTER
                 if (count != 1)
                 {
                     resultText += $"({count}回目)";
-                    _kibotterSetting.ExperiencePoint -= count;
+                    KibotterSetting.ExperiencePoint -= count;
                 }
 
                 ToolStripStatusLabel.Text = resultText;
-                _kibotterSetting.ExperiencePoint++;
+                KibotterSetting.ExperiencePoint++;
             }
             catch (TwitterException te)
             {
@@ -477,13 +477,13 @@ namespace KIBOTTER
                 if (errorCodeList.Contains(185))
                 {
                     ToolStripStatusLabel.Text = @"きせいされています(X3)";
-                    _kibotterSetting.ExperiencePoint -= 100;
+                    KibotterSetting.ExperiencePoint -= 100;
                     return;
                 }
                 if (errorCodeList.Contains(186))
                 {
                     ToolStripStatusLabel.Text = @"ながすぎです(X3)";
-                    _kibotterSetting.ExperiencePoint--;
+                    KibotterSetting.ExperiencePoint--;
                     return;
                 }
                 if (errorCodeList.Contains(187))
@@ -493,12 +493,12 @@ namespace KIBOTTER
                     return;
                 }
                 ToolStripStatusLabel.Text = @"なぜか" + failureText;
-                _kibotterSetting.ExperiencePoint--;
+                KibotterSetting.ExperiencePoint--;
             }
             catch
             {
                 ToolStripStatusLabel.Text = @"なぜか" + failureText;
-                _kibotterSetting.ExperiencePoint--;
+                KibotterSetting.ExperiencePoint--;
             }
         }
 
@@ -539,7 +539,7 @@ namespace KIBOTTER
 
                 await Tokens.Statuses.UpdateAsync(status:text, media_ids:mediaIds);
                 ToolStripStatusLabel.Text = @"がぞうつきでとうこうしました(:3)";
-                _kibotterSetting.ExperiencePoint += mediaIds.Count;
+                KibotterSetting.ExperiencePoint += mediaIds.Count;
             }
             catch
             {
@@ -680,6 +680,11 @@ namespace KIBOTTER
                 else
                     DraftObj.ChangeThemeToDefault();
             }
+
+            if (KibotterSetting.IsTopMost)
+                TopMost = true;
+            else
+                TopMost = false;
         }
 
         private void TweetTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -795,7 +800,7 @@ namespace KIBOTTER
 
                     ScheduledTweetList.Remove(al);
                     ToolStripStatusLabel.Text = @"よやくついーとしました(:3)";
-                    _kibotterSetting.ExperiencePoint += 3;
+                    KibotterSetting.ExperiencePoint += 3;
                 }
             }
         }
@@ -832,7 +837,7 @@ namespace KIBOTTER
                     sw.Write(json);
                 }
             }
-            _kibotterSetting.IsBlackTheme = Properties.Settings.Default.IsBlackTheme;
+            KibotterSetting.IsBlackTheme = Properties.Settings.Default.IsBlackTheme;
 
             filePath = $"{AppDomain.CurrentDomain.BaseDirectory}Setting\\Settings.json";
             if (!File.Exists(filePath))
@@ -844,7 +849,7 @@ namespace KIBOTTER
             }
             using (StreamWriter sw = new StreamWriter(filePath, false, Encoding.UTF8))
             {
-                string json = JsonConvert.SerializeObject(_kibotterSetting, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(KibotterSetting, Formatting.Indented);
                 sw.Write(json);
             }
 

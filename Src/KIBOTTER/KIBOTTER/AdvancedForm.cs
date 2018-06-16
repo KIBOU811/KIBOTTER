@@ -18,6 +18,8 @@ namespace KIBOTTER
         private void AdvancedForm_Load(object sender, EventArgs e)
         {
             BlackThemeCheckBox.Checked = Properties.Settings.Default.IsBlackTheme;
+            var mf = Owner as MainForm;
+            if (mf != null) TopMostCheckBox.Checked = mf.KibotterSetting.IsTopMost;
 
             int left = Screen.PrimaryScreen.WorkingArea.Width - Width;
             int top = Screen.PrimaryScreen.WorkingArea.Height - Height - F1Height;
@@ -44,6 +46,8 @@ namespace KIBOTTER
             ViaChangeButton.FlatStyle = FlatStyle.Flat;
             BlackThemeCheckBox.ForeColor = Color.White;
             BlackThemeCheckBox.FlatStyle = FlatStyle.Flat;
+            TopMostCheckBox.ForeColor = Color.White;
+            TopMostCheckBox.FlatStyle = FlatStyle.Flat;
         }
 
         private void ChangeThemeToDefault()
@@ -62,6 +66,8 @@ namespace KIBOTTER
             ViaChangeButton.FlatStyle = FlatStyle.System;
             BlackThemeCheckBox.ForeColor = SystemColors.ControlText;
             BlackThemeCheckBox.FlatStyle = FlatStyle.System;
+            TopMostCheckBox.ForeColor = SystemColors.ControlText;
+            TopMostCheckBox.FlatStyle = FlatStyle.System;
         }
 
         private void ViaCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -165,6 +171,8 @@ namespace KIBOTTER
         private void AdvancedForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.IsBlackTheme = BlackThemeCheckBox.Checked;
+            var mf = Owner as MainForm;
+            if (mf != null) mf.KibotterSetting.IsTopMost = TopMostCheckBox.Checked;
         }
     }
 }
