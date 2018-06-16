@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -26,6 +28,8 @@ namespace KIBOTTER
 
         private System.Timers.Timer _tweetTimer;
 
+        public bool IsUpdateing { private get; set; }
+
         private bool _isClosing;
 
         public List<ScheduledTweetClass> ScheduledTweetList;
@@ -39,10 +43,60 @@ namespace KIBOTTER
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            RepliedPokerToolStripMenuItem.Checked = Properties.Settings.Default.IsRepliedPokerChecked;
             string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
             Directory.CreateDirectory(folder);
-            string filePath = Path.GetFullPath($@"{folder}\Account.cfg");
+
+            string filePath = $"{folder}\\Settings.json";
+            if (File.Exists(filePath))
+            {
+                using (StreamReader sr = new StreamReader(filePath, Encoding.UTF8))
+                {
+                    string text = sr.ReadToEnd();
+                    KibotterSetting = JsonConvert.DeserializeObject<KIBOTTERSettingClass>(text);
+                }
+                Properties.Settings.Default.IsBlackTheme = KibotterSetting.IsBlackTheme;
+                if (KibotterSetting.IsBlackTheme)
+                    ChangeThemeToBlack();
+            }
+
+            string res = string.Empty;
+            using (WebClient wc = new WebClient())
+            {
+                using (Stream st = wc.OpenRead("http://kibou811.xyz/KIBOTTERFILES/version.txt"))
+                {
+                    if (st != null)
+                        using (StreamReader sr = new StreamReader(st, Encoding.UTF8))
+                            res = sr.ReadToEnd();
+
+                }
+            }
+
+            if (!KibotterSetting.IsNotAlertUpdate || res != KibotterSetting.LatestVersion)
+            {
+                KibotterSetting.LatestVersion = res;
+                if (res != string.Empty && res != Application.ProductVersion)
+                {
+                    IsUpdateing = false;
+                    UpdateForm uf = new UpdateForm
+                    {
+                        ShowInTaskbar = false,
+                        StartPosition = FormStartPosition.CenterScreen,
+                        NewAppVer = Application.ProductVersion,
+                        MainFormObj = this
+                    };
+                    uf.ShowDialog();
+
+                    if (IsUpdateing)
+                    {
+                        Process.Start("https://github.com/KIBOU811/KIBOTTER/releases");
+                        Close();
+                    }
+                }
+            }
+
+            RepliedPokerToolStripMenuItem.Checked = Properties.Settings.Default.IsRepliedPokerChecked;
+
+            filePath = Path.GetFullPath($@"{folder}\Account.cfg");
 
             if (File.Exists(filePath))
             {
@@ -81,19 +135,6 @@ namespace KIBOTTER
 
             if (ScheduledTweetList == null)
                 ScheduledTweetList = new List<ScheduledTweetClass>();
-
-            filePath = $"{folder}\\Settings.json";
-            if (File.Exists(filePath))
-            {
-                using (StreamReader sr = new StreamReader(filePath, Encoding.UTF8))
-                {
-                    string text = sr.ReadToEnd();
-                    KibotterSetting = JsonConvert.DeserializeObject<KIBOTTERSettingClass>(text);
-                }
-                Properties.Settings.Default.IsBlackTheme = KibotterSetting.IsBlackTheme;
-                if (KibotterSetting.IsBlackTheme)
-                    ChangeThemeToBlack();
-            }
 
             int left = Screen.PrimaryScreen.WorkingArea.Width - Width;
             int top = Screen.PrimaryScreen.WorkingArea.Height - Height;
@@ -834,7 +875,9 @@ namespace KIBOTTER
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            StopTimer();
+            if (_tweetTimer != null)
+                StopTimer();
+
             _isClosing = true;
             string filePath;
             if (ScheduledTweetList != null && ScheduledTweetList.Count != 0)
