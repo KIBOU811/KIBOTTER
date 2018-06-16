@@ -7,22 +7,21 @@ namespace KIBOTTER
 {
     public partial class AdvancedForm : Form
     {
-        private int F1Height { get; }
+        public MainForm Form1Obj;
 
-        public AdvancedForm(int height)
+        public AdvancedForm()
         {
-            F1Height = height;
             InitializeComponent();
         }
 
         private void AdvancedForm_Load(object sender, EventArgs e)
         {
             BlackThemeCheckBox.Checked = Properties.Settings.Default.IsBlackTheme;
-            var mf = Owner as MainForm;
-            if (mf != null) TopMostCheckBox.Checked = mf.KibotterSetting.IsTopMost;
+            TopMostCheckBox.Checked = Form1Obj.KibotterSetting.IsTopMost;
+            NotNthTimeNoticeCheckBox.Checked = Form1Obj.KibotterSetting.IsNotNthNotice;
 
             int left = Screen.PrimaryScreen.WorkingArea.Width - Width;
-            int top = Screen.PrimaryScreen.WorkingArea.Height - Height - F1Height;
+            int top = Screen.PrimaryScreen.WorkingArea.Height - Height - Form1Obj.Height;
             DesktopBounds = new Rectangle(left, top, Width, Height);
             MaximumSize = Size;
 
@@ -48,6 +47,8 @@ namespace KIBOTTER
             BlackThemeCheckBox.FlatStyle = FlatStyle.Flat;
             TopMostCheckBox.ForeColor = Color.White;
             TopMostCheckBox.FlatStyle = FlatStyle.Flat;
+            NotNthTimeNoticeCheckBox.ForeColor = Color.White;
+            NotNthTimeNoticeCheckBox.FlatStyle = FlatStyle.Flat;
         }
 
         private void ChangeThemeToDefault()
@@ -68,6 +69,8 @@ namespace KIBOTTER
             BlackThemeCheckBox.FlatStyle = FlatStyle.System;
             TopMostCheckBox.ForeColor = SystemColors.ControlText;
             TopMostCheckBox.FlatStyle = FlatStyle.System;
+            NotNthTimeNoticeCheckBox.ForeColor = SystemColors.ControlText;
+            NotNthTimeNoticeCheckBox.FlatStyle = FlatStyle.System;
         }
 
         private void ViaCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -171,8 +174,9 @@ namespace KIBOTTER
         private void AdvancedForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.IsBlackTheme = BlackThemeCheckBox.Checked;
-            var mf = Owner as MainForm;
-            if (mf != null) mf.KibotterSetting.IsTopMost = TopMostCheckBox.Checked;
+            Form1Obj.KibotterSetting.IsTopMost = TopMostCheckBox.Checked;
+            Form1Obj.KibotterSetting.IsNotNthNotice = NotNthTimeNoticeCheckBox.Checked;
+            
         }
     }
 }

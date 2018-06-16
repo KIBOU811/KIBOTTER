@@ -30,7 +30,7 @@ namespace KIBOTTER
 
         public List<ScheduledTweetClass> ScheduledTweetList;
 
-        public KIBOTTERSettingClass KibotterSetting { get; private set; }
+        public KIBOTTERSettingClass KibotterSetting { get; set; }
 
         public MainForm()
         {
@@ -453,7 +453,18 @@ namespace KIBOTTER
             try
             {
                 if (count != 1)
-                    textWithCount += $"({count}回目)";
+                {
+                    if (KibotterSetting.IsNotNthNotice)
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            textWithCount += "\u3164";
+                        }
+                    }
+                    else
+                        textWithCount += $"({count}回目)";
+
+                }
 
                 await Tokens.Statuses.UpdateAsync(status => textWithCount);
                 var resultText = completeText;
@@ -665,7 +676,11 @@ namespace KIBOTTER
 
         private void AdvancedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AdvancedObj = new AdvancedForm(Height) {ShowInTaskbar = false};
+            AdvancedObj = new AdvancedForm
+            {
+                ShowInTaskbar = false,
+                Form1Obj = this
+            };
             AdvancedObj.ShowDialog();
 
             if (Properties.Settings.Default.IsBlackTheme)

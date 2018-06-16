@@ -35,6 +35,7 @@
             this.ViaCheckBox = new System.Windows.Forms.CheckBox();
             this.ViaNameTextBox = new System.Windows.Forms.TextBox();
             this.TopMostCheckBox = new System.Windows.Forms.CheckBox();
+            this.NotNthTimeNoticeCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // BlackThemeCheckBox
@@ -113,18 +114,30 @@
             // 
             this.TopMostCheckBox.AutoSize = true;
             this.TopMostCheckBox.Font = new System.Drawing.Font("メイリオ", 9F);
-            this.TopMostCheckBox.Location = new System.Drawing.Point(12, 191);
+            this.TopMostCheckBox.Location = new System.Drawing.Point(12, 190);
             this.TopMostCheckBox.Name = "TopMostCheckBox";
             this.TopMostCheckBox.Size = new System.Drawing.Size(99, 22);
             this.TopMostCheckBox.TabIndex = 6;
             this.TopMostCheckBox.Text = "さいぜんめん";
             this.TopMostCheckBox.UseVisualStyleBackColor = true;
             // 
+            // NotNthTimeNoticeCheckBox
+            // 
+            this.NotNthTimeNoticeCheckBox.AutoSize = true;
+            this.NotNthTimeNoticeCheckBox.Font = new System.Drawing.Font("メイリオ", 9F);
+            this.NotNthTimeNoticeCheckBox.Location = new System.Drawing.Point(12, 218);
+            this.NotNthTimeNoticeCheckBox.Name = "NotNthTimeNoticeCheckBox";
+            this.NotNthTimeNoticeCheckBox.Size = new System.Drawing.Size(166, 22);
+            this.NotNthTimeNoticeCheckBox.TabIndex = 7;
+            this.NotNthTimeNoticeCheckBox.Text = "nかいめおしらせをしない";
+            this.NotNthTimeNoticeCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AdvancedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(230, 225);
+            this.ClientSize = new System.Drawing.Size(230, 253);
+            this.Controls.Add(this.NotNthTimeNoticeCheckBox);
             this.Controls.Add(this.TopMostCheckBox);
             this.Controls.Add(this.ViaNameTextBox);
             this.Controls.Add(this.ViaCheckBox);
@@ -154,5 +167,6 @@
         private System.Windows.Forms.CheckBox ViaCheckBox;
         private System.Windows.Forms.TextBox ViaNameTextBox;
         private System.Windows.Forms.CheckBox TopMostCheckBox;
+        private System.Windows.Forms.CheckBox NotNthTimeNoticeCheckBox;
     }
 }
