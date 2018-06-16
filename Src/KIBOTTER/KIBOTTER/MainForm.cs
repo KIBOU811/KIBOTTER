@@ -388,12 +388,12 @@ namespace KIBOTTER
                 if (_kibotterSetting.ExperiencePoint < int.MaxValue - 3)
                 {
                     int level = p.GetPrimeList((int)_kibotterSetting.ExperiencePoint).Count;
-                    text = $"レベル {level} なう (:3)";
+                    text = $"レベル {level} (EXP: {_kibotterSetting.ExperiencePoint} )なう (:3)";
                 }
                 else
                 {
                     long level = p.GetPrimeList(_kibotterSetting.ExperiencePoint).Count;
-                    text = $"レベル {level} なう (:3)";
+                    text = $"レベル {level} (EXP: {_kibotterSetting.ExperiencePoint} )なう (:3)";
                 }
                 _kibotterSetting.ExperiencePoint++;
             }
