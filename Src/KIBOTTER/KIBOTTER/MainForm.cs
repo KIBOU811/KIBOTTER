@@ -29,7 +29,7 @@ namespace KIBOTTER
 
         private bool _isClosing;
 
-        public List<ScheduledTweetClass> ScheduledTweetList = new List<ScheduledTweetClass>();
+        public List<ScheduledTweetClass> ScheduledTweetList;
 
         private KIBOTTERSettingClass _kibotterSetting = new KIBOTTERSettingClass();
 
@@ -80,6 +80,9 @@ namespace KIBOTTER
                     sw.Write("");
                 }
             }
+
+            if (ScheduledTweetList == null)
+                ScheduledTweetList = new List<ScheduledTweetClass>();
 
             fileName = $@"{folder}\Settings.json";
             if (File.Exists(fileName))

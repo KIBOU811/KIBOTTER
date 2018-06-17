@@ -35,24 +35,28 @@ namespace KIBOTTER
             DataGridView.ReadOnly = true;
             DataGridView.AllowUserToAddRows = false;
             DataGridView.MultiSelect = false;
-            
-            List<ScheduledTweetClass> alternateList = new List<ScheduledTweetClass>(Form1Obj.ScheduledTweetList);
 
-            foreach (var al in alternateList)
+            if (Form1Obj.ScheduledTweetList != null)
             {
-                if (DateTime.FromBinary(al.TweetDateTime) < DateTime.Now)
+                List<ScheduledTweetClass> alternateList = new List<ScheduledTweetClass>(Form1Obj.ScheduledTweetList);
+
+                foreach (var al in alternateList)
                 {
-                    Form1Obj.ScheduledTweetList.Remove(al);
-                    continue;
+                    if (DateTime.FromBinary(al.TweetDateTime) < DateTime.Now)
+                    {
+                        Form1Obj.ScheduledTweetList.Remove(al);
+                        continue;
+                    }
+
+                    int idx = DataGridView.RowCount;
+                    DataGridView.Rows.Add();
+                    DataGridView.Rows[idx].Cells[0].Value = DateTime.FromBinary(al.TweetDateTime);
+                    DataGridView.Rows[idx].Cells[1].Value = al.ScreenAndViaName;
+                    DataGridView.Rows[idx].Cells[2].Value = al.Content;
                 }
 
-                int idx = DataGridView.RowCount;
-                DataGridView.Rows.Add();
-                DataGridView.Rows[idx].Cells[0].Value = DateTime.FromBinary(al.TweetDateTime);
-                DataGridView.Rows[idx].Cells[1].Value = al.ScreenAndViaName;
-                DataGridView.Rows[idx].Cells[2].Value = al.Content;
+                if (IsOnce) IsOnce = false;
             }
-            if (IsOnce) IsOnce = false;
 
             YearUpDown.Value = DateTime.Now.Year;
             MonthUpDown.Value = DateTime.Now.Month;
