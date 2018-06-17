@@ -64,6 +64,22 @@ namespace KIBOTTER
             BlackThemeCheckBox.FlatStyle = FlatStyle.System;
         }
 
+        private void ViaCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ViaCheckBox.Checked)
+            {
+                ViaNameTextBox.Enabled = true;
+                CKTextBox.Enabled = true;
+                CSTextBox.Enabled = true;
+            }
+            else
+            {
+                ViaNameTextBox.Enabled = false;
+                CKTextBox.Enabled = false;
+                CSTextBox.Enabled = false;
+            }
+        }
+
         private void ViaNameTextBox_Enter(object sender, EventArgs e)
         {
             ViaNameTextBox.SelectAll();

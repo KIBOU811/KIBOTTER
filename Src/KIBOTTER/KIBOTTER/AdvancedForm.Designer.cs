@@ -94,6 +94,7 @@
             this.ViaCheckBox.TabIndex = 0;
             this.ViaCheckBox.Text = "viaのかすたまいず";
             this.ViaCheckBox.UseVisualStyleBackColor = true;
+            this.ViaCheckBox.CheckedChanged += new System.EventHandler(this.ViaCheckBox_CheckedChanged);
             // 
             // ViaNameTextBox
             // 
