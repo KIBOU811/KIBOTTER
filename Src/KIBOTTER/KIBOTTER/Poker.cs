@@ -35,7 +35,7 @@ namespace KIBOTTER
             if (IsFullHouse(cards)) return "Full House";
             if (IsFlush(cards)) return "Flush";
             if (IsStraight(cards)) return "Straight";
-            if (Is3Cards(cards)) return "Three Crads";
+            if (Is3Cards(cards)) return "Three Cards";
             if (Is2Pair(cards)) return "Two Pair";
             if (Is1Pair(cards)) return "One Pair";
             return "No Pair";
