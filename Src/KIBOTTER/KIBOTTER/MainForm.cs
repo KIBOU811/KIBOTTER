@@ -547,7 +547,7 @@ namespace KIBOTTER
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                @"まだありません(X3)\r\nしつもんはこちらまで\r\n@KIBOU811",
+                $@"まだありません(X3){Environment.NewLine}しつもんはこちらまで{Environment.NewLine}@KIBOU811",
                 @"えらー",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
@@ -556,7 +556,7 @@ namespace KIBOTTER
         private void HelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                @"まだありません(X3)\r\nしつもんはこちらまで\r\n@KIBOU811",
+                $@"まだありません(X3){Environment.NewLine}しつもんはこちらまで{Environment.NewLine}@KIBOU811",
                 @"えらー",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
