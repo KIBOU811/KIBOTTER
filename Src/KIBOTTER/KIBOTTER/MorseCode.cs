@@ -305,7 +305,7 @@ namespace KIBOTTER
             {
                 if (c == 'が')
                 {
-                    return "・－・・ ・・";
+                    return "・－・・　・・";
                 }
                 return "・－・・";
             }
@@ -313,7 +313,7 @@ namespace KIBOTTER
             {
                 if (c == 'ぎ')
                 {
-                    return "－・－・・ ・・";
+                    return "－・－・・　・・";
                 }
                 return "－・－・・";
             }
@@ -321,7 +321,7 @@ namespace KIBOTTER
             {
                 if (c == 'ぐ')
                 {
-                    return "・・・－ ・・";
+                    return "・・・－　・・";
                 }
                 return "・・・－";
             }
@@ -329,7 +329,7 @@ namespace KIBOTTER
             {
                 if (c == 'げ')
                 {
-                    return "－・－－ ・・";
+                    return "－・－－　・・";
                 }
                 return "－・－－";
             }
@@ -337,7 +337,7 @@ namespace KIBOTTER
             {
                 if (c == 'ご')
                 {
-                    return "－－－－ ・・";
+                    return "－－－－　・・";
                 }
                 return "－－－－";
             }
@@ -345,7 +345,7 @@ namespace KIBOTTER
             {
                 if (c == 'ざ')
                 {
-                    return "－・－・－ ・・";
+                    return "－・－・－　・・";
                 }
                 return "－・－・－";
             }
@@ -353,7 +353,7 @@ namespace KIBOTTER
             {
                 if (c == 'じ')
                 {
-                    return "－－・－・ ・・";
+                    return "－－・－・　・・";
                 }
                 return "－－・－・";
             }
@@ -361,7 +361,7 @@ namespace KIBOTTER
             {
                 if (c == 'ず')
                 {
-                    return "－－－・－ ・・";
+                    return "－－－・－　・・";
                 }
                 return "－－－・－";
             }
@@ -369,7 +369,7 @@ namespace KIBOTTER
             {
                 if (c == 'ぜ')
                 {
-                    return "・－－－・ ・・";
+                    return "・－－－・　・・";
                 }
                 return "・－－－・";
             }
@@ -377,7 +377,7 @@ namespace KIBOTTER
             {
                 if (c == 'ぞ')
                 {
-                    return "－－－・ ・・";
+                    return "－－－・　・・";
                 }
                 return "－－－・";
             }
@@ -385,7 +385,7 @@ namespace KIBOTTER
             {
                 if (c == 'だ')
                 {
-                    return "－・ ・・";
+                    return "－・　・・";
                 }
                 return "－・";
             }
@@ -393,7 +393,7 @@ namespace KIBOTTER
             {
                 if (c == 'ぢ')
                 {
-                    return "・・－・ ・・";
+                    return "・・－・　・・";
                 }
                 return "・・－・";
             }
@@ -401,7 +401,7 @@ namespace KIBOTTER
             {
                 if (c == 'づ')
                 {
-                    return "・－－・ ・・";
+                    return "・－－・　・・";
                 }
                 return "・－－・";
             }
@@ -409,7 +409,7 @@ namespace KIBOTTER
             {
                 if (c == 'で')
                 {
-                    return "・－・－－ ・・";
+                    return "・－・－－　・・";
                 }
                 return "・－・－－";
             }
@@ -417,7 +417,7 @@ namespace KIBOTTER
             {
                 if (c == 'ど')
                 {
-                    return "・・－・・ ・・";
+                    return "・・－・・　・・";
                 }
                 return "・・－・・";
             }
@@ -445,11 +445,11 @@ namespace KIBOTTER
             {
                 if (c == 'ば')
                 {
-                    return "－・・・ ・・";
+                    return "－・・・　・・";
                 }
                 if (c == 'ぱ')
                 {
-                    return "－・・・ ・・－－・";
+                    return "－・・・　・・－－・";
                 }
                 return "－・・・";
             }
@@ -457,11 +457,11 @@ namespace KIBOTTER
             {
                 if (c == 'び')
                 {
-                    return "－－・・－ ・・";
+                    return "－－・・－　・・";
                 }
                 if (c == 'ぴ')
                 {
-                    return "－－・・－ ・・－－・";
+                    return "－－・・－　・・－－・";
                 }
                 return "－－・・－";
             }
@@ -469,11 +469,11 @@ namespace KIBOTTER
             {
                 if (c == 'ぶ')
                 {
-                    return "－－・・ ・・";
+                    return "－－・・　・・";
                 }
                 if (c == 'ぷ')
                 {
-                    return "－－・・ ・・－－・";
+                    return "－－・・　・・－－・";
                 }
                 return "－－・・";
             }
@@ -481,11 +481,11 @@ namespace KIBOTTER
             {
                 if (c == 'べ')
                 {
-                    return "・ ・・";
+                    return "・　・・";
                 }
                 if (c == 'ぺ')
                 {
-                    return "・ ・・－－・";
+                    return "・　・・－－・";
                 }
                 return "・";
             }
@@ -493,11 +493,11 @@ namespace KIBOTTER
             {
                 if (c == 'ぼ')
                 {
-                    return "－・・ ・・";
+                    return "－・・　・・";
                 }
                 if (c == 'ぽ')
                 {
-                    return "－・・ ・・－－・";
+                    return "－・・　・・－－・";
                 }
                 return "－・・";
             }
@@ -666,7 +666,7 @@ namespace KIBOTTER
             {
                 if (c == 'ガ')
                 {
-                    return "・－・・ ・・";
+                    return "・－・・　・・";
                 }
                 return "・－・・";
             }
@@ -674,7 +674,7 @@ namespace KIBOTTER
             {
                 if (c == 'ギ')
                 {
-                    return "－・－・・ ・・";
+                    return "－・－・・　・・";
                 }
                 return "－・－・・";
             }
@@ -682,7 +682,7 @@ namespace KIBOTTER
             {
                 if (c == 'グ')
                 {
-                    return "・・・－ ・・";
+                    return "・・・－　・・";
                 }
                 return "・・・－";
             }
@@ -690,7 +690,7 @@ namespace KIBOTTER
             {
                 if (c == 'ゲ')
                 {
-                    return "－・－－ ・・";
+                    return "－・－－　・・";
                 }
                 return "－・－－";
             }
@@ -698,7 +698,7 @@ namespace KIBOTTER
             {
                 if (c == 'ゴ')
                 {
-                    return "－－－－ ・・";
+                    return "－－－－　・・";
                 }
                 return "－－－－";
             }
@@ -706,7 +706,7 @@ namespace KIBOTTER
             {
                 if (c == 'ザ')
                 {
-                    return "－・－・－ ・・";
+                    return "－・－・－　・・";
                 }
                 return "－・－・－";
             }
@@ -714,7 +714,7 @@ namespace KIBOTTER
             {
                 if (c == 'ジ')
                 {
-                    return "－－・－・ ・・";
+                    return "－－・－・　・・";
                 }
                 return "－－・－・";
             }
@@ -722,7 +722,7 @@ namespace KIBOTTER
             {
                 if (c == 'ズ')
                 {
-                    return "－－－・－ ・・";
+                    return "－－－・－　・・";
                 }
                 return "－－－・－";
             }
@@ -730,7 +730,7 @@ namespace KIBOTTER
             {
                 if (c == 'ゼ')
                 {
-                    return "・－－－・ ・・";
+                    return "・－－－・　・・";
                 }
                 return "・－－－・";
             }
@@ -738,7 +738,7 @@ namespace KIBOTTER
             {
                 if (c == 'ゾ')
                 {
-                    return "－－－・ ・・";
+                    return "－－－・　・・";
                 }
                 return "－－－・";
             }
@@ -746,7 +746,7 @@ namespace KIBOTTER
             {
                 if (c == 'ダ')
                 {
-                    return "－・ ・・";
+                    return "－・　・・";
                 }
                 return "－・";
             }
@@ -754,7 +754,7 @@ namespace KIBOTTER
             {
                 if (c == 'ヂ')
                 {
-                    return "・・－・ ・・";
+                    return "・・－・　・・";
                 }
                 return "・・－・";
             }
@@ -763,7 +763,7 @@ namespace KIBOTTER
             {
                 if (c == 'ヅ')
                 {
-                    return "・－－・ ・・";
+                    return "・－－・　・・";
                 }
                 return "・－－・";
             }
@@ -771,7 +771,7 @@ namespace KIBOTTER
             {
                 if (c == 'デ')
                 {
-                    return "・－・－－ ・・";
+                    return "・－・－－　・・";
                 }
                 return "・－・－－";
             }
@@ -779,7 +779,7 @@ namespace KIBOTTER
             {
                 if (c == 'ド')
                 {
-                    return "・・－・・ ・・";
+                    return "・・－・・　・・";
                 }
                 return "・・－・・";
             }
@@ -808,11 +808,11 @@ namespace KIBOTTER
             {
                 if (c == 'バ')
                 {
-                    return "－・・・ ・・";
+                    return "－・・・　・・";
                 }
                 if (c == 'パ')
                 {
-                    return "－・・・ ・・－－・";
+                    return "－・・・　・・－－・";
                 }
                 return "－・・・";
             }
@@ -821,11 +821,11 @@ namespace KIBOTTER
             {
                 if (c == 'ビ')
                 {
-                    return "－－・・－ ・・";
+                    return "－－・・－　・・";
                 }
                 if (c == 'ピ')
                 {
-                    return "－－・・－ ・・－－・";
+                    return "－－・・－　・・－－・";
                 }
                 return "－－・・－";
             }
@@ -834,11 +834,11 @@ namespace KIBOTTER
             {
                 if (c == 'ブ')
                 {
-                    return "－－・・ ・・";
+                    return "－－・・　・・";
                 }
                 if (c == 'プ')
                 {
-                    return "－－・・ ・・－－・";
+                    return "－－・・　・・－－・";
                 }
                 return "－－・・";
             }
@@ -847,11 +847,11 @@ namespace KIBOTTER
             {
                 if (c == 'ベ')
                 {
-                    return "・ ・・";
+                    return "・　・・";
                 }
                 if (c == 'ペ')
                 {
-                    return "・ ・・－－・";
+                    return "・　・・－－・";
                 }
                 return "・";
             }
@@ -860,11 +860,11 @@ namespace KIBOTTER
             {
                 if (c == 'ボ')
                 {
-                    return "－・・ ・・";
+                    return "－・・　・・";
                 }
                 if (c == 'ポ')
                 {
-                    return "－・・ ・・－－・";
+                    return "－・・　・・－－・";
                 }
                 return "－・・";
             }
