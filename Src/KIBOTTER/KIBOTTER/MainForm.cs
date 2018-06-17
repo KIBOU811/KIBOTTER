@@ -340,12 +340,6 @@ namespace KIBOTTER
         {
             text = text.TrimEnd('\r', '\n');
 
-            if (FirstMediaPath != null)
-            {
-                await TweetWithMedia(text);
-                return;
-            }
-
             if (string.IsNullOrEmpty(text))
             {
                 ToolStripStatusLabel.Text = @"しっぱいしました(X3)";
@@ -404,7 +398,13 @@ namespace KIBOTTER
             int startIndex;
             if (0 <= (startIndex = text.IndexOf("!now", StringComparison.Ordinal)))
                 text = text.Remove(startIndex, 4).Insert(startIndex, DateTime.Now.ToString(CultureInfo.CurrentCulture));
-            
+
+            if (FirstMediaPath != null)
+            {
+                await TweetWithMedia(text);
+                return;
+            }
+
             await Tweet(text, 1);
         }
 
