@@ -348,8 +348,10 @@ namespace KIBOTTER
             if (SushiModeToolStripMenuItem.Checked)
             {
                 var sushiText = string.Empty;
+                int linage = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length;
+                int length = text.Length - linage + 1;
 
-                for (int i = 0; i < text.Length; i++)
+                for (int i = 0; i < length; i++)
                     sushiText += "🍣";
 
                 text = sushiText;
