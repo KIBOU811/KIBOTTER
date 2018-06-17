@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -377,21 +376,8 @@ namespace KIBOTTER
             }
             else if (text == "!bill")
             {
-                string ipAddress = string.Empty;
-
-                IPHostEntry ipEntry = Dns.GetHostEntry(Dns.GetHostName());
-                foreach (IPAddress ip in ipEntry.AddressList)
-                {
-                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                    {
-                        ipAddress = ip.ToString();
-                        break;
-                    }
-                }
-
-                int integerIp = (int)(long.Parse(ipAddress.Replace(".", "")) / 1000);
-                int bill = (integerIp + int.Parse(DateTime.Now.ToString("yyyyMMdd"))) % 10000;
-
+                Random rnd = new Random(int.Parse(DateTime.Now.ToString("yyyyMMdd")));
+                int bill = rnd.Next();
                 text = $"本日のTwitter利用料 {bill:#,0}円";
             }
 
