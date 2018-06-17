@@ -299,21 +299,26 @@ namespace KIBOTTER
                 ToolStripStatusLabel.Text = @"まだにんしょうしていません(X3)";
                 return;
             }
-
-            var text = TweetTextBox.Text.TrimEnd('\r', '\n');
+            string text = TweetTextBox.Text;
+            TweetTextBox.Clear();
+            TweetTextBox.Focus();
+            
+            await ApplyCommandAndTweet(text);
+        }
+        
+        private async Task ApplyCommandAndTweet(string text)
+        {
+            text = text.TrimEnd('\r', '\n');
 
             if (FirstMediaPath != null)
             {
-                TweetTextBox.Clear();
                 await TweetWithMedia(text);
-                TweetTextBox.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(text))
             {
                 ToolStripStatusLabel.Text = @"しっぱいしました(X3)";
-                TweetTextBox.Focus();
                 return;
             }
 
@@ -332,7 +337,6 @@ namespace KIBOTTER
                 text = mc.ConvertToMorse(text);
                 if (text == "error")
                 {
-                    TweetTextBox.Clear();
                     ToolStripStatusLabel.Text = @"もーるすしんごうにできませんでした(X3)";
                     return;
                 }
@@ -370,9 +374,7 @@ namespace KIBOTTER
             int startIndex;
             if (0 <= (startIndex = text.IndexOf("!now", StringComparison.Ordinal)))
                 text = text.Remove(startIndex, 4).Insert(startIndex, DateTime.Now.ToString(CultureInfo.CurrentCulture));
-
-            TweetTextBox.Clear();
-            TweetTextBox.Focus();
+            
             await Tweet(text, 1);
         }
 
