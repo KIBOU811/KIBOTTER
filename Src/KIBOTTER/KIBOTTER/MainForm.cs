@@ -386,7 +386,7 @@ namespace KIBOTTER
                     text = "@KIBOUDIED \r\n";
 
                 text += CommandPoker();
-                _kibotterSetting.ExperiencePoint -= 2;
+                _kibotterSetting.ExperiencePoint -= 16;
 
                 if (text.Contains("Straight Flush"))
                     _kibotterSetting.ExperiencePoint += 66667;
