@@ -346,7 +346,7 @@ namespace KIBOTTER
         {
             text = text.TrimEnd('\r', '\n');
 
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text) && FirstMediaPath == null)
             {
                 ToolStripStatusLabel.Text = @"しっぱいしました(X3)";
                 _kibotterSetting.ExperiencePoint--;
@@ -411,8 +411,19 @@ namespace KIBOTTER
 
                 else if (text.Contains("One Pair"))
                     _kibotterSetting.ExperiencePoint += 2;
+
+                try
+                {
+                    await Tokens.Statuses.UpdateAsync(text, 1010167866182651904);
+
+                }
+                catch
+                {
+                    ToolStripStatusLabel.Text = @"ぽーかーにしっぱいしました(X3)";
+                }
+                return;
             }
-            else if (text == "!bill")
+            if (text == "!bill")
             {
                 Random rnd = new Random(int.Parse(DateTime.Now.ToString("yyyyMMdd")));
                 int bill = rnd.Next();
