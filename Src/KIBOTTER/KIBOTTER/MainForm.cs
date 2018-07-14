@@ -378,7 +378,7 @@ namespace KIBOTTER
                 _kibotterSetting.ExperiencePoint += 2;
             }
             
-            if (text == "!poker")
+            if (text == "!poker" || text == "!pkr")
             {
                 text = string.Empty;
 
