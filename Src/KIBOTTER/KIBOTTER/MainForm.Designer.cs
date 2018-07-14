@@ -233,6 +233,8 @@
             this.TweetTextBox.Size = new System.Drawing.Size(230, 117);
             this.TweetTextBox.TabIndex = 1;
             this.TweetTextBox.TextChanged += new System.EventHandler(this.TweetTextBox_TextChanged);
+            this.TweetTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.TweetTextBox_DragDrop);
+            this.TweetTextBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.TweetTextBox_DragEnter);
             this.TweetTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TweetTextBox_KeyPress);
             // 
             // TweetButton
