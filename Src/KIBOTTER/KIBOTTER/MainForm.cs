@@ -734,9 +734,9 @@ namespace KIBOTTER
 
                     
                     string folder = AppDomain.CurrentDomain.BaseDirectory + "Setting";
-                    string fileName = $@"{folder}\ScheduledTweets.json";
+                    string fileName = $@"{folder}\Account.cfg";
 
-                        using (StreamReader sr = new StreamReader(fileName))
+                    using (StreamReader sr = new StreamReader(fileName))
                     {
                         while (sr.Peek() >= 1)
                         {
