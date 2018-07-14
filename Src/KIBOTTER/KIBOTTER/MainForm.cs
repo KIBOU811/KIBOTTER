@@ -430,7 +430,7 @@ namespace KIBOTTER
                 text = $"本日のTwitter利用料 {bill:#,0}円";
                 _kibotterSetting.ExperiencePoint++;
             }
-            else if (text == "!level")
+            else if (text == "!level" || text == "!lvl")
             {
                 Prime p = new Prime();
                 if (_kibotterSetting.ExperiencePoint < int.MaxValue - 3)
