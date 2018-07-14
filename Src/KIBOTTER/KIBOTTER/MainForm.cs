@@ -860,10 +860,8 @@ namespace KIBOTTER
 
         private void TweetTextBox_DragDrop(object sender, DragEventArgs e)
         {
-            // ファイルが渡されていなければ、何もしない
             if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
-
-            // 渡されたファイルに対して処理を行う
+            
             foreach (var filePath in (string[])e.Data.GetData(DataFormats.FileDrop))
             {
                 if (FirstMediaPath == null)
