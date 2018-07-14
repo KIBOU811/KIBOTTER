@@ -361,9 +361,11 @@ namespace KIBOTTER
 
             string[] splitedText = text.Split(' ');
             if ((splitedText[0] == "!addTag"
-                || splitedText[0] == "!setTag"
-                || splitedText[0] == "!tag")
-                && splitedText.Length >= 2)
+                 || splitedText[0] == "!addtag"
+                 || splitedText[0] == "!setTag"
+                 || splitedText[0] == "!settag"
+                 || splitedText[0] == "!tag")
+                 && splitedText.Length >= 2)
             {
                 if (splitedText[1][0] == '#')
                 {
@@ -379,16 +381,28 @@ namespace KIBOTTER
                 return;
             }
             if ((splitedText[0] == "!deleteTag"
-                || splitedText[0] == "!removeTag"
-                || splitedText[0] == "!resetTag")
-                && splitedText.Length == 1)
+                 || splitedText[0] == "!deletetag"
+                 || splitedText[0] == "!removeTag"
+                 || splitedText[0] == "!removetag"
+                 || splitedText[0] == "!resetTag"
+                 || splitedText[0] == "!resettag")
+                 && splitedText.Length == 1)
             {
                 LiveTag = string.Empty;
                 ToolStripStatusLabel.Text = @"たぐをぜんぶけしました(:3)";
                 return;
             }
+            if ((splitedText[0] == "!checkTag"
+                 || splitedText[0] == "!checktag"
+                 || splitedText[0] == "!tagCheck"
+                 || splitedText[0] == "!tagcheck")
+                && splitedText.Length == 1)
+            {
+                ToolStripStatusLabel.Text = $@"たぐ:{LiveTag}";
+                return;
+            }
 
-            if (SushiModeToolStripMenuItem.Checked)
+                if (SushiModeToolStripMenuItem.Checked)
             {
                 var sushiText = string.Empty;
                 int linage = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length;
