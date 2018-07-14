@@ -44,9 +44,11 @@ namespace KIBOTTER
         static bool IsRoyalStraightFlush(int[] cards)
         {
             if (IsStraightFlush(cards)
-                && cards[0] == 1
-                && cards[4] == 13
-                && cards[1] - cards[0] == 9)
+                && cards.Contains(0)
+                && cards.Contains(36)
+                && cards.Contains(40)
+                && cards.Contains(44)
+                && cards.Contains(48))
                 return true;
 
             return false;
@@ -96,6 +98,8 @@ namespace KIBOTTER
 
             if (cards[4] - cards[0] == 4)
                 return true;
+            if (cards[1] - cards[0] == 9 && cards[4] - cards[0] == 12)
+                return true;
 
             return false;
         }
@@ -132,7 +136,7 @@ namespace KIBOTTER
                 if (any == i && mode == 0)
                     return true;
 
-                else if (any == i && mode == 1)
+                if (any == i && mode == 1)
                     countPair++;
             }
 
