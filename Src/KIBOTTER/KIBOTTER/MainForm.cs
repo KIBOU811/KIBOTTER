@@ -601,6 +601,48 @@ namespace KIBOTTER
             }
         }
 
+        private void TweetTextBox_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private void TweetTextBox_DragDrop(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
+
+            foreach (var filePath in (string[])e.Data.GetData(DataFormats.FileDrop))
+            {
+                if (FirstMediaPath == null)
+                {
+                    FirstMediaPath = filePath;
+                    ToolStripStatusLabel.Text = @"1まいめをついかしました(:3)";
+                }
+                else if (SecondMediaPath == null)
+                {
+                    SecondMediaPath = filePath;
+                    ToolStripStatusLabel.Text = @"2まいめをついかしました(:3)";
+                }
+                else if (ThirdMediaPath == null)
+                {
+                    ThirdMediaPath = filePath;
+                    ToolStripStatusLabel.Text = @"3まいめをついかしました(:3)";
+                }
+                else if (FourthMediaPath == null)
+                {
+                    FourthMediaPath = filePath;
+                    ToolStripStatusLabel.Text = @"4まいめをついかしました(:3)";
+                }
+                else
+                {
+                    MessageBox.Show(
+                        @"これいじょうついかできません(X3)",
+                        @"えらー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private void DraftButton_Click(object sender, EventArgs e)
         {
             if (DraftObj == null || DraftObj.IsDisposed)
@@ -851,48 +893,6 @@ namespace KIBOTTER
 
             Properties.Settings.Default.IsRepliedPokerChecked = RepliedPokerToolStripMenuItem.Checked;
             Properties.Settings.Default.Save();
-        }
-
-        private void TweetTextBox_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.All;
-        }
-
-        private void TweetTextBox_DragDrop(object sender, DragEventArgs e)
-        {
-            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
-            
-            foreach (var filePath in (string[])e.Data.GetData(DataFormats.FileDrop))
-            {
-                if (FirstMediaPath == null)
-                {
-                    FirstMediaPath = filePath;
-                    ToolStripStatusLabel.Text = @"1まいめをついかしました(:3)";
-                }
-                else if (SecondMediaPath == null)
-                {
-                    SecondMediaPath = filePath;
-                    ToolStripStatusLabel.Text = @"2まいめをついかしました(:3)";
-                }
-                else if (ThirdMediaPath == null)
-                {
-                    ThirdMediaPath = filePath;
-                    ToolStripStatusLabel.Text = @"3まいめをついかしました(:3)";
-                }
-                else if (FourthMediaPath == null)
-                {
-                    FourthMediaPath = filePath;
-                    ToolStripStatusLabel.Text = @"4まいめをついかしました(:3)";
-                }
-                else
-                {
-                    MessageBox.Show(
-                        @"これいじょうついかできません(X3)",
-                        @"えらー",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
         }
     }
 }
