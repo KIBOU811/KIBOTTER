@@ -32,6 +32,8 @@ namespace KIBOTTER
 
         private KIBOTTERSettingClass _kibotterSetting;
 
+        private string LiveTag { get; set; } 
+
         public MainForm()
         {
             _kibotterSetting = null;
@@ -110,6 +112,8 @@ namespace KIBOTTER
             MaximumSize = Size;
 
             TweetTextBox.AllowDrop = true;
+
+            LiveTag = string.Empty;
 
             NewTimer();
             StartTimer();
@@ -355,6 +359,35 @@ namespace KIBOTTER
                 return;
             }
 
+            string[] splitedText = text.Split(' ');
+            if ((splitedText[0] == "!addTag"
+                || splitedText[0] == "!setTag"
+                || splitedText[0] == "!tag")
+                && splitedText.Length >= 2)
+            {
+                if (splitedText[1][0] == '#')
+                {
+                    LiveTag += $" {splitedText[1]}";
+                    ToolStripStatusLabel.Text = $@"たぐ({splitedText[1]})をついかしました(:3)";
+                }
+                else
+                {
+                    LiveTag += $" #{splitedText[1]}";
+                    ToolStripStatusLabel.Text = $@"たぐ(#{splitedText[1]})をついかしました(:3)";
+                }
+
+                return;
+            }
+            if ((splitedText[0] == "!deleteTag"
+                || splitedText[0] == "!removeTag"
+                || splitedText[0] == "!resetTag")
+                && splitedText.Length == 1)
+            {
+                LiveTag = string.Empty;
+                ToolStripStatusLabel.Text = @"たぐをぜんぶけしました(:3)";
+                return;
+            }
+
             if (SushiModeToolStripMenuItem.Checked)
             {
                 var sushiText = string.Empty;
@@ -454,6 +487,9 @@ namespace KIBOTTER
                 text = text.Remove(startIndex, 4).Insert(startIndex, DateTime.Now.ToString(CultureInfo.CurrentCulture));
                 _kibotterSetting.ExperiencePoint++;
             }
+
+            text += LiveTag;
+
             if (FirstMediaPath != null)
             {
                 await TweetWithMedia(text);
